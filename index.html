@@ -1,6 +1,6 @@
 <!doctype html><html><head><meta charset="UTF-8"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>정보처리산업기사(과정평가형) 실기 참고자료</title>
-<meta name="description" content="정보처리산업기사 실기(과정형평가) Eclipse·Tomcat·Oracle 개발환경 구성 학습자료">
+<meta name="description" content="정보처리산업기사 실기(과정평가형) Eclipse·Tomcat·Oracle 개발환경 구성 학습자료">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
 
@@ -368,6 +368,13 @@
   .callout > div > b:first-child { display: block; margin-bottom: 2px; }
   .callout.tip > div > b:first-child { color: var(--accent-strong); }
   .callout.warn > div > b:first-child { color: var(--warn); }
+  .callout.ok { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 30%, transparent); }
+  .callout.ok > div > b:first-child { color: var(--ok); }
+  .callout > div { min-width: 0; }
+  .callout .ok-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--ok); margin-top: 6px; }
+  .callout .done-help { display: block; margin-top: 4px; color: var(--text-dim); font-size: 12.5px; }
+  .callout pre.hint { margin: 8px 0 4px; }
+  .jsp-basics td:first-child { white-space: nowrap; }
 
   .no-shot {
     display: flex;
@@ -704,6 +711,7 @@
   .mk-s table { border-collapse: collapse; margin: 0 auto; font-size: 12px; }
   .mk-s th, .mk-s td { border: 1px solid #444; padding: 3px 8px; white-space: nowrap; }
   .mk-in { display: inline-block; width: 120px; height: 18px; line-height: 16px; border: 1px solid #888; background: #fff; vertical-align: middle; text-align: left; padding: 0 4px; font-size: 11px; }
+  .mk-left td { text-align: left; }
   .mk-btn { display: inline-block; border: 1px solid #888; background: #efefef; border-radius: 3px; padding: 0 8px; font-size: 11.5px; margin: 0 2px; }
   .mk-f { background: rgb(128,128,128); color: #fff; min-height: 50px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 6px 10px; font-size: 12px; }
   .mock figcaption { font-size: 12.5px; color: var(--text-dim); padding: 8px 2px 0; }
@@ -712,7 +720,7 @@
 <div class="shell">
   <aside class="sidebar">
     <div class="brand">
-      <span class="eyebrow">정보처리산업기사 · 실기(과정형평가)</span>
+      <span class="eyebrow">정보처리산업기사 · 실기(과정평가형)</span>
       <h1>실기 환경구성 노트</h1>
       <span class="sub" id="brandSub">Eclipse · Tomcat · Oracle</span>
     </div>
@@ -751,9 +759,9 @@
         </div>
       </div>
       <h2 class="of-h">최종 점수와 합격 기준</h2>
-      <p class="of-sub">아래 반영 비율, 합격 기준, 재응시 기간은 직접 알려주신 내용입니다. 공식 PDF에는 외부평가 안에서의 배점(1차 40%, 2차 60%)만 나와 있습니다.</p>
+      <p class="of-sub">합격 기준과 재응시 기간은 <a href="https://c.q-net.or.kr/cbq/introduce/faq.do" target="_blank" rel="noopener">CQ-Net 과정평가형 자격 FAQ</a>(2026-10-16 확인)를 따랐습니다. FAQ는 내부평가와 외부평가를 1:1로 합산해 평균 80점 이상이면 합격이라고 안내합니다. 외부평가 안의 배점(1차 40%, 2차 60%)은 25V5 공식 PDF의 내용입니다.</p>
       <div class="of-card">
-        <div class="sc-legend"><span>최종 점수 100점 중</span><span>합격: 평균 80점 이상 · 재응시: 최초 평가 후 2년 이내</span></div>
+        <div class="sc-legend"><span>최종 점수 100점 중</span><span>합격: 평균 80점 이상 · 재응시: 합격자 공고일 이후 2년 이내</span></div>
         <div class="sc-bar" role="img" aria-label="최종 점수 반영 비율: 내부평가 50%, 외부평가 필기 20%, 외부평가 실무 30%">
           <div class="in">내부평가 50%</div><div class="w">필기 20%</div><div class="p">실무 30%</div>
         </div>
@@ -762,9 +770,9 @@
           <li><b>외부평가 필기</b>(1차) 100점 만점 → <b>20%</b> 반영</li>
           <li><b>외부평가 실무</b>(2차 작업형) 100점 만점 → <b>30%</b> 반영</li>
           <li>최종 점수 = 내부 × 0.5 + 필기 × 0.2 + 실무 × 0.3, <b>80점 이상이면 합격</b></li>
-          <li><b>재응시</b>는 최초 평가 이후 <b>2년 이내</b>에 가능</li>
+          <li><b>재응시</b>: 외부평가에서 불합격하면 최초로 응시한 외부평가의 <b>합격자 공고일 이후 2년 이내</b>에 실시되는 외부평가에 다시 응시할 수 있습니다. 개인별 응시 가능 기간은 CQ-Net에서 확인하세요.</li>
         </ul>
-        <div class="callout tip" style="margin-bottom:0"><span class="ico">🔎</span><div><b>공식 PDF와 맞는지 확인했습니다</b>외부평가 비중 50%를 PDF의 1차 40% : 2차 60%로 나누면 50 × 0.4 = 20%, 50 × 0.6 = 30%로, 알려주신 필기 20% · 실무 30%와 같습니다.</div></div>
+        <div class="callout tip" style="margin-bottom:0"><span class="ico">🔎</span><div><b>비율 계산</b>외부평가 비중 50%를 PDF의 1차 40% : 2차 60%로 나누면 50 × 0.4 = 20%, 50 × 0.6 = 30%이므로 필기 20% · 실무 30%가 됩니다.</div></div>
       </div>
       <div class="of-card" style="margin-top:12px">
         <div class="k">점수 계산기</div><h3>내 점수를 넣어 보세요</h3>
@@ -775,7 +783,7 @@
         </div>
         <div class="sc-out" id="scOut" aria-live="polite">점수를 입력하면 최종 점수와 합격 여부가 나옵니다.</div>
         <div class="sc-need" id="scNeed"></div>
-        <div class="sc-need">이 계산기는 위 반영 비율로 단순 계산만 합니다. 과목별 최저 점수(과락) 같은 다른 조건이 있는지는 제가 확인하지 못했으니, 소속 교육기관 안내를 함께 확인하세요.</div>
+        <div class="sc-need">이 계산기는 위 반영 비율로 단순 계산만 합니다. 0~100 밖의 값을 넣으면 계산하지 않습니다. 점수는 소수 첫째 자리 아래를 버려 보여 주므로 80점에 못 미치는 점수가 80.0으로 표시되지 않습니다. 실제 성적 산출의 반올림 규칙은 [확인 필요]이고, CQ-Net FAQ에는 내부평가 평균 60점 이상 같은 조건도 함께 나오므로 소속 교육기관과 CQ-Net 안내를 따르세요.</div>
       </div>
       <div class="callout tip"><span class="ico">💡</span><div><b>읽는 법</b>교육·훈련 목표는 "소프트웨어 시스템의 설계 명세를 이해하여 응용 소프트웨어 개발 및 테스트 직무를 수행할 수 있는 인력 양성"입니다. 2차 실기는 <b>DB 구축 → 화면 개발</b>을 한 과제 안에서 평가하고, 이 웹앱도 같은 흐름(환경 구성 → DB 입력 → 화면 개발)으로 짜여 있습니다.</div></div>
 
@@ -857,7 +865,7 @@
         <button type="button" class="golink" data-go="step-listschedule">JOIN 조회 만든 과정 (list_j.jsp) →</button></div>
       <div class="of-scr"><div class="top"><span class="tag">마</span><h3>부서별주행통계</h3></div>
         <ul><li>주행내역·부서 테이블을 참조해 부서코드, 부서명, 총운행거리, 총주유금액을 출력.</li><li>총운행거리 = <b>(도착km − 출발km)의 합</b>. 총주유금액은 통화기호 + 천 단위 구분 (예: ₩95,000).</li></ul>
-        <div class="ex">이 웹앱의 챕터 3에는 아직 이 화면(부서별 합계)에 해당하는 예제가 없습니다.</div></div>
+        <div class="ex">회원·일정 예제에는 이 화면(부서별 합계)에 해당하는 예제가 없습니다. 6절의 후속 연습을 참고하세요.</div></div>
       <div class="of-scr"><div class="top"><span class="tag">바</span><h3>홈으로</h3></div>
         <ul><li>메뉴를 클릭하면 메인(시작)화면으로 이동.</li></ul></div>
 
@@ -870,7 +878,7 @@
         <tr><th>접속 URL</th><td class="m">jdbc:oracle:thin:@//localhost:1521/xe</td><td class="m">jdbc:mysql://localhost:3306/mysql</td></tr>
         <tr><th>계정 / 비밀번호</th><td class="m">system / 1234</td><td class="m">system / 1234</td></tr>
         <tr><th>연결 확인 쿼리</th><td class="m">select sysdate from dual</td><td class="m">select now() from dual</td></tr></tbody></table></div>
-      <ul style="font-size:13.5px;margin:0 0 10px;padding-left:19px"><li>샘플은 <span class="path">&lt;%@ page import="java.sql.*" %&gt;</span>를 쓰고, try/catch 안에서 연결 → <span class="path">con != null</span>이면 success, 아니면 fail을 출력합니다.</li><li>샘플은 마지막에 <span class="path">stmt.close()</span>와 <span class="path">con.close()</span>로 자원을 닫습니다. (챕터 4의 Util 해설에서 "닫는 코드가 없다"고 짚은 부분과 대비됩니다.)</li><li>Oracle용의 드라이버 클래스·접속 URL·계정·비밀번호는 챕터 1·4의 Util.java와 같습니다.</li></ul>
+      <ul style="font-size:13.5px;margin:0 0 10px;padding-left:19px"><li>샘플은 <span class="path">&lt;%@ page import="java.sql.*" %&gt;</span>를 쓰고, try/catch 안에서 연결 → <span class="path">con != null</span>이면 success, 아니면 fail을 출력합니다.</li><li>샘플은 마지막에 <span class="path">stmt.close()</span>와 <span class="path">con.close()</span>로 자원을 닫습니다. (이 자료의 기준 코드도 연결을 받아 쓴 JSP에서 자원을 닫습니다.)</li><li>Oracle용의 드라이버 클래스·접속 URL·계정·비밀번호는 챕터 1·4의 Util.java와 같습니다.</li></ul>
       <button type="button" class="golink" data-go="step-util">Util 클래스 만든 과정 →</button><button type="button" class="golink" data-go="step-n-util">Util.java 주석 해설 →</button>
 
       <h2 class="of-h">6. 공식 과제와 이 웹앱의 연습 과제는 어떻게 대응되나</h2>
@@ -882,8 +890,18 @@
         <tr><td>차량조회 (한 테이블 전체 조회)</td><td>list.jsp 회원현황 (단계 15)</td></tr>
         <tr><td>주행내역조회 (테이블 여러 개 참조)</td><td>list_j.jsp 일정현황 JOIN (단계 16) — 연습은 2개 테이블, 공식은 3개</td></tr>
         <tr><td>주행내역등록 + 유효성 체크 + 알림창</td><td>reg.jsp, action.jsp (단계 17~18)</td></tr>
-        <tr><td>부서별주행통계 (합계)</td><td>이 웹앱에는 아직 없음</td></tr></tbody></table></div>
-      <div class="callout warn"><span class="ico">⚠️</span><div><b>제가 덧붙인 구현 힌트 (PDF에 없는 내용)</b>통계 화면과 날짜·숫자 형식 요구를 SQL로 풀 때의 한 가지 예입니다. 이 환경에서는 Oracle에 직접 실행해 볼 수 없어서 <b>실행 결과는 확인하지 못했습니다.</b> 특히 통화기호(₩)가 어떻게 나오는지는 DB 설정에 따라 다를 수 있는데, 어떻게 되는지는 모릅니다. 연습할 때 직접 실행해서 확인하세요.</div></div>
+        <tr><td>부서별주행통계 (합계)</td><td>대응 예제 없음 (아래 후속 연습)</td></tr></tbody></table></div>
+      <h3 style="font-size:15px;margin:18px 0 4px">차량 과제로 넘어가기 전에 따로 연습할 것</h3>
+      <p class="of-sub">회원·일정 예제를 끝냈다고 공식 예시의 요구를 모두 연습한 것은 아닙니다. 공식 자료는 공개 예시라 실제 출제와 다를 수 있습니다. 회원·일정 예제를 마친 뒤 아래 항목을 차량 과제에 적용해 보세요.</p>
+      <div class="twrap"><table class="otbl"><thead><tr><th>공식 예시의 요구</th><th>회원·일정 예제와 다른 점</th><th>추가로 연습할 것</th></tr></thead><tbody>
+        <tr><td>부서·차량·주행내역 연결</td><td>예제는 2개 테이블</td><td>3개 테이블을 JOIN해 차량 모델과 부서명 출력</td></tr>
+        <tr><td>주행일자+차량번호 복합 기본키</td><td>예제는 일정코드 1개 컬럼</td><td>같은 날짜에 다른 차량 등록(가능)과 같은 날짜·같은 차량 중복(불가) 비교</td></tr>
+        <tr><td>날짜를 char(8)로 저장, 지정 형식으로 출력</td><td>예제의 일정일자는 date</td><td><span class="path">to_date</span>(글자→날짜)와 <span class="path">to_char</span>(날짜→글자)의 역할 구분</td></tr>
+        <tr><td>부서별 총운행거리·총주유금액</td><td>대응 예제 없음</td><td><span class="path">sum</span>, <span class="path">group by</span>. 주행거리 몇 개를 손으로 더한 값과 쿼리 결과 비교</td></tr>
+        <tr><td>부서 선택 상자</td><td>예제는 회원코드를 직접 입력</td><td><span class="path">&lt;option value="10"&gt;영업부&lt;/option&gt;</span>처럼 보이는 글자와 전송 값 구분</td></tr>
+        <tr><td>다시쓰기 버튼</td><td>예제에 없음</td><td>입력값을 지운 뒤 첫 입력칸으로 포커스 이동</td></tr>
+        <tr><td>통화기호·천 단위 구분</td><td>예제는 메모·날짜 중심</td><td><span class="path">to_char(값, 'FM999,999')</span> 등 숫자 출력 형식</td></tr></tbody></table></div>
+      <div class="callout warn"><span class="ico">⚠️</span><div><b>제가 덧붙인 구현 힌트 (PDF에 없는 내용)</b>통계 화면과 날짜·숫자 형식 요구를 SQL로 풀 때의 한 가지 예입니다. 이 환경에서는 Oracle에 직접 실행해 볼 수 없어서 <b>실행 결과는 확인하지 못했습니다.</b> 통화기호(₩) 출력은 DB의 통화 설정(NLS)에 따라 달라질 수 있어 [확인 필요]입니다. 연습할 때 직접 실행해 문제지의 화면 예시와 비교하세요.</div></div>
 <pre class="hint">-- 부서별 합계 (총운행거리 = 도착km - 출발km 의 합)
 select d.dept_code, d.dept_name,
        sum(v.drv_end - v.drv_start) as 총운행거리,
@@ -912,7 +930,7 @@ to_char(v.drv_start, 'FM999,999')</pre>
     <div class="overview" id="overview">
       <span class="chapter-tag">OVERVIEW</span>
       <h1 class="chapter-title">실기 전체 흐름 한눈에 보기</h1>
-      <p class="chapter-desc">문제 풀이는 <b>① 환경 구성 → ② 데이터베이스 입력 → ③ 화면 구현 → ④ 페이지별 기능 구현 → ⑤ 최종 테스트 → ⑥ 검토를 받기 위한 데이터 초기화</b> 순서로 진행합니다(직접 알려주신 순서). 아래 첫 그림은 이 6단계와 이 자료의 단계 번호를 연결한 것이고, 두 번째 그림은 완성된 앱이 실행될 때 요청이 흘러가는 길입니다. 첫 번째 그림의 작은 번호(1~18)는 이 자료 각 챕터의 '단계' 번호와 같고, 두 번째 그림의 A·B·C는 요청이 흘러가는 순서입니다.</p>
+      <p class="chapter-desc">문제 풀이는 <b>① 환경 구성 → ② 데이터베이스 입력 → ③ 화면 구현 → ④ 페이지별 기능 구현 → ⑤ 최종 테스트 → ⑥ 검토를 받기 위한 데이터 초기화</b> 순서로 진행합니다. 아래 첫 그림은 이 6단계와 이 자료의 단계 번호를 연결한 것이고, 두 번째 그림은 완성된 앱이 실행될 때 요청이 흘러가는 길입니다. 첫 번째 그림의 작은 번호(1~18)는 이 자료 각 챕터의 '단계' 번호와 같고, 두 번째 그림의 A·B·C는 요청이 흘러가는 순서입니다.</p>
       <figure>
 <svg viewBox="0 0 900 486" role="img" aria-label="문제 풀이 순서 6단계: 1 환경 구성, 2 데이터베이스 입력, 3 화면 구현, 4 페이지별 기능 구현, 5 최종 테스트, 6 검토를 위한 데이터 초기화">
 <defs><marker id="ah1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 L10 5 L0 10 z" class="d-arrow acc"/></marker></defs>
@@ -979,7 +997,7 @@ to_char(v.drv_start, 'FM999,999')</pre>
             <li><b>메뉴</b> — 일정등록·회원현황·일정현황·홈으로가 모두 가운데 iframe 안에서 열리는지 (새 창으로 열리면 target/name 오타)</li>
             <li><b>조회 화면</b> — 회원 5건, 일정 4건이 나오는지, 날짜가 지정한 형식(yyyy-MM-dd)인지</li>
             <li><b>입력 검증</b> — 일정일자·회원번호·일정메모를 하나씩 비우고 등록을 눌러 알림창과 커서 이동이 맞는지</li>
-            <li><b>등록</b> — 정상 입력 후 안내창 → 홈으로 이동, 일정현황에 새 행이 보이는지, 일정번호가 자동으로 다음 번호가 되는지</li>
+            <li><b>등록</b> — 정상 입력 후 안내창 → 홈으로 이동, 일정현황에 새 행이 보이는지, 일정코드가 자동으로 다음 번호가 되는지</li>
             <li><b>한글</b> — 한글 메모를 등록해도 깨지지 않는지 (깨지면 단계 2의 UTF-8 설정과, POST로 보낼 경우 setCharacterEncoding 위치를 확인)</li>
             <li><b>화면 모양</b> — header·nav·footer 색과 정렬이 요구사항과 같은지</li>
           </ul>
@@ -1044,12 +1062,12 @@ to_char(v.drv_start, 'FM999,999')</pre>
       </ol>
       <h2 class="ov-h" id="glossary">처음 보는 용어 풀이</h2>
       <p class="ov-sub">자료 곳곳에 나오는 용어를 한 줄로 풀었습니다. 막히면 여기로 돌아와 확인하세요.</p>
-      <dl class="gl-grid"><div><dt>Workspace</dt><dd>Eclipse가 프로젝트와 설정을 저장하는 작업 폴더 (이 실습: C:\sample)</dd></div><div><dt>JDK</dt><dd>Java 프로그램을 컴파일하고 실행하는 도구 모음</dd></div><div><dt>Eclipse (IDE)</dt><dd>코드 작성·실행·서버 관리를 한 화면에서 하는 개발 도구</dd></div><div><dt>Tomcat (WAS, 웹 애플리케이션 서버)</dt><dd>브라우저 요청을 받아 JSP를 실행하고, 결과 HTML을 돌려주는 웹 애플리케이션 서버</dd></div><div><dt>JSP</dt><dd>HTML 안에 Java 코드를 섞어 쓴 파일. 서버(Tomcat)에서 실행된다</dd></div><div><dt>스크립틀릿 &lt;% %&gt;</dt><dd>JSP 안에서 서버가 실행하는 Java 코드 영역</dd></div><div><dt>JDBC · 드라이버</dt><dd>JDBC는 Java가 DB와 대화하는 표준 방법, 드라이버(ojdbc8.jar)는 그 방법을 Oracle용으로 만든 파일</dd></div><div><dt>SQL</dt><dd>DB에 테이블을 만들고, 데이터를 넣고, 꺼내는 언어</dd></div><div><dt>테이블 · 컬럼 · 행</dt><dd>엑셀에 비유하면 시트 · 열 · 한 줄</dd></div><div><dt>PK (기본키)</dt><dd>행 하나를 구분하는 값. 중복·빈 값 불가 (예: 회원코드 M0001)</dd></div><div><dt>FK (외래키)</dt><dd>다른 테이블의 PK를 가리키는 값. 그 테이블에 실제로 있는 값만 넣을 수 있다 (예: 일정의 회원코드)</dd></div><div><dt>COMMIT</dt><dd>지금까지 바꾼 데이터를 확정해 저장하는 명령</dd></div><div><dt>iframe</dt><dd>페이지 안에 다른 페이지를 끼워 보여주는 창. 메뉴를 누르면 이 안의 내용만 바뀐다</dd></div><div><dt>WEB-INF/lib</dt><dd>웹 프로젝트가 실행될 때 쓸 jar 파일을 두는 폴더</dd></div><div><dt>Build Path</dt><dd>Eclipse가 Java 코드를 컴파일할 때 참고하는 라이브러리 목록</dd></div><div><dt>서블릿</dt><dd>요청을 처리하는 Java 클래스. JSP도 실행 전에 서블릿으로 바뀐다</dd></div><div><dt>트랜잭션</dt><dd>함께 성공하거나 함께 취소되어야 하는 작업 묶음</dd></div><div><dt>Auto Commit</dt><dd>SQL을 실행할 때마다 자동으로 COMMIT하는 설정</dd></div><div><dt>SID · Service Name</dt><dd>Oracle DB를 가리키는 이름 두 종류. XE에서는 둘 다 xe</dd></div><div><dt>시맨틱 태그</dt><dd>header·nav·section·footer처럼 영역의 의미를 나타내는 HTML 태그</dd></div><div><dt>PreparedStatement</dt><dd>값을 ? 자리에 따로 넣어 SQL을 실행하는 방식. 문자열을 직접 이어 붙이는 것보다 안전하다</dd></div><div><dt>SQL 인젝션</dt><dd>입력값에 SQL을 섞어 넣어 의도하지 않은 SQL이 실행되게 하는 공격</dd></div><div><dt>GET · POST</dt><dd>폼 전송 방식. GET은 값이 주소(URL)에 붙어 가고, POST는 요청 본문에 담겨 간다. method를 안 쓰면 GET</dd></div></dl>
+      <dl class="gl-grid"><div><dt>Workspace</dt><dd>Eclipse가 프로젝트와 설정을 저장하는 작업 폴더 (이 실습: C:\sample)</dd></div><div><dt>JDK</dt><dd>Java 프로그램을 컴파일하고 실행하는 도구 모음</dd></div><div><dt>Eclipse (IDE)</dt><dd>코드 작성·실행·서버 관리를 한 화면에서 하는 개발 도구</dd></div><div><dt>Tomcat (WAS, 웹 애플리케이션 서버)</dt><dd>브라우저 요청을 받아 JSP를 실행하고, 결과 HTML을 돌려주는 웹 애플리케이션 서버</dd></div><div><dt>JSP</dt><dd>HTML 안에 Java 코드를 섞어 쓴 파일. 서버(Tomcat)에서 실행된다</dd></div><div><dt>스크립틀릿 &lt;% %&gt;</dt><dd>JSP 안에서 서버가 실행하는 Java 코드 영역</dd></div><div><dt>JDBC · 드라이버</dt><dd>JDBC는 Java가 DB와 대화하는 표준 방법, 드라이버(ojdbc8.jar)는 그 방법을 Oracle용으로 만든 파일</dd></div><div><dt>SQL</dt><dd>DB에 테이블을 만들고, 데이터를 넣고, 꺼내는 언어</dd></div><div><dt>테이블 · 컬럼 · 행</dt><dd>엑셀에 비유하면 시트 · 열 · 한 줄</dd></div><div><dt>PK (기본키)</dt><dd>행 하나를 구분하는 값. 중복·빈 값 불가 (예: 회원코드 M0001)</dd></div><div><dt>FK (외래키)</dt><dd>다른 테이블의 키(보통 PK)를 참조하는 컬럼. 값을 넣으면 참조하는 테이블에 실제로 있는 값이어야 한다. 외래키만으로 NULL이 막히지는 않으므로 필요하면 NOT NULL을 따로 선언한다 (예: 일정의 회원코드)</dd></div><div><dt>COMMIT</dt><dd>지금까지 바꾼 데이터를 확정해 저장하는 명령</dd></div><div><dt>iframe</dt><dd>페이지 안에 다른 페이지를 끼워 보여주는 창. 메뉴를 누르면 이 안의 내용만 바뀐다</dd></div><div><dt>WEB-INF/lib</dt><dd>웹 프로젝트가 실행될 때 쓸 jar 파일을 두는 폴더</dd></div><div><dt>Build Path</dt><dd>Eclipse가 Java 코드를 컴파일할 때 참고하는 라이브러리 목록</dd></div><div><dt>서블릿</dt><dd>요청을 처리하는 Java 클래스. JSP도 실행 전에 서블릿으로 바뀐다</dd></div><div><dt>트랜잭션</dt><dd>함께 성공하거나 함께 취소되어야 하는 작업 묶음</dd></div><div><dt>Auto Commit</dt><dd>SQL을 실행할 때마다 자동으로 COMMIT하는 설정</dd></div><div><dt>SID · Service Name</dt><dd>Oracle에서 접속할 대상을 가리키는 이름 두 종류. 11g XE는 SID가 xe. 21c XE는 서비스 XE(루트 컨테이너)와 XEPDB1(기본 PDB)이 따로 있다</dd></div><div><dt>시맨틱 태그</dt><dd>header·nav·section·footer처럼 영역의 의미를 나타내는 HTML 태그</dd></div><div><dt>PreparedStatement</dt><dd>값을 ? 자리에 따로 넣어 SQL을 실행하는 방식. 문자열을 직접 이어 붙이는 것보다 안전하다</dd></div><div><dt>SQL 인젝션</dt><dd>입력값에 SQL을 섞어 넣어 의도하지 않은 SQL이 실행되게 하는 공격</dd></div><div><dt>GET · POST</dt><dd>폼 전송 방식. GET은 값이 주소(URL)에 붙어 가고, POST는 요청 본문에 담겨 간다. method를 안 쓰면 GET</dd></div></dl>
     </div>
 </div>
 
     <footer class="pagefoot">
-      <span id="pageFootLeft">과정형평가 정보처리산업기사 실기 학습자료</span>
+      <span id="pageFootLeft">과정평가형 정보처리산업기사 실기 학습자료</span>
       <span>Eclipse · Tomcat · Oracle · SQL</span>
     </footer>
   </main>
@@ -1081,7 +1099,7 @@ to_char(v.drv_start, 'FM999,999')</pre>
 <div class="env-note warnish">⚠️ 알고 쓰면 좋은 점<br>① JDK 24는 장기지원(LTS) 버전이 아니고, Oracle의 기본 지원이 <b>2025-09-16에 끝나</b> 이후로는 업데이트가 나오지 않습니다. 인터넷에 오래 노출되는 환경이나 장기간 쓸 환경이라면 LTS(21·25)가 더 안전합니다.<br>② Oracle 21c 드라이버의 공식 호환 JDK는 ojdbc8이 8·11, ojdbc11이 11·17·19·21입니다. <b>24는 이 목록에 없어서</b>, 실제로 연결이 되는지 Test Connection과 화면 실행으로 직접 확인하세요.<br>③ 시험장 PC의 JDK 버전은 이 자료로는 알 수 없습니다.</div></div>
 
 <div class="env-card"><div class="env-k">IDE</div><h3>Eclipse IDE</h3>
-<div class="env-ver">사용 버전: <b>최신 버전</b> <span>(공식 다운로드 페이지 기준 2026-09 R)</span></div>
+<div class="env-ver">사용 버전: <b>[확인 필요] 실제 설치 버전</b> <span>(작성 시점 공식 최신판은 2026-09 R. Help → About Eclipse IDE에서 확인)</span></div>
 <p>코드 작성·실행·서버 관리를 한 화면에서 하는 통합개발환경입니다. 이 자료에서 쓰는 Dynamic Web Project, Servers 뷰, Run on Server 같은 웹 개발 기능은 <b>Eclipse IDE for Enterprise Java and Web Developers</b> 패키지에 들어 있습니다.</p>
 <div class="env-why"><b>이 버전인 이유</b>Tomcat 11과 JDK 24를 함께 써야 하므로, 둘을 지원하는 Eclipse가 필요합니다. 이 실습 화면의 서버 목록에 <b>Tomcat v11.0 Server</b>가 있고(단계 3 캡처), Run On Server 창에도 Jakarta EE 11 웹 모듈을 지원한다고 표시됩니다.</div>
 <div class="env-note">공식 다운로드 페이지는 설치본에 실행용 JRE가 함께 들어 있다고 안내합니다. 오래된 Eclipse에도 Tomcat 11 항목이 있는지는 제가 확인하지 못했습니다.</div></div>
@@ -1092,11 +1110,11 @@ to_char(v.drv_start, 'FM999,999')</pre>
 <div class="env-why"><b>이 버전인 이유</b>최신 웹 표준(Servlet 6.1, JSP 4.0)을 지원하는 현재 버전이고, Java 17 이상이면 실행되므로 이 자료의 JDK 24와 함께 쓸 수 있습니다. Dynamic web module 6.1과 짝이 맞습니다.</div>
 <div class="env-note">자세한 버전 비교는 단계 3에 있습니다.</div></div>
 
-<div class="env-card"><div class="env-k">DATABASE</div><h3>Oracle Database 11g Express Edition</h3>
-<div class="env-ver">사용 버전: <b>11g XE</b> <span>(Express Edition = 무료 경량판)</span></div>
+<div class="env-card"><div class="env-k">DATABASE</div><h3>Oracle Database Express Edition (XE)</h3>
+<div class="env-ver">DB 서버 버전: <b>[확인 필요]</b> <span>(수업 안내는 11g XE, 단계 4의 드라이버 경로에는 21c가 보임)</span></div>
 <p>테이블을 만들고 데이터를 저장·조회하는 DB 서버입니다. db.sql로 만든 회원·일정 테이블이 여기에 저장되고, JSP는 JDBC로 접속합니다.</p>
-<div class="env-why"><b>이 버전인 이유</b><b>무료</b>이고 가볍습니다. Oracle 공식 안내 기준 한도는 사용자 데이터 11GB, 메모리 1GB, CPU 1개라 실습 PC에 부담이 적습니다. 기본 이름이 <b>XE</b>, 포트가 <b>1521</b>이라 문제지 접속 주소(<span class="path">@//localhost:1521/xe</span>)와 맞습니다.</div>
-<div class="env-note warnish">⚠️ 확인할 점 두 가지<br>① 단계 4 캡처에서 ojdbc8.jar를 가져온 경로가 <span class="path">…\\21c\\dbhomeXE\\jdbc\\lib</span>입니다. 이 실습 PC에는 <b>Oracle 21c XE</b>가 설치되어 있는 것으로 보여, 11g XE와 다를 수 있습니다.<br>② Oracle 공식 JDBC 호환표에는 21c 드라이버(ojdbc8 21.x)와 11.2 DB 조합이 나와 있지 않습니다. 11g XE에 실제로 연결되는지는 직접 확인하세요. 참고로 Oracle은 현재 무료판으로 26ai Free를 안내하고 있습니다.</div></div>
+<div class="env-why"><b>이 버전인 이유</b><b>무료</b>이고 가볍습니다. Oracle 공식 안내 기준 한도는 사용자 데이터 11GB, 메모리 1GB, CPU 1개라 실습 PC에 부담이 적습니다. 기본 서비스 이름이 <b>XE</b>, 포트가 <b>1521</b>이라 문제지 접속 주소(<span class="path">@//localhost:1521/xe</span>)와 맞습니다. 21c XE에는 기본 PDB용 서비스 <b>XEPDB1</b>도 따로 있습니다(단계 5 참고).</div>
+<div class="env-note warnish">⚠️ 실제 버전 확인 방법<br>① DB 서버 버전은 접속한 뒤 <span class="path">select banner from v$version;</span>을 실행해 확인하고 적어 두세요. 단계 4의 드라이버 경로(<span class="path">…\\21c\\dbhomeXE\\jdbc\\lib</span>)는 이 PC에 21c 파일이 있다는 단서일 뿐, 접속한 서버의 버전을 확정하지 않습니다.<br>② 드라이버는 파일명(ojdbc8.jar) 외에 배포 버전도 기록하세요. JDK 24와 이 드라이버 조합은 Oracle 공식 호환표에 없으므로, 단계 5(Eclipse 연결)와 단계 7(JSP 연결)에서 각각 실제로 연결되는지 확인합니다. 공식 목록에 없다는 것과 실제로 실행되지 않는다는 것은 다른 문제입니다.</div></div>
 
 </div>
 <div class="env-src">출처: <a href="https://tomcat.apache.org/whichversion.html" target="_blank" rel="noopener">Apache Tomcat — Which Version</a> · <a href="https://endoflife.date/oracle-jdk" target="_blank" rel="noopener">endoflife.date — Oracle JDK</a> · <a href="https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc11-production/21.1.0.0" target="_blank" rel="noopener">ojdbc11 호환 JDK</a> · <a href="https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc8-production/21.1.0.0" target="_blank" rel="noopener">ojdbc8 호환 JDK</a> · <a href="https://www.eclipse.org/downloads/packages/" target="_blank" rel="noopener">Eclipse IDE Packages</a> · <a href="https://www.oracle.com/database/technologies/database-11g-express-edition.html" target="_blank" rel="noopener">Oracle 11g XE</a> · <a href="https://www.oracle.com/database/technologies/faq-jdbc.html" target="_blank" rel="noopener">Oracle JDBC FAQ (호환표)</a></div>
@@ -1117,6 +1135,7 @@ to_char(v.drv_start, 'FM999,999')</pre>
     steps: [
     {
       key: "workspace",
+      done: ["Eclipse가 열리고 Project Explorer가 보입니다. File → Switch Workspace 목록에서 지정한 경로(C:\\sample)를 쓰고 있는지 확인합니다.", "실행할 때 선택한 Workspace 경로"],
       kicker: "실행 준비",
       title: "Eclipse 실행 & Workspace 지정",
       body: [
@@ -1138,11 +1157,11 @@ to_char(v.drv_start, 'FM999,999')</pre>
       ],
       bullets: [
         "Preferences 검색창에 <span class=\"path\">encoding</span>을 입력하면 관련 항목이 한 번에 보입니다.",
-        "General / Content Types에서 Text, Word Document 등 각 콘텐츠 타입의 Default encoding을 UTF-8로 Update.",
+        "General / Content Types에서 Text 항목과 그 아래 실습에 쓰는 형식(Java Source File, JSP, HTML, CSS 등)의 Default encoding을 UTF-8로 Update. 실습과 상관없는 형식까지 바꿀 필요는 없습니다.",
         "General / Workspace에서 Text file encoding을 Default(x-windows-949) 대신 <b>Other: UTF-8</b>로 변경.",
         "Web 카테고리의 CSS Files / HTML Files / JSP Files도 각각 들어가서 UTF-8로 설정."
       ],
-      tip: "이 실습 화면에서는 기본 인코딩이 <span class=\"path\">Default(x-windows-949)</span>로 표시되었습니다(한글 Windows의 기본 인코딩 계열). 이 상태로 JSP를 작성하면 브라우저·DB에서 한글이 깨질 수 있어, 실기 초반에 가장 먼저 손봐야 하는 설정입니다.",
+      tip: "이 실습 화면에서는 기본 인코딩이 <span class=\"path\">Default(x-windows-949)</span>로 표시되었습니다(한글 Windows의 기본 인코딩 계열). 이 상태로 JSP를 작성하면 브라우저·DB에서 한글이 깨질 수 있어, 실기 초반에 가장 먼저 손봐야 하는 설정입니다. 다만 이 설정은 <b>소스 파일</b>의 인코딩입니다. JSP의 pageEncoding과 응답 charset, POST로 받은 값의 요청 인코딩(getParameter 전에 setCharacterEncoding), DB 문자셋은 각각 따로 맞춰야 합니다. DB에 저장한 뒤에만 한글이 깨진다면 DB 문자셋과 저장 결과를 확인하세요.",
       shots: [
         ["02-pref-menu.png","Window → Preferences 진입"],
         ["03-pref-search.png","Preferences 검색창에 encoding 입력"],
@@ -1152,12 +1171,13 @@ to_char(v.drv_start, 'FM999,999')</pre>
     },
     {
       key: "tomcat",
+      done: ["Servers 뷰에서 서버 상태가 <b>Started</b>로 바뀝니다.", "Console 탭의 메시지. Address already in use면 포트 충돌, Java 버전 관련 메시지면 서버에 지정한 JRE"],
       kicker: "서버 등록",
       title: "Tomcat 서버 등록 & 포트 설정",
       body: [
         "JSP가 실제로 실행되려면 WAS(Web Application Server)가 필요합니다. Eclipse에 Tomcat을 서버로 등록해서, 프로젝트를 그 위에 올려 실행합니다."
       ],
-      extra: `<div class="tc-box"><div class="tc-h">Apache Tomcat이란?</div><p>Apache 소프트웨어 재단이 만드는 <b>오픈소스 웹 애플리케이션 서버(서블릿 컨테이너)</b>입니다. 공식 사이트는 Tomcat을 Jakarta Servlet, Jakarta Pages(JSP), Jakarta Expression Language, Jakarta WebSocket 등의 명세를 구현한 소프트웨어라고 소개합니다.</p><ul><li><b>하는 일</b> — 브라우저가 <span class="path">index.jsp</span>를 요청하면, Tomcat이 JSP를 Java 코드(서블릿)로 바꾸고 컴파일해 실행한 뒤, 그 결과로 만들어진 HTML을 브라우저에 돌려줍니다. 그래서 JSP는 Tomcat 없이 파일만 열어서는 동작하지 않습니다.</li><li><b>포트</b> — HTTP 기본 포트는 <span class="path">8080</span>입니다(이 실습은 8090으로 변경). <span class="path">8005</span>는 서버 종료 명령을 받는 포트로, Eclipse 화면에는 "Tomcat admin port"라고 표시됩니다.</li><li><b>누가 해석하나</b> — JSP처럼 <b>서버에서 해석되는 스크립트(SSS, Server Side Script)</b>는 Tomcat(서버)이 실행합니다. 반면 <b>CSS</b>(그리고 HTML·자바스크립트)는 서버가 아니라 <b>웹 브라우저</b>가 해석합니다. Tomcat은 style.css를 읽어서 그대로 보내줄 뿐이고, 화면에 색·배치를 입히는 것은 브라우저입니다.</li></ul><div class="twrap"><table class="otbl"><thead><tr><th>구분</th><th>해석·실행하는 곳</th><th>이 자료의 예</th></tr></thead><tbody><tr><td>JSP (스크립틀릿·표현식), Java</td><td><b>서버</b> (Tomcat)</td><td>list.jsp의 DB 조회, action.jsp의 INSERT</td></tr><tr><td>HTML</td><td><b>웹 브라우저</b></td><td>header·nav·table 같은 화면 구조</td></tr><tr><td>CSS</td><td><b>웹 브라우저</b></td><td>style.css의 색·높이·정렬</td></tr><tr><td>JavaScript</td><td><b>웹 브라우저</b></td><td>reg.jsp의 check_val() 입력 검증, alert()</td></tr></tbody></table></div><ul><li><b>Eclipse와의 관계</b> — Eclipse는 코드를 작성하는 도구이고, 실제 실행은 Tomcat이 합니다. Servers 뷰에 등록한 Tomcat에 프로젝트를 올려(Run on Server) 실행합니다.</li></ul><div class="tc-h" style="margin-top:14px">이 자료는 Tomcat 11 버전을 사용합니다</div><div class="twrap"><table class="otbl"><thead><tr><th>Tomcat</th><th>Servlet</th><th>JSP(Pages)</th><th>EL</th><th>필요한 Java</th></tr></thead><tbody><tr><td><b>11.0.x (이 자료)</b></td><td>6.1</td><td>4.0</td><td>6.0</td><td><b>17 이상</b></td></tr><tr><td>10.1.x</td><td>6.0</td><td>3.1</td><td>5.0</td><td>11 이상</td></tr><tr><td>9.0.x</td><td>4.0</td><td>2.3</td><td>3.0</td><td>8 이상</td></tr></tbody></table></div><ul><li><b>Java 17 이상</b>이 설치되어 있어야 Tomcat 11이 실행됩니다. 이 자료는 <b>JDK 24</b>를 사용합니다.</li><li>Tomcat 11의 Servlet 버전이 <b>6.1</b>이라서, 단계 6에서 Dynamic Web Project를 만들 때 <b>Dynamic web module version 6.1</b>이 짝을 이룹니다.</li><li>Tomcat 10부터 서블릿 패키지 이름이 <span class="path">javax.servlet</span>에서 <span class="path">jakarta.servlet</span>으로 바뀌었습니다. 이 자료의 JSP는 <span class="path">java.sql.*</span>와 <span class="path">DBPKG.Util</span>만 import해서 영향이 없지만, 서블릿 클래스를 직접 만들 때는 <span class="path">jakarta.servlet</span>을 써야 합니다.</li><li>이 실습의 설치 폴더는 <span class="path">apache-tomcat-11.0.4</span>입니다(캡처 9). 공식 사이트 기준 최신 11.0 버전은 11.0.27(2026-10-12 배포)입니다. 시험장에서는 설치되어 있는 버전을 따르세요.</li></ul><div class="tc-src">출처: Apache Tomcat 공식 사이트 (tomcat.apache.org, "Which Version Do I Want?" 페이지), 2026-10-15 확인</div></div>`,
+      extra: `<div class="tc-box"><div class="tc-h">Apache Tomcat이란?</div><p>Apache 소프트웨어 재단이 만드는 <b>오픈소스 웹 애플리케이션 서버(서블릿 컨테이너)</b>입니다. 공식 사이트는 Tomcat을 Jakarta Servlet, Jakarta Pages(JSP), Jakarta Expression Language, Jakarta WebSocket 등의 명세를 구현한 소프트웨어라고 소개합니다.</p><ul><li><b>하는 일</b> — 브라우저가 <span class="path">index.jsp</span>를 요청하면, Tomcat이 JSP를 Java 코드(서블릿)로 바꾸고 컴파일해 실행한 뒤, 그 결과로 만들어진 HTML을 브라우저에 돌려줍니다. 그래서 JSP는 Tomcat 없이 파일만 열어서는 동작하지 않습니다.</li><li><b>포트</b> — HTTP 자체의 기본 포트는 <span class="path">80</span>이고, Tomcat은 기본 설정에서 HTTP 연결을 <span class="path">8080</span>으로 받습니다. 이 실습은 8090으로 바꾸므로 주소에 <span class="path">http://localhost:8090/...</span>처럼 포트를 적습니다. <span class="path">8005</span>는 서버 종료 명령을 받는 포트로, Eclipse 화면에는 "Tomcat admin port"라고 표시됩니다.</li><li><b>누가 해석하나</b> — JSP처럼 <b>서버에서 해석되는 스크립트(SSS, Server Side Script)</b>는 Tomcat(서버)이 실행합니다. 반면 <b>CSS</b>(그리고 HTML·자바스크립트)는 서버가 아니라 <b>웹 브라우저</b>가 해석합니다. Tomcat은 style.css를 읽어서 그대로 보내줄 뿐이고, 화면에 색·배치를 입히는 것은 브라우저입니다.</li></ul><div class="twrap"><table class="otbl"><thead><tr><th>구분</th><th>해석·실행하는 곳</th><th>이 자료의 예</th></tr></thead><tbody><tr><td>JSP (스크립틀릿·표현식), Java</td><td><b>서버</b> (Tomcat)</td><td>list.jsp의 DB 조회, action.jsp의 INSERT</td></tr><tr><td>HTML</td><td><b>웹 브라우저</b></td><td>header·nav·table 같은 화면 구조</td></tr><tr><td>CSS</td><td><b>웹 브라우저</b></td><td>style.css의 색·높이·정렬</td></tr><tr><td>JavaScript</td><td><b>웹 브라우저</b></td><td>reg.jsp의 check_val() 입력 검증, alert()</td></tr></tbody></table></div><ul><li><b>Eclipse와의 관계</b> — Eclipse는 코드를 작성하는 도구이고, 실제 실행은 Tomcat이 합니다. Servers 뷰에 등록한 Tomcat에 프로젝트를 올려(Run on Server) 실행합니다.</li></ul><div class="tc-h" style="margin-top:14px">이 자료는 Tomcat 11 버전을 사용합니다</div><div class="twrap"><table class="otbl"><thead><tr><th>Tomcat</th><th>Servlet</th><th>JSP(Pages)</th><th>EL</th><th>필요한 Java</th></tr></thead><tbody><tr><td><b>11.0.x (이 자료)</b></td><td>6.1</td><td>4.0</td><td>6.0</td><td><b>17 이상</b></td></tr><tr><td>10.1.x</td><td>6.0</td><td>3.1</td><td>5.0</td><td>11 이상</td></tr><tr><td>9.0.x</td><td>4.0</td><td>2.3</td><td>3.0</td><td>8 이상</td></tr></tbody></table></div><ul><li><b>Java 17 이상</b>이 설치되어 있어야 Tomcat 11이 실행됩니다. 이 자료는 <b>JDK 24</b>를 사용합니다.</li><li>Tomcat 11의 Servlet 버전이 <b>6.1</b>이라서, 단계 6에서 Dynamic Web Project를 만들 때 <b>Dynamic web module version 6.1</b>이 짝을 이룹니다.</li><li>Tomcat 10부터 서블릿 패키지 이름이 <span class="path">javax.servlet</span>에서 <span class="path">jakarta.servlet</span>으로 바뀌었습니다. 이 자료의 JSP는 <span class="path">java.sql.*</span>와 <span class="path">DBPKG.Util</span>만 import해서 영향이 없지만, 서블릿 클래스를 직접 만들 때는 <span class="path">jakarta.servlet</span>을 써야 합니다.</li><li>이 실습의 설치 폴더는 <span class="path">apache-tomcat-11.0.4</span>입니다(캡처 9). 공식 사이트 기준 최신 11.0 버전은 11.0.27(2026-10-12 배포)입니다. 시험장에서는 설치되어 있는 버전을 따르세요.</li></ul><div class="tc-src">출처: Apache Tomcat 공식 사이트 (tomcat.apache.org, "Which Version Do I Want?" 페이지), 2026-10-15 확인</div></div>`,
       bulletsTitle: "등록 절차",
       bullets: [
         "File → New → Other… → Server → Server 위저드 실행.",
@@ -1167,7 +1187,7 @@ to_char(v.drv_start, 'FM999,999')</pre>
         "서버 더블클릭 → Ports에서 <b>Tomcat admin port(8005)</b>는 유지, <b>HTTP/1.1 포트</b>를 8080에서 필요한 값(여기서는 8090)으로 변경.",
         "Servers 뷰 상단의 실행(▶) 버튼으로 서버 시작 → 상태가 Started로 바뀌는지 확인."
       ],
-      tip: "HTTP 포트는 일반적으로 <b>다른 프로그램과의 포트 충돌을 피하려고</b> 바꿉니다. 참고로 Oracle 11g XE는 설치하면 8080 포트를 사용하기 때문에, 같은 PC에서는 Tomcat 포트를 다른 값(예: 8090)으로 바꾸는 경우가 많습니다. (이 실습에서 8090으로 바꾼 정확한 이유는 캡처에 나와 있지 않습니다.) 바꿨다면 접속 주소(<span class=\"path\">localhost:8090</span>)의 포트도 함께 바뀐다는 점을 기억하세요.",
+      tip: "HTTP 포트는 일반적으로 <b>다른 프로그램과의 포트 충돌을 피하려고</b> 바꿉니다. 참고로 일부 Oracle XE 버전은 웹 관리 기능이 8080을 쓰기도 해서, 같은 PC에서는 Tomcat 포트를 다른 값(예: 8090)으로 바꾸는 경우가 있습니다. 8080을 실제로 무엇이 쓰는지는 버전과 설정에 따라 다르니, 서버를 시작할 때 Console에 포트 충돌 메시지가 나오는지 보세요. (이 실습에서 8090으로 바꾼 정확한 이유는 캡처에 나와 있지 않습니다.) 바꿨다면 접속 주소(<span class=\"path\">localhost:8090</span>)의 포트도 함께 바뀐다는 점을 기억하세요.",
       shots: [
         ["06-new-other.png","File → New → Other…"],
         ["07-new-server-wizard.png","New → Server 위저드"],
@@ -1206,20 +1226,21 @@ to_char(v.drv_start, 'FM999,999')</pre>
     },
     {
       key: "connect",
+      done: ["Test Connection이 성공하고, db.sql 에디터 위쪽에 Status: Connected가 보입니다. <span class=\"path\">select sysdate from dual;</span>을 선택 실행해 날짜가 나오면 SQL도 실행됩니다.", "연결 프로파일의 Host·Port·SID(서비스)·계정·비밀번호"],
       kicker: "DB 연동 준비",
       title: "접속정보 입력 & SQL 파일로 연결 확인",
       body: [
         "드라이버 등록이 끝나면 실제 접속정보를 입력해 Test Connection을 통과시키고, SQL 파일에서도 같은 연결을 사용할 수 있게 연결 프로파일을 지정합니다."
       ],
       bullets: [
-        "SID(또는 Database instance) 칸에 <span class=\"path\">xe</span> 입력. Oracle XE는 SID와 서비스 이름이 모두 xe라서 어느 방식으로도 접속됩니다. (이 단계는 캡처가 없어 칸 이름은 본인 화면에서 확인하세요.)",
+        "SID(또는 Database instance) 칸에 <span class=\"path\">xe</span> 입력. 11g XE는 SID가 xe입니다. 21c XE는 <span class=\"path\">XE</span>가 루트 컨테이너, <span class=\"path\">XEPDB1</span>이 기본 PDB를 가리키는 서비스라서 어디에 접속했는지에 따라 보이는 테이블이 달라집니다. 이 자료는 문제지 보기와 같은 xe에 접속합니다. (이 단계는 캡처가 없어 칸 이름은 본인 화면에서 확인하세요.)",
         "Connection URL이 자동 조합됨: <span class=\"path\">jdbc:oracle:thin:@localhost:1521:xe</span> — 콜론(<span class=\"path\">:xe</span>) 형식(SID 방식)입니다. 뒤의 Util.java 코드에 쓰는 URL(<span class=\"path\">@//localhost:1521/xe</span>, 슬래시 형식)과 모양이 다르니 섞어 쓰지 마세요.",
         "Host <span class=\"path\">localhost</span>, Port <span class=\"path\">1521</span>, User name <span class=\"path\">system</span>, Password(이 실습: <span class=\"path\">1234</span>, Oracle 설치 때 정한 값) 입력 후 Test Connection → Finish.",
         "프로젝트 탐색기의 <b>Servers 폴더</b> 우클릭 → New → SQL File로 <span class=\"path\">db.sql</span> 생성 (ojdbc8.jar처럼 자주 쓰는 파일을 Servers에 모아 두는 방식).",
         "SQL 파일의 위치는 DB 연결과 상관없습니다. 연결은 아래 Connection profile로 정해지고, JSP 화면은 Util.java의 접속 정보로 따로 연결됩니다. 다만 <span class=\"path\">src/main/webapp</span> 안에는 두지 마세요 — 이 폴더는 Tomcat에 그대로 배포되어 브라우저 주소로 SQL 내용이 보일 수 있습니다.",
         "SQL 파일 상단 Connection profile에서 Type: <b>Oracle_11</b>, Name: <b>New Oracle</b>(단계 4에서 만든 연결 이름), Database: <b>xe</b>를 고르면 오른쪽에 <b>Status: Connected, Auto Commit</b>이 표시됨 — 이 상태에서 바로 SQL을 작성·실행해 확인할 수 있습니다."
       ],
-      tip: "Oracle 접속 주소는 두 가지 모양이 있습니다. <b>콜론 형식</b> <span class=\"path\">@localhost:1521:xe</span>(SID 방식)과 <b>슬래시 형식</b> <span class=\"path\">@//localhost:1521/xe</span>(Service Name 방식)입니다. Eclipse가 자동으로 만든 주소는 콜론 형식이고, 단계 7의 Util.java는 슬래시 형식을 씁니다. 이 단계는 캡처 없이 정리한 절차라, 실제 화면의 칸 이름은 본인 환경에서 확인하세요.",
+      tip: "Oracle 접속 주소는 두 가지 모양이 있습니다. <b>콜론 형식</b> <span class=\"path\">@localhost:1521:xe</span>(SID 방식)과 <b>슬래시 형식</b> <span class=\"path\">@//localhost:1521/xe</span>(Service Name 방식)입니다. Eclipse가 자동으로 만든 주소는 콜론 형식이고, 단계 7의 Util.java는 슬래시 형식을 씁니다. 이 단계는 캡처 없이 정리한 절차라, 실제 화면의 칸 이름은 본인 환경에서 확인하세요. <b>Eclipse에서 만든 테이블을 JSP가 못 찾는다면</b> 두 곳의 접속 정보를 비교하세요. 계정이 같아도 서비스가 다르면 같은 테이블을 보고 있다고 할 수 없습니다. Eclipse 연결 프로파일과 Util.java가 같은 서비스·계정을 쓰는지 확인합니다.",
       noShot: true
     },
     {
@@ -1242,6 +1263,7 @@ to_char(v.drv_start, 'FM999,999')</pre>
     },
     {
       key: "util",
+      done: ["dbtest.jsp를 Run on Server로 열었을 때 화면에 <b>success</b>가 보입니다. 파일을 작성한 것만으로는 완료가 아닙니다.", "WEB-INF/lib의 ojdbc8.jar, Util.java의 URL·계정·비밀번호"],
       noteLink: "n-util",
       kicker: "코드 작성",
       title: "DB 연결 Util 클래스 작성",
@@ -1264,9 +1286,20 @@ to_char(v.drv_start, 'FM999,999')</pre>
         ["    }\n"],
         ["}"]
       ],
-      tip: "이 URL은 <span class=\"path\">//localhost:1521/xe</span> 형식의 <b>Service Name 접속 문자열</b>입니다(앞 단계의 Eclipse 자동 URL과 달리 슬래시 형식). 접속 정보나 계정·비밀번호가 실제 DB와 다르면 이 Util 클래스부터 예외(Exception)를 던지므로, 화면 로직을 짜기 전에 이 클래스 단독으로 연결이 되는지 먼저 확인하는 게 좋습니다.",
+      tip: "이 URL은 <span class=\"path\">//localhost:1521/xe</span> 형식의 <b>Service Name 접속 문자열</b>입니다(앞 단계의 Eclipse 자동 URL과 달리 슬래시 형식). 접속 정보나 계정·비밀번호가 실제 DB와 다르면 이 Util 클래스부터 예외(Exception)를 던지므로, 화면 로직을 짜기 전에 아래 dbtest.jsp로 연결부터 확인하세요. 클래스를 작성한 것만으로는 연결이 시험되지 않습니다.",
       noShot: true,
-      noShotNote: "이 단계의 캡처 이미지는 넣지 못했습니다. 코드는 제가 옮겨 적은 것이라, 문제지에 제공된 소스와 한 번 대조하세요. 참고로 공식 PDF의 Oracle용 샘플과 드라이버 클래스·URL·계정은 같습니다."
+      noShotNote: "이 단계는 캡처가 없습니다. 드라이버 클래스·URL·계정은 공식 PDF의 Oracle용 샘플과 같고, 시험에서는 문제지에 제공된 값을 그대로 씁니다.",
+      extra: `<div class="sub-h">연결 확인용 dbtest.jsp (webapp 바로 아래에 만들기)</div>
+<pre class="hint">&lt;%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%&gt;
+&lt;%@ page import="java.sql.*, DBPKG.Util"%&gt;
+&lt;%
+try (Connection con = Util.getConnection()) {
+    out.print(con != null ? "success" : "fail");
+} catch (Exception e) {
+    out.print("fail : " + e.getMessage());
+}
+%&gt;</pre>
+<p style="font-size:13px;color:var(--text-dim)">확인이 끝나면 이 파일은 지우거나, 시험 제출물에 남지 않도록 정리하세요.</p>`
     }
     ]
   },
@@ -1296,11 +1329,13 @@ to_char(v.drv_start, 'FM999,999')</pre>
           "db.sql 파일 하나에 <b>DROP → CREATE → INSERT → COMMIT</b> 순서로 전체 스크립트를 작성해두면, 시험 중 몇 번을 다시 실행해도 항상 같은 초기 상태에서 시작할 수 있습니다."
         ],
         bullets: [
-          "기존 테이블이 있을 수 있으니 맨 위에서 <span class=\"path\">DROP TABLE</span>로 먼저 정리 — 이때 FK로 부모를 참조하는 <span class=\"path\">tbl_schedule</span>(자식)을, 참조되는 <span class=\"path\">tbl_member</span>(부모)보다 <b>먼저</b> 지운다. (처음 실행할 때는 지울 테이블이 없어 이 DROP 두 줄에서 'table or view does not exist' 오류가 나올 수 있는데, 정상입니다. 아래 CREATE·INSERT가 성공했는지만 확인하세요.)",
+          "기존 테이블이 있을 수 있으니 맨 위에서 <span class=\"path\">DROP TABLE</span>로 먼저 정리 — 이때 FK로 부모를 참조하는 <span class=\"path\">tbl_schedule</span>(자식)을, 참조되는 <span class=\"path\">tbl_member</span>(부모)보다 <b>먼저</b> 지운다. 처음 실행할 때는 지울 테이블이 없어 이 DROP 두 줄에서 <span class=\"path\">ORA-00942: table or view does not exist</span>가 나오는데, 이것은 정상입니다. 다만 SQL 도구의 '오류 후 계속 실행' 설정에 따라 그 뒤 문장이 실행되지 않을 수 있으니, <b>처음에는 create부터 끝까지 선택해 실행</b>하고, 이미 만든 테이블을 초기화할 때 전체를 실행하세요. 전체 실행은 tbl_schedule·tbl_member 두 테이블의 데이터를 모두 지우고 다시 만듭니다.",
           "부모 테이블 <span class=\"path\">tbl_member</span>: <span class=\"path\">pk_member</span>를 primary key로, <span class=\"path\">name</span>·<span class=\"path\">grade</span> 컬럼 구성.",
           "자식 테이블 <span class=\"path\">tbl_schedule</span>: <span class=\"path\">pk_schedule</span>을 primary key로, <span class=\"path\">fk_member</span> 컬럼에 <span class=\"path\">foreign key … references tbl_member(pk_member)</span> 제약조건 지정.",
           "부모 테이블에 먼저 <span class=\"path\">INSERT</span>로 회원 데이터 5건을 넣고, 그다음 자식 테이블에 그 회원들을 참조하는 일정 데이터 4건을 넣는다.",
-          "마지막 줄에 <span class=\"path\">commit</span>으로 트랜잭션을 확정 (캡처에는 세미콜론 없이 <span class=\"path\">commit</span>만 있습니다)."
+          "일정일자는 <span class=\"path\">to_date('20260101', 'YYYYMMDD')</span>로 넣습니다. '20260101'은 아직 날짜가 아니라 글자입니다. 형식을 적어 주면 DB의 기본 날짜 설정과 상관없이 2026년 1월 1일로 저장됩니다. (원본 캡처는 따옴표만 씌운 문자열을 넣었습니다.)",
+          "마지막 줄에 <span class=\"path\">commit</span>으로 트랜잭션을 확정 (캡처에는 세미콜론 없이 <span class=\"path\">commit</span>만 있습니다).",
+          "위 코드는 생략 없는 전체 실행본입니다. 그대로 실행하면 회원 5건, 일정 4건이 들어갑니다."
         ],
         code: [
           ["cm","-- 자식(schedule) 먼저 DROP, 부모(member) 나중에 DROP\n"],
@@ -1318,19 +1353,26 @@ to_char(v.drv_start, 'FM999,999')</pre>
           ["    fk_member "], ["fn","varchar"], ["(5) "], ["kw","not null"], [",\n"],
           ["    "], ["kw","foreign key"], ["(fk_member) "], ["kw","references"], [" tbl_member(pk_member)\n"],
           [");\n\n"],
-          ["cm","-- 부모(member) 먼저 INSERT\n"],
+          ["cm","-- 부모(member) 먼저 INSERT : 회원 5건\n"],
           ["kw","insert into"], [" tbl_member "], ["kw","values"], ["("], ["str","'M0001'"], [", "], ["str","'홍길동'"], [", "], ["str","'의적'"], [");\n"],
           ["kw","insert into"], [" tbl_member "], ["kw","values"], ["("], ["str","'M0002'"], [", "], ["str","'심청'"], [", "], ["str","'효녀'"], [");\n"],
-          ["    "], ["cm","-- … 회원 3건 더\n\n"],
-          ["cm","-- 자식(schedule) 나중에 INSERT — fk_member가 위 회원을 참조\n"],
-          ["kw","insert into"], [" tbl_schedule "], ["kw","values"], ["(1, "], ["str","'20260101'"], [", "], ["str","'탐관오리 찾기'"], [", "], ["str","'M0001'"], [");\n"],
-          ["    "], ["cm","-- … 일정 3건 더\n\n"],
+          ["kw","insert into"], [" tbl_member "], ["kw","values"], ["("], ["str","'M0003'"], [", "], ["str","'세종'"], [", "], ["str","'대왕'"], [");\n"],
+          ["kw","insert into"], [" tbl_member "], ["kw","values"], ["("], ["str","'M0004'"], [", "], ["str","'이순신'"], [", "], ["str","'장군'"], [");\n"],
+          ["kw","insert into"], [" tbl_member "], ["kw","values"], ["("], ["str","'M0005'"], [", "], ["str","'장영실'"], [", "], ["str","'과학자'"], [");\n"],
+          ["\n"],
+          ["cm","-- 자식(schedule) 나중에 INSERT : 일정 4건. 날짜는 to_date 로 형식을 적어 넣는다\n"],
+          ["kw","insert into"], [" tbl_schedule (pk_schedule, do_date, do_memo, fk_member)\n    "], ["kw","values"], [" (1, "], ["fn","to_date"], ["("], ["str","'20260101'"], [", "], ["str","'YYYYMMDD'"], ["), "], ["str","'탐관오리 찾기'"], [", "], ["str","'M0001'"], [");\n"],
+          ["kw","insert into"], [" tbl_schedule (pk_schedule, do_date, do_memo, fk_member)\n    "], ["kw","values"], [" (2, "], ["fn","to_date"], ["("], ["str","'20260201'"], [", "], ["str","'YYYYMMDD'"], ["), "], ["str","'아버지 돌보기'"], [", "], ["str","'M0002'"], [");\n"],
+          ["kw","insert into"], [" tbl_schedule (pk_schedule, do_date, do_memo, fk_member)\n    "], ["kw","values"], [" (3, "], ["fn","to_date"], ["("], ["str","'20260301'"], [", "], ["str","'YYYYMMDD'"], ["), "], ["str","'한글 창제'"], [", "], ["str","'M0003'"], [");\n"],
+          ["kw","insert into"], [" tbl_schedule (pk_schedule, do_date, do_memo, fk_member)\n    "], ["kw","values"], [" (4, "], ["fn","to_date"], ["("], ["str","'20260401'"], [", "], ["str","'YYYYMMDD'"], ["), "], ["str","'거북선으로 국가 수호'"], [", "], ["str","'M0004'"], [");\n"],
+          ["\n"],
           ["kw","commit"]
         ],
         shots: [["19-db-sql-script.png","db.sql — 테이블 생성 및 데이터 삽입 스크립트 (Status: Connected, Auto Commit)"]]
       },
       {
         key: "dbexec",
+        done: ["아래 두 쿼리의 결과가 각각 <b>5</b>와 <b>4</b>입니다.<pre class=\"hint\">select count(*) as member_count from tbl_member;\nselect count(*) as schedule_count from tbl_schedule;</pre>", "결과 창의 오류 메시지, 에디터 위쪽에서 고른 연결 프로파일"],
         kicker: "실행",
         title: "SQL 전체 실행",
         body: [
@@ -1406,8 +1448,16 @@ to_char(v.drv_start, 'FM999,999')</pre>
 <figcaption style="font-size:12.5px;color:var(--text-dim);padding:8px 6px 2px">파란 점선 안이 iframe입니다. nav의 target 값과 iframe의 name 값이 같아야 메뉴를 눌렀을 때 이 안에서 열립니다. 공식 예시 과제(차량주행관리)의 시작화면도 같은 네 영역으로 되어 있으니, 메뉴 개수(5개)와 색(header·footer 배경 red, 메뉴 글자 black, footer 오른쪽 정렬)은 문제지 요구대로 바꾸세요.</figcaption>
 </figure>
 <div class="callout tip"><span class="ico">💡</span><div><b>교재는 이 구조를 이렇게 설명합니다</b>바뀌는 곳을 section 하나로 모으면 디자인을 고치기 쉽고, 같은 코드를 여러 번 쓰지 않아 오류가 줄어듭니다. 시작화면의 section 안에 프레임(iframe)을 두고, 그 안에 일정등록·회원현황·일정현황 페이지가 들어온다고 생각하면 됩니다. 화면 말고도 디자인을 맡는 style.css, DB 접속용 패키지(DBPKG), 화면에는 보이지 않고 입력값을 DB에 넣는 action.jsp가 함께 있습니다.</div></div>
-<div class="sub-h">구현할 화면 4개 (교재 화면을 각 단계에 옮겨 그렸습니다)</div>
+<div class="sub-h">구현할 화면 4개 (기준 코드로 실행했을 때의 기대 화면을 각 단계에 넣었습니다)</div>
 <button type="button" class="golink" data-go="step-layout">시작화면 (index.jsp) →</button><button type="button" class="golink" data-go="step-regform">일정등록 (reg.jsp) →</button><button type="button" class="golink" data-go="step-listmember">회원현황 (list.jsp) →</button><button type="button" class="golink" data-go="step-listschedule">일정현황 (list_j.jsp) →</button>
+<h2 class="env-title" style="margin-top:26px">JSP 파일을 만들기 전에: 기호 네 가지</h2>
+<p class="env-sub">JSP는 HTML 사이에 서버에서 실행되는 Java 코드가 섞인 파일입니다. 아래 네 기호만 구분하면 이 챕터의 코드를 읽을 수 있습니다. 챕터 4의 단계 19에서 다시 복습합니다.</p>
+<div class="twrap"><table class="otbl jsp-basics"><thead><tr><th>기호</th><th>먼저 이해할 내용</th><th>짧은 예</th></tr></thead><tbody>
+<tr><td class="m">&lt;%@ ... %&gt;</td><td>이 JSP를 어떻게 읽고 처리할지 정하는 설정</td><td>UTF-8 지정, import</td></tr>
+<tr><td class="m">&lt;% ... %&gt;</td><td>서버에서 실행할 Java 코드</td><td>DB 조회, 반복문</td></tr>
+<tr><td class="m">&lt;%= ... %&gt;</td><td>Java 값을 결과 HTML의 그 자리에 출력</td><td>회원 이름 출력</td></tr>
+<tr><td class="m">&lt;%-- ... --%&gt;</td><td>브라우저에 전달되지 않는 JSP 주석</td><td>코드 설명</td></tr></tbody></table></div>
+<p style="font-size:14px;margin:0">실행 순서는 이렇습니다. 서버(Tomcat)가 DB에서 회원을 조회한 뒤 HTML 표를 만들어 보내고, 브라우저는 그 HTML을 화면에 그립니다. 등록 버튼을 누르기 전의 입력 검사는 브라우저의 JavaScript가 맡습니다.</p>
 </div>`,
     title: "화면 개발 — 공통 레이아웃부터 일정등록까지",
     desc: "DB가 준비됐으니 이제 JSP로 화면을 만듭니다. 공통 레이아웃(header·nav·iframe·footer)을 먼저 잡아두고, 그 안에서 회원현황·일정현황 조회 화면과 일정등록 화면을 iframe으로 갈아끼우는 구조입니다. 조회 화면 → 등록 화면 → 등록 처리(action) 순서로, 문제에서 요구하는 프로그램을 하나씩 완성해 나갑니다.",
@@ -1417,8 +1467,9 @@ to_char(v.drv_start, 'FM999,999')</pre>
       items: [
         "DB를 쓰는 JSP(list·list_j·reg·action) 상단에 <b>page import</b>로 <span class=\"path\">java.sql.*</span>와 <span class=\"path\">DBPKG.Util</span>을 빠뜨리지 않았다",
         "공통 메뉴의 <span class=\"path\">target=\"section_page\"</span>와 iframe의 <span class=\"path\">name=\"section_page\"</span> 값이 정확히 일치한다",
-        "조회 화면은 <b>SELECT + executeQuery</b>, 등록/수정/삭제는 <b>executeUpdate</b>를 쓰고 있다 (규칙대로 쓰는 것이 안전합니다. 캡처의 action.jsp는 INSERT를 executeQuery로 실행하고 있는데, 그 실행 결과는 캡처에 없어 확인하지 못했습니다)",
-        "SQL 문자열에 들어가는 값 중 <b>문자/날짜형은 반드시 ''로 감싸고</b>, 숫자형만 그대로 이어붙였다",
+        "조회 화면은 <b>SELECT + executeQuery</b>, 등록/수정/삭제는 <b>executeUpdate</b>(반환값은 반영된 행 수)를 쓴다",
+        "사용자 입력값은 SQL 문자열에 이어 붙이지 않고 <b>PreparedStatement의 ?</b>로 넘긴다. 날짜는 <span class=\"path\">to_date(?, 'FXYYYYMMDD')</span>로 형식을 적는다",
+        "사용한 ResultSet·Statement·Connection을 닫았다 (조회 화면은 끝에서 close, action.jsp는 try-with-resources)",
         "폼 제출 전 자바스크립트로 필수입력을 검증하고, 실패 시 <span class=\"path\">return false</span>로 실제 제출을 막았다"
       ]
     },
@@ -1433,7 +1484,8 @@ to_char(v.drv_start, 'FM999,999')</pre>
         bullets: [
           "프로젝트(<span class=\"path\">default</span>) 우클릭 → New → <b>JSP File</b> → 부모 폴더를 <span class=\"path\">default/src/main/webapp</span>으로 선택, File name에 <span class=\"path\">index.jsp</span> 입력 → Finish.",
           "같은 방식으로 프로젝트 우클릭 → New → <b>CSS File</b>로 <span class=\"path\">style.css</span> 생성 (CSS 대화상자 캡처는 없지만, JSP처럼 부모 폴더를 webapp으로 지정하면 됩니다).",
-          "이 두 파일이 이후 모든 화면의 뼈대(공통 레이아웃)와 겉모습(공통 스타일)을 담당합니다."
+          "같은 방법으로 <span class=\"path\">main.jsp</span>도 지금 만들어 둡니다. 단계 11의 iframe이 처음 여는 화면이라, 없으면 단계 13에서 404가 납니다. 내용은 단계 14에서 채웁니다.",
+          "index.jsp는 모든 화면의 뼈대(공통 레이아웃), style.css는 겉모습(공통 스타일)을 담당합니다."
         ],
         shots: [
           ["21-new-jsp-menu.png","프로젝트(default) 우클릭 → New → JSP File"],
@@ -1445,8 +1497,8 @@ to_char(v.drv_start, 'FM999,999')</pre>
         key: "layout",
         noteLink: "n-index",
         screen: mock("완성 화면 · 시작화면 (index.jsp)", "main.jsp",
-          '<h4>일정 관리 프로그램</h4><pre>회원 일정 관리를 위한 데이터베이스를 구축하고 회원 일정 관리 프로그램을 작성하는 프로그램이다.\n프로그램 작성순서\n1. 회원 테이블을 작성한다.\n2. 일정 테이블을 작성한다.\n3. 회원 및 일정 테이블에서 제시된 문제지의 참조데이터를 추가 생성한다.\n4. 홈페이지 프로그램을 작성한다.\n5. 일정등록 프로그램을 조건에 맞게 작성한다.\n6. 회원현황, 일정현황 프로그램을 작성한다.</pre>',
-          "교재의 시작화면을 옮겨 그렸습니다. 처음 열면 iframe에 main.jsp가 보이고, 요구사항 글은 왼쪽 정렬입니다(style.css의 pre 규칙). section 제목이 교재는 '일정 관리 프로그램'(띄어 씀), 이 자료의 main.jsp 캡처는 '일정관리 프로그램'입니다."),
+          '<h4>일정관리 프로그램</h4><pre>회원 일정 관리를 위한 데이터베이스를 구축하고 회원 일정 관리 프로그램을 작성하는 프로그램이다.\n프로그램 작성순서\n1. 회원 테이블을 작성한다.\n2. 일정 테이블을 작성한다.\n3. 회원 및 일정 테이블에서 제시된 문제의 참조데이터를 추가 생성한다.\n4. 홈페이지 프로그램을 작성한다.\n5. 일정등록 프로그램을 조건에 맞게 작성한다.\n6. 회원현황, 일정현황 프로그램을 작성한다.</pre>',
+          "이 자료의 기준 코드로 실행했을 때 기대하는 화면입니다. 처음 열면 iframe에 main.jsp가 보이고, 요구사항 글은 왼쪽 정렬입니다(style.css의 pre 규칙). 교재 화면은 연도와 일부 표기가 조금 다릅니다."),
         kicker: "공통 레이아웃",
         title: "index.jsp — 공통 레이아웃 & iframe 전환",
         body: [
@@ -1482,6 +1534,7 @@ to_char(v.drv_start, 'FM999,999')</pre>
       },
       {
         key: "runserver",
+        done: ["index.jsp를 열면 제목·메뉴·footer가 보이고, 가운데에 main.jsp가 표시됩니다(단계 14 전이면 빈 화면).", "주소창의 URL(localhost:8090/default/index.jsp), 프로젝트 이름(Context path), main.jsp가 webapp 바로 아래에 있는지"],
         kicker: "실행 확인",
         title: "Tomcat으로 실행 확인",
         body: [
@@ -1490,7 +1543,7 @@ to_char(v.drv_start, 'FM999,999')</pre>
         bullets: [
           "index.jsp 편집기 안(또는 파일)에서 우클릭 → Run As → <b>Run on Server</b> (단축키 <span class=\"path\">Alt+Shift+X, R</span>).",
           "Choose an existing server에서 앞서 등록한 <span class=\"path\">Tomcat v11.0 Server at localhost</span> 선택 → Finish.",
-          "내장 브라우저(또는 실제 브라우저)에서 레이아웃과 메뉴 클릭 시 iframe 전환이 정상인지 확인.",
+          "내장 브라우저(또는 실제 브라우저)에서 제목·메뉴·footer와 가운데 main.jsp가 보이는지 확인합니다. 회원현황·일정현황·일정등록 메뉴는 아직 파일이 없어 404가 나는 것이 정상이고, 각 파일을 만든 단계 15~17에서 확인합니다.",
           "style.css를 고쳤는데 화면에 반영되지 않으면 <b>Ctrl + F5</b>(캐시를 무시하고 새로고침)를 누릅니다."
         ],
         shots: [
@@ -1518,15 +1571,16 @@ to_char(v.drv_start, 'FM999,999')</pre>
       },
       {
         key: "listmember",
+        done: ["회원현황 메뉴를 누르면 회원 5행(M0001~M0005)이 표시됩니다.", "db.sql에서 같은 SELECT를 실행해 결과가 나오는지, while 반복문의 중괄호 짝"],
         noteLink: "n-list",
         screen: mock("완성 화면 · 회원현황 (list.jsp)", "list.jsp",
-          '<h4>회원현황</h4><table><tr><th style="width:90px">회원코드</th><th style="width:90px">회원명</th><th style="width:90px">등급</th></tr>' +
-          '<tr><td style="text-align:left">M0001</td><td>홍길동</td><td style="text-align:right">의적</td></tr>' +
-          '<tr><td style="text-align:left">M0002</td><td>심청</td><td style="text-align:right">효녀</td></tr>' +
-          '<tr><td style="text-align:left">M0003</td><td>세종</td><td style="text-align:right">대왕</td></tr>' +
-          '<tr><td style="text-align:left">M0004</td><td>이순신</td><td style="text-align:right">장군</td></tr>' +
-          '<tr><td style="text-align:left">M0005</td><td>장영실</td><td style="text-align:right">과학자</td></tr></table>',
-          "회원 5건이 모두 나오면 됩니다. 교재 화면은 회원코드가 왼쪽, 회원명이 가운데, 등급이 오른쪽에 붙어 있습니다. 이 자료의 list.jsp 캡처 코드는 세 칸 모두 align=\"left\"라서 정렬이 조금 다르게 보일 수 있습니다."),
+          '<h4>회원현황</h4><table class="mk-left"><tr><th style="width:90px">회원코드</th><th style="width:90px">회원명</th><th style="width:90px">등급</th></tr>' +
+          '<tr><td>M0001</td><td>홍길동</td><td>의적</td></tr>' +
+          '<tr><td>M0002</td><td>심청</td><td>효녀</td></tr>' +
+          '<tr><td>M0003</td><td>세종</td><td>대왕</td></tr>' +
+          '<tr><td>M0004</td><td>이순신</td><td>장군</td></tr>' +
+          '<tr><td>M0005</td><td>장영실</td><td>과학자</td></tr></table>',
+          "회원 5건이 모두 나오면 됩니다. 기준 코드는 세 칸 모두 align=\"left\"라서 글자가 왼쪽에 붙습니다. 교재 화면은 회원명이 가운데, 등급이 오른쪽에 붙어 있으니, 교재와 똑같이 맞추려면 그 칸의 align만 바꾸면 됩니다."),
         kicker: "조회 화면",
         title: "list.jsp — 회원현황 조회",
         body: [
@@ -1541,54 +1595,59 @@ to_char(v.drv_start, 'FM999,999')</pre>
       },
       {
         key: "listschedule",
+        done: ["일정현황 메뉴를 누르면 초기 일정 4행이 회원 이름과 함께 표시됩니다.", "JOIN 조건(on 절), 조회 컬럼의 별칭과 getString 인자가 같은지"],
         noteLink: "n-listj",
         screen: mock("완성 화면 · 일정현황 (list_j.jsp)", "list_j.jsp",
           '<h4>일정현황</h4><table><tr><th>일정코드</th><th>일정일자</th><th style="width:150px">일정메모</th><th>회원코드</th><th>회원명</th></tr>' +
-          '<tr><td>1</td><td>2025-01-01</td><td style="text-align:left">탐관오리 찾기</td><td>M0001</td><td>홍길동</td></tr>' +
-          '<tr><td>2</td><td>2025-02-01</td><td style="text-align:left">아버지 돌보기</td><td>M0002</td><td>심청</td></tr>' +
-          '<tr><td>3</td><td>2025-03-01</td><td style="text-align:left">한글 창제</td><td>M0003</td><td>세종</td></tr>' +
-          '<tr><td>4</td><td>2025-04-01</td><td style="text-align:left">거북선으로 국가 수호</td><td>M0004</td><td>이순신</td></tr></table>',
-          "교재 화면과 캡처 코드가 다른 곳이 두 군데 있습니다. 화면 제목은 <b>일정현황</b>이고(캡처 코드는 '회원현황'), 일정메모 뒤에 <b>'개'가 붙지 않습니다</b>(캡처 코드는 <span class=\"path\">do_memo || '개'</span>). 교재 화면에 맞추려면 두 곳을 고치세요. 날짜는 교재 데이터 기준이라 2025년이고, 이 자료의 db.sql로 넣으면 2026년으로 나옵니다."),
+          '<tr><td>1</td><td>2026-01-01</td><td style="text-align:left">탐관오리 찾기</td><td>M0001</td><td>홍길동</td></tr>' +
+          '<tr><td>2</td><td>2026-02-01</td><td style="text-align:left">아버지 돌보기</td><td>M0002</td><td>심청</td></tr>' +
+          '<tr><td>3</td><td>2026-03-01</td><td style="text-align:left">한글 창제</td><td>M0003</td><td>세종</td></tr>' +
+          '<tr><td>4</td><td>2026-04-01</td><td style="text-align:left">거북선으로 국가 수호</td><td>M0004</td><td>이순신</td></tr></table>',
+          "이 자료의 db.sql과 기준 코드로 실행한 기대 화면입니다. 제목은 <b>일정현황</b>이고 일정메모는 저장한 내용 그대로 나옵니다. 수업 당시 캡처 코드는 제목이 '회원현황'이었고 메모 뒤에 '개'를 붙였는데, 기준 코드에서는 둘 다 고쳤습니다."),
         kicker: "조회 화면",
         title: "list_j.jsp — 일정현황 조회 (JOIN)",
         body: [
           "일정은 회원을 참조(FK)하므로, 일정만 조회하면 회원명이 아니라 회원코드만 보입니다. 두 테이블을 JOIN해서 회원명까지 한 번에 보여줍니다."
         ],
         bullets: [
-          "<span class=\"path\">tbl_schedule tbl_s LEFT JOIN tbl_member tbl_m ON tbl_s.fk_member = tbl_m.pk_member</span>로 두 테이블 연결.",
+          "일정 테이블에는 회원 이름 대신 회원코드만 있습니다. 일정의 회원코드가 <span class=\"path\">M0001</span>이면 회원 테이블에서 <span class=\"path\">M0001</span>인 행을 찾아 이름 '홍길동'을 함께 가져옵니다. 이렇게 관련된 행을 이어 붙이는 것이 JOIN입니다.",
+          "<span class=\"path\">tbl_schedule tbl_s LEFT JOIN tbl_member tbl_m ON tbl_s.fk_member = tbl_m.pk_member</span>로 두 테이블을 연결합니다. <span class=\"path\">tbl_s</span>, <span class=\"path\">tbl_m</span>은 새 테이블이 아니라 긴 테이블 이름을 이 SQL 안에서 짧게 부르는 별칭입니다.",
           "<span class=\"path\">to_char(tbl_s.do_date, 'yyyy-MM-dd')</span>로 날짜(DATE)를 '2026-01-01' 같은 문자열로 바꿔 보여준다 — 바꾸지 않으면 시간까지 붙어 나올 수 있다.",
           "<span class=\"path\">order by tbl_s.pk_schedule asc</span>로 일정코드 순 정렬.",
-          "일정메모 컬럼은 <span class=\"path\">tbl_s.do_memo || '개' as 일정메모</span>처럼 <span class=\"path\">||</span>(문자열 연결)로 '개'를 덧붙여 조회하고 있다 (화면에 보이는 그대로 옮긴 부분).",
-          "캡처 기준으로 화면 제목 태그가 <span class=\"path\">&lt;h4&gt;회원현황&lt;/h4&gt;</span>로 되어 있는데, 이 화면은 일정현황이라 list.jsp에서 복사해 온 뒤 제목을 안 고친 것으로 보입니다 — 시험에서는 제목도 요구사항에 맞게 고치세요."
+          "수업 당시 캡처는 일정메모에 <span class=\"path\">|| '개'</span>를 붙여 '탐관오리 찾기개'처럼 출력했습니다. 완성 화면에는 붙지 않으므로 기준 코드에서는 뺐습니다.",
+          "수업 당시 캡처의 제목은 list.jsp에서 복사해 온 <span class=\"path\">&lt;h4&gt;회원현황&lt;/h4&gt;</span> 그대로였습니다. 기준 코드는 <b>일정현황</b>으로 고쳤습니다."
         ],
         tip: "LEFT JOIN은 왼쪽(일정) 행을 모두 보여주고, INNER JOIN(그냥 JOIN)은 양쪽이 매칭되는 행만 보여줍니다. 이 데이터에서는 fk_member가 not null이고 FK 제약도 있어 <b>두 방식의 결과가 같습니다.</b> 캡처가 LEFT JOIN을 쓴 이유는 알 수 없지만, \'일정은 빠짐없이 나와야 한다\'는 의도를 드러내는 방식으로 볼 수 있습니다.",
-        shots: [["32-list-j-jsp.png","list_j.jsp — LEFT JOIN + to_char로 일정현황 출력"]]
+        shots: [["32-list-j-jsp.png","list_j.jsp — 수업 당시 캡처 (제목·메모 출력이 기준 코드와 다름)"]]
       },
       {
         key: "regform",
+        done: ["일정일자를 비우고 등록을 누르면 안내창이 뜨고 커서가 일정일자 칸으로 갑니다. 회원코드·일정메모도 같은 방식입니다.", "form의 onsubmit 반환값, input의 name이 스크립트와 같은지"],
         noteLink: "n-reg",
         screen: mock("완성 화면 · 일정등록 (reg.jsp)", "reg.jsp",
-          '<h4>일정등록</h4><table><tr><th style="width:150px">일정번호 (자동발생)</th><td style="text-align:left;width:300px"><span class="mk-in">5</span></td></tr>' +
-          '<tr><th>일정일자</th><td style="text-align:left"><span class="mk-in"></span> (ex: 25년 1월 1일 &gt; 20250101)</td></tr>' +
-          '<tr><th>회원번호</th><td style="text-align:left"><span class="mk-in"></span> (ex: M0001)</td></tr>' +
+          '<h4>일정등록</h4><table><tr><th style="width:150px">일정코드 (자동발생)</th><td style="text-align:left;width:300px"><span class="mk-in">5</span></td></tr>' +
+          '<tr><th>일정일자</th><td style="text-align:left"><span class="mk-in"></span> (ex: 26년 1월 1일 &gt; 20260101)</td></tr>' +
+          '<tr><th>회원코드</th><td style="text-align:left"><span class="mk-in"></span> (ex: M0001)</td></tr>' +
           '<tr><th>일정메모</th><td style="text-align:left"><span class="mk-in"></span></td></tr>' +
           '<tr><td colspan="2"><span class="mk-btn">등록</span><span class="mk-btn">조회</span></td></tr></table>',
-          "일정번호 칸의 5는 일정이 4건일 때 max+1로 자동 계산된 값이고, 읽기 전용입니다. 등록을 누르면 빈 칸 검사 후 action.jsp로 넘어가고, 조회는 일정현황(list_j.jsp)으로 이동합니다. 입력 예시는 교재 기준 2025년이고, 이 자료의 reg.jsp는 2026년(26년 1월 1일 &gt; 20260101)으로 적혀 있습니다."),
+          "일정코드 칸의 5는 일정이 4건일 때 가장 큰 번호 + 1로 계산된 값이고, 읽기 전용입니다. 등록을 누르면 빈 칸 검사 후 action.jsp로 넘어가고, 조회는 일정현황(list_j.jsp)으로 이동합니다. 수업 당시 캡처는 이 화면에서만 '일정번호', '회원번호'라고 적었는데, 기준 코드는 다른 화면과 같은 '일정코드', '회원코드'로 맞췄습니다."),
         kicker: "입력 화면",
         title: "reg.jsp — 일정등록 화면 & 입력 검증",
         body: [
           "새 일정번호를 자동으로 계산해 보여주고, 제출 전 자바스크립트로 필수 항목을 검증하는 등록 폼입니다."
         ],
         bullets: [
-          "화면을 열 때 <span class=\"path\">select to_char(max(pk_schedule)+1) as pk_schedule from tbl_schedule</span>로 다음 번호를 미리 조회해, input에 <span class=\"path\">readonly</span>로 채워둔다 (사용자가 직접 못 바꾸게).",
+          "화면을 열 때 <span class=\"path\">select to_char(nvl(max(pk_schedule), 0) + 1) as pk_schedule from tbl_schedule</span>로 다음 번호를 미리 조회해, input에 <span class=\"path\">readonly</span>로 채워둔다 (사용자가 직접 못 바꾸게).",
+          "폼에는 <span class=\"path\">method=\"post\"</span>를 적어 입력값을 주소창이 아니라 요청 본문에 담아 보냅니다. (수업 당시 캡처는 method가 없어 GET이었습니다.)",
           "폼에는 <span class=\"path\">onsubmit=\"return check_val()\"</span>을 걸어, 자바스크립트 함수가 <span class=\"path\">false</span>를 반환하면 제출 자체가 취소된다.",
-          "<span class=\"path\">check_val()</span>은 일정일자·회원번호·일정메모를 순서대로 검사 — 비어 있으면 <span class=\"path\">alert()</span> + <span class=\"path\">focus()</span>로 해당 입력칸에 커서를 되돌리고 <span class=\"path\">return false</span>.",
+          "<span class=\"path\">check_val()</span>은 일정일자·회원코드·일정메모를 순서대로 검사 — 비어 있으면 <span class=\"path\">alert()</span> + <span class=\"path\">focus()</span>로 해당 입력칸에 커서를 되돌리고 <span class=\"path\">return false</span>.",
           "등록 버튼은 <span class=\"path\">&lt;input type=\"submit\"&gt;</span>로 action.jsp에 전송, 조회 버튼은 <span class=\"path\">&lt;input type=\"button\" onclick=\"location.href='list_j.jsp'\"&gt;</span>로 페이지만 이동.",
-          "참고: 이 화면의 <b>'일정번호'</b>는 list_j.jsp의 <b>'일정코드'</b>와 같은 값(pk_schedule)이고, <b>'회원번호'</b>는 <b>'회원코드'</b>와 같은 값(fk_member)입니다. 캡처 코드에서 화면마다 이름을 다르게 붙였을 뿐입니다."
+          "화면 표기는 <b>일정코드</b>(DB 컬럼 pk_schedule)와 <b>회원코드</b>(fk_member)로 통일했습니다. 수업 당시 캡처는 이 화면에서만 '일정번호', '회원번호'라고 적었습니다.",
+          "브라우저 검사는 입력 실수를 빨리 알려 주는 역할입니다. 사용자는 이 검사를 건너뛰고 값을 보낼 수도 있으므로, 같은 확인을 action.jsp(서버)에서 다시 합니다."
         ],
         shots: [
-          ["33-reg-jsp-js.png","reg.jsp — check_val() 필수입력 검증 스크립트"],
-          ["34-reg-jsp-form.png","reg.jsp — 일정등록 폼 (자동입력 pk_schedule 포함)"]
+          ["33-reg-jsp-js.png","reg.jsp — check_val() 검증 스크립트 (수업 당시 캡처)"],
+          ["34-reg-jsp-form.png","reg.jsp — 일정등록 폼 (수업 당시 캡처, method 없음)"]
         ]
       },
       {
@@ -1596,16 +1655,32 @@ to_char(v.drv_start, 'FM999,999')</pre>
         noteLink: "n-action",
         kicker: "등록 처리",
         title: "action.jsp — 일정등록 처리",
+        done: ["정상 입력 1건을 등록하면 완료 안내 후 홈으로 가고, 일정현황이 5행으로 늘어납니다. 메모에 작은따옴표(\')를 넣어도 등록되고, 없는 회원코드를 넣으면 실패 안내가 나옵니다.", "안내창의 문구, Tomcat Console의 오류 메시지"],
         body: [
-          "reg.jsp가 넘긴 값을 받아 실제로 INSERT를 실행하는 처리 전용 JSP입니다. 화면(reg.jsp)과 처리(action.jsp)를 분리해두면, 검증은 화면 쪽에서 하고 DB 반영은 여기서만 담당하게 됩니다."
+          "reg.jsp가 보낸 값을 받아 DB에 넣는 처리 전용 JSP입니다. 화면(reg.jsp)은 입력과 1차 검사를, action.jsp는 서버 검증과 DB 반영을 맡습니다."
         ],
         bullets: [
-          "<span class=\"path\">request.getParameter(\"pk_schedule\")</span> 등으로 reg.jsp의 input name과 같은 이름으로 값을 받는다.",
-          "SQL 문장을 문자열로 이어 붙여 만든다. <b>원칙</b>은 문자·날짜 값은 작은따옴표(<span class=\"path\">'</span>)로 감싸고 숫자 값은 그대로 쓰는 것이다. 다만 캡처의 실제 코드는 숫자 컬럼인 pk_schedule까지 <b>네 값을 모두</b> 작은따옴표로 감싸고 있다 — <span class=\"path\">\"insert into tbl_schedule values('\" + pk_schedule + \"','\" + do_date + \"',...)\"</span>. 오라클이 문자열을 숫자로 자동 변환하는 것으로 알고 있으나, 이 코드의 실행 결과는 캡처에 없어 확인하지 못했다.",
-          "실행 후 <span class=\"path\">&lt;script&gt;alert(...); window.location.href=\"main.jsp\"&lt;/script&gt;</span>로 완료 안내와 함께 홈으로 돌려보낸다."
+          "<span class=\"path\">request.setCharacterEncoding(\"UTF-8\")</span>를 <b>getParameter보다 먼저</b> 둡니다. 폼이 POST로 보내기 때문에 이 설정이 있어야 한글 메모가 깨지지 않습니다.",
+          "<span class=\"path\">request.getParameter(\"pk_schedule\")</span>처럼 reg.jsp의 input name과 같은 이름으로 값을 받습니다.",
+          "받은 값을 서버에서 다시 검사합니다. 필수값, 일정일자 8자리, 메모 길이를 확인하고 걸리면 DB에 접속하지 않습니다.",
+          "SQL은 <span class=\"path\">?</span> 자리를 둔 PreparedStatement로 실행합니다. 메모에 작은따옴표가 있어도 SQL 문법과 값이 섞이지 않습니다.",
+          "INSERT는 <span class=\"path\">executeUpdate()</span>로 실행하고, 반환값(반영된 행 수)이 1인지 확인합니다.",
+          "DB 처리가 성공했을 때만 완료 안내 후 main.jsp로, 실패하면 이유를 알리고 입력 화면으로 돌아갑니다. 전체 코드와 줄별 해설은 아래 버튼의 코드 주석 해설에 있습니다."
         ],
-        warn: "화면 속 코드는 INSERT문을 <span class=\"path\">stmt.executeQuery(sql)</span>로 실행하고 있는데, <b>INSERT·UPDATE·DELETE는 원칙적으로 <span class=\"path\">executeUpdate(sql)</span>을 써야 합니다.</b> executeQuery는 결과를 반환받는 SELECT용이라, 드라이버에 따라 예외가 나거나 경고가 뜰 수 있어요. 실기에서 조회는 executeQuery, 등록/수정/삭제는 executeUpdate로 짝을 맞추는 습관을 들이세요.",
-        shots: [["35-action-jsp.png","action.jsp — INSERT SQL 조립 및 실행"]]
+        extra: `<div class="sub-h">핵심 부분 (전체 코드는 코드 주석 해설)</div>
+<pre class="hint">String sql = "insert into tbl_schedule (pk_schedule, do_date, do_memo, fk_member) "
+           + "values (?, to_date(?, 'FXYYYYMMDD'), ?, ?)";
+
+try (Connection conn = Util.getConnection();
+     PreparedStatement pstmt = conn.prepareStatement(sql)) {
+    pstmt.setInt(1, Integer.parseInt(pk_schedule));
+    pstmt.setString(2, do_date);
+    pstmt.setString(3, do_memo);
+    pstmt.setString(4, fk_member.trim());
+    int inserted = pstmt.executeUpdate();   // 반영된 행 수
+}</pre>`,
+        warn: "아래 캡처는 수업 당시 코드라 기준 코드와 다릅니다. 캡처는 입력값을 SQL 문자열에 이어 붙이고 INSERT를 <span class=\"path\">executeQuery</span>로 실행하며, 서버 검증·자원 정리·실패 안내가 없습니다. 비교용으로만 보고, 따라 작성할 때는 위 기준 코드를 쓰세요.",
+        shots: [["35-action-jsp.png","action.jsp — 수업 당시 캡처 (기준 코드와 다름)"]]
       }
     ]
   },
@@ -1613,7 +1688,7 @@ to_char(v.drv_start, 'FM999,999')</pre>
     id: "ch4",
     tag: "CHAPTER 4",
     title: "코드 주석 해설 — 파일별로 한 줄씩 읽기",
-    desc: "앞 챕터에서 만든 코드를 파일별로 옮겨 적고, 무슨 일을 하는 줄인지 주석으로 풀어 썼습니다. 코드 줄의 번호는 에디터 캡처의 줄 번호와 같고(단, Util.java는 원본 캡처 파일이 없어 줄 번호를 대조할 수 없습니다), 주석 줄에는 번호가 없습니다. '주석 숨기기'로 원본 코드만 볼 수 있고, '원본 캡처'로 실제 화면과 대조할 수 있어요. 캡처를 보고 옮겨 적은 것이라 오탈자가 있을 수 있으니, 헷갈리는 곳은 원본 캡처를 기준으로 확인하세요.",
+    desc: "앞 챕터에서 만든 코드를 파일별로 싣고, 무슨 일을 하는 줄인지 주석으로 풀어 썼습니다. 여기 실린 코드는 <b>따라 작성할 기준 코드</b>입니다. 수업 당시 캡처에서 오류나 완성 화면과 맞지 않는 부분을 고쳤기 때문에, 줄 번호와 내용이 '원본 캡처'와 다를 수 있습니다. db.sql(날짜 입력), list.jsp·list_j.jsp·reg.jsp(자원 정리, 제목·표기), action.jsp(등록 처리 전체)가 고친 파일이고, 고친 곳은 각 해설의 핵심 포인트에 적었습니다. 주석 줄에는 번호가 없고, '주석 숨기기'로 코드만 볼 수 있습니다. 처음 읽을 때는 파일의 흐름을 먼저 보고, 줄별 주석은 필요할 때 펼쳐 보세요.",
     checklist: {
       title: "Chapter 4 핵심 체크리스트",
       sub: "코드를 처음 읽을 때 이 순서와 기준을 쓰면 구조가 빨리 보입니다.",
@@ -1628,10 +1703,10 @@ to_char(v.drv_start, 'FM999,999')</pre>
     steps: [
       {
         key: "n-legend",
-        kicker: "읽기 전 준비",
-        title: "JSP 기호 4가지 먼저 보기",
+        kicker: "복습",
+        title: "JSP 기호 4가지 복습",
         body: [
-          "JSP 파일은 HTML 사이에 서버에서 실행되는 Java 코드가 끼어 있는 형태입니다. 아래 네 가지 기호만 구분하면 어떤 파일을 열어도 구조가 보여요."
+          "챕터 3 앞에서 표로 본 내용을 복습합니다. JSP 파일은 HTML 사이에 서버에서 실행되는 Java 코드가 끼어 있는 형태입니다. 아래 네 가지 기호만 구분하면 어떤 파일을 열어도 구조가 보여요."
         ],
         bullets: [
           "<span class=\"path\">&lt;%@ ... %&gt;</span> <b>지시자</b> — 페이지 설정을 선언합니다(인코딩, import 등). 코드를 실행하는 게 아니라 '이 파일은 이렇게 다뤄라'고 알려주는 줄.",
@@ -1689,11 +1764,12 @@ insert into tbl_member values('M0003', '세종', '대왕');
 insert into tbl_member values('M0004', '이순신', '장군');
 insert into tbl_member values('M0005', '장영실', '과학자');
 
-§-- 자식(일정) 입력 : 첫 값(1~4)은 number 라 따옴표가 없고, 날짜는 '20260101' 형태의 문자열, 마지막 'M000x' 는 위 회원코드를 가리킨다
-insert into tbl_schedule values(1, '20260101','탐관오리 찾기', 'M0001');
-insert into tbl_schedule values(2, '20260201','아버지 돌보기', 'M0002');
-insert into tbl_schedule values(3, '20260301','한글 창제', 'M0003');
-insert into tbl_schedule values(4, '20260401','거북선으로 국가 수호', 'M0004');
+§-- 자식(일정) 입력 : 넣을 컬럼 이름을 먼저 적고, 일정코드(1~4)는 number 라 따옴표가 없다
+§-- 날짜는 to_date('20260101', 'YYYYMMDD') 로 '이 글자를 연월일 형식으로 읽어라' 라고 알려 준다. 마지막 'M000x' 는 위 회원코드를 가리킨다
+insert into tbl_schedule (pk_schedule, do_date, do_memo, fk_member) values (1, to_date('20260101', 'YYYYMMDD'), '탐관오리 찾기', 'M0001');
+insert into tbl_schedule (pk_schedule, do_date, do_memo, fk_member) values (2, to_date('20260201', 'YYYYMMDD'), '아버지 돌보기', 'M0002');
+insert into tbl_schedule (pk_schedule, do_date, do_memo, fk_member) values (3, to_date('20260301', 'YYYYMMDD'), '한글 창제', 'M0003');
+insert into tbl_schedule (pk_schedule, do_date, do_memo, fk_member) values (4, to_date('20260401', 'YYYYMMDD'), '거북선으로 국가 수호', 'M0004');
 
 §-- 트랜잭션 확정 : 이 에디터는 Auto Commit 상태이지만, 확실히 하려고 마지막에 둔다
 commit
@@ -1703,9 +1779,9 @@ commit
         bullets: [
           "<b>DROP은 자식 → 부모, CREATE·INSERT는 부모 → 자식</b> 순서입니다. 이 한 줄 원칙이 이 파일의 전부예요.",
           "FK 컬럼(<span class=\"path\">fk_member varchar(5)</span>)은 참조하는 PK(<span class=\"path\">pk_member varchar(5)</span>)와 <b>자료형이 같아야</b> 하고, 길이도 같게 맞추는 것이 안전합니다.",
-          "문자열·날짜 값은 <span class=\"path\">''</span>로 감싸고, number 컬럼(<span class=\"path\">pk_schedule</span>)의 값은 그대로 씁니다.",
+          "문자열 값은 <span class=\"path\">''</span>로 감싸고, 날짜는 to_date로 바꿔 넣고, number 컬럼(<span class=\"path\">pk_schedule</span>)의 값은 그대로 씁니다.",
           "varchar 길이는 기본적으로 <b>바이트</b> 기준이라, 한글은 DB 문자셋에 따라 글자당 2~3바이트를 차지할 수 있습니다. 한글을 넣는 컬럼은 길이를 넉넉히 잡는 게 안전해요.",
-          "날짜를 <span class=\"path\">'20260101'</span> 같은 문자열로 넣을 때 DB의 날짜 형식 설정에 따라 변환 오류가 날 수 있습니다. 오류가 나면 <span class=\"path\">to_date('20260101','yyyymmdd')</span>로 형식을 명시하세요."
+          "따옴표만 씌운 <span class=\"path\">'20260101'</span>을 date 컬럼에 넣으면 DB의 기본 날짜 형식 설정에 따라 다르게 해석되거나 오류가 날 수 있습니다. 그래서 처음부터 <span class=\"path\">to_date</span>로 형식을 적습니다."
         ],
         warn: "3번째 일정(<span class=\"path\">M0003</span>)의 메모는 캡처 해상도 때문에 정확히 읽히지 않았는데, 교재의 일정현황 화면에 <span class=\"path\">'한글 창제'</span>로 나와 있어 그 값으로 고쳤습니다. 본인의 db.sql과 한 번 대조해 주세요."
       },
@@ -1746,7 +1822,7 @@ public class Util {
         bullets: [
           "<span class=\"path\">Class.forName(...)</span>이 <b>ojdbc8.jar</b>를 찾지 못하면 ClassNotFoundException이 납니다. Tomcat이 실행될 때는 <span class=\"path\">WEB-INF/lib</span>에 있는 jar를 사용하므로, 챕터 1에서 jar를 그곳에 넣어 두어야 합니다.",
           "접속 주소의 <span class=\"path\">@//localhost:1521/xe</span>는 서비스명(Service Name) 방식입니다. 계정·비밀번호(<span class=\"path\">system</span>, <span class=\"path\">1234</span>)는 문제의 보기나 본인 DB 설치 값에 맞춰야 해요.",
-          "이 클래스는 커넥션을 닫는 코드가 없고, 이후 JSP들도 닫지 않습니다. 실습·시험 코드에서는 흔히 생략하지만, 실무에서는 사용 후 <span class=\"path\">close()</span>(또는 try-with-resources)로 닫아야 연결이 쌓이지 않습니다."
+          "<span class=\"path\">Util.getConnection()</span>은 연결을 만들어 돌려주기만 합니다. 여기서 닫으면 호출한 JSP가 그 연결을 쓸 수 없으니, <b>연결을 받아 쓴 JSP가 작업을 마친 뒤</b> ResultSet·Statement와 함께 닫습니다. 이 자료의 기준 코드는 조회 화면 끝에서 <span class=\"path\">close()</span>를 부르고, action.jsp에서는 try-with-resources를 씁니다."
         ]
       },
       {
@@ -2014,6 +2090,12 @@ table{
         }
         %>
     </table>
+    <%
+§    // 다 쓴 DB 자원을 닫는다. 연결을 받아 쓴 이 JSP의 책임이며, 연 순서의 반대(ResultSet → Statement → Connection)로 닫는다
+    rs.close();
+    stmt.close();
+    conn.close();
+    %>
 </body>
 </html>
 `
@@ -2059,15 +2141,15 @@ table{
     Statement stmt = conn.createStatement();
 §    // ★ 달라진 곳 : 일정(tbl_s)과 회원(tbl_m)을 JOIN 해서 한 번에 조회
 §    //  - to_char(tbl_s.do_date, 'yyyy-MM-dd') : DATE 를 '2026-01-01' 형태의 문자열로 변환
-§    //  - tbl_s.do_memo || '개' : || 는 오라클의 문자열 연결 연산자. 일정메모 뒤에 '개'를 이어 붙여 출력 (캡처 코드 그대로)
+§    //  - tbl_s.do_memo : 저장한 메모를 그대로 출력 (수업 당시 캡처는 || '개' 로 '개'를 덧붙였지만 완성 화면과 달라 뺐다)
 §    //  - from tbl_schedule tbl_s left join tbl_member tbl_m on tbl_s.fk_member = tbl_m.pk_member
 §    //      일정을 기준(왼쪽)으로 회원을 붙인다. 일정의 fk_member 와 회원의 pk_member 가 같은 행끼리 연결
 §    //  - order by tbl_s.pk_schedule asc : 일정코드 오름차순 정렬
-    String sql = "select tbl_s.pk_schedule as 일정코드, to_char(tbl_s.do_date, 'yyyy-MM-dd') as 일정일자, tbl_s.do_memo || '개' as 일정메모, tbl_m.pk_member as 회원코드, tbl_m.name as 회원명 from tbl_schedule tbl_s left join tbl_member tbl_m on tbl_s.fk_member = tbl_m.pk_member order by tbl_s.pk_schedule asc ";
+    String sql = "select tbl_s.pk_schedule as 일정코드, to_char(tbl_s.do_date, 'yyyy-MM-dd') as 일정일자, tbl_s.do_memo as 일정메모, tbl_m.pk_member as 회원코드, tbl_m.name as 회원명 from tbl_schedule tbl_s left join tbl_member tbl_m on tbl_s.fk_member = tbl_m.pk_member order by tbl_s.pk_schedule asc ";
     ResultSet rs = stmt.executeQuery(sql);
     %>
-§    <%-- ※ 제목이 '회원현황' 으로 되어 있다. list.jsp 를 복사해 온 흔적으로 보이며, 일정현황 화면이면 '일정현황' 이 자연스럽다 (시험에서는 문제의 화면 제목을 따를 것) --%>
-    <h4>회원현황</h4>
+§    <%-- 화면 제목 (수업 당시 캡처는 list.jsp 에서 복사해 온 '회원현황' 그대로였다) --%>
+    <h4>일정현황</h4>
     <table border='1'>
 §        <%-- 표 머리글 행 : 열이 5개로 늘었다. 일정메모 열만 폭 200px --%>
         <tr>
@@ -2093,6 +2175,12 @@ table{
         }
         %>
     </table>
+    <%
+§    // 다 쓴 DB 자원을 닫는다 (list.jsp 와 같음)
+    rs.close();
+    stmt.close();
+    conn.close();
+    %>
 </body>
 </html>
 `
@@ -2141,10 +2229,10 @@ table{
             fm.do_date.focus();
             return false;
         }
-§        // 회원번호도 같은 방식으로 검사
+§        // 회원코드도 같은 방식으로 검사
         var fk_member = document.fm.fk_member.value;
         if (fk_member == "") {
-            alert("회원번호를 입력하지 않았습니다.");
+            alert("회원코드를 입력하지 않았습니다.");
             fm.fk_member.focus();
             return false;
         }
@@ -2166,24 +2254,29 @@ table{
 request.setCharacterEncoding("UTF-8");
 Connection conn = Util.getConnection();
 Statement stmt = conn.createStatement();
-§// 지금 가장 큰 일정코드 + 1 = 다음 일정코드. to_char : 숫자를 문자열로 변환, as pk_schedule : 결과 컬럼 이름
-String sql = "select to_char(max(pk_schedule) + 1) as pk_schedule from tbl_schedule";
+§// 지금 가장 큰 일정코드 + 1 = 다음 일정코드. 일정이 하나도 없으면 max 가 NULL 이므로 nvl(..., 0) 으로 0 으로 바꿔 첫 번호가 1 이 되게 한다
+§// to_char : 숫자를 문자열로 변환, as pk_schedule : 결과 컬럼 이름
+String sql = "select to_char(nvl(max(pk_schedule), 0) + 1) as pk_schedule from tbl_schedule";
 ResultSet rs = stmt.executeQuery(sql);
 §// 결과가 한 행뿐이므로 while 대신 next() 를 한 번만 호출해 그 행으로 이동
 rs.next();
 §// 별칭(pk_schedule)으로 값을 꺼내 변수에 저장 → 아래 input 의 value 로 출력된다
 String pk_schedule = rs.getString("pk_schedule");
+§// 번호를 꺼냈으니 DB 자원은 여기서 닫는다
+rs.close();
+stmt.close();
+conn.close();
 %>
 
 <body>
     <h4>일정등록</h4>
 §    <%-- action="action.jsp" : 제출하면 이 파일로 값을 보낸다 / name="fm" : 자바스크립트가 폼을 가리킬 이름 --%>
 §    <%-- onsubmit="return check_val()" : 제출 전에 검증 함수를 실행하고, false 가 돌아오면 제출을 취소 --%>
-§    <%-- method 를 적지 않았으므로 기본값인 GET 으로 전송된다 (입력값이 주소창 URL 뒤에 붙어서 간다) --%>
-    <form action="action.jsp" name="fm" onsubmit="return check_val()">
+§    <%-- method="post" : 입력값을 주소창이 아니라 요청 본문에 담아 보낸다 (수업 당시 캡처는 method 가 없어 GET 이었다) --%>
+    <form action="action.jsp" method="post" name="fm" onsubmit="return check_val()">
         <table border='1'>
             <tr>
-                <th align="center" width="300px">일정번호(자동발생)</th>
+                <th align="center" width="300px">일정코드(자동발생)</th>
 §                <%-- readonly : 읽기만 가능(수정 불가). value 에 위에서 계산한 변수 값을 표현식으로 출력 --%>
                 <td align="left" width="400px"><input type="text"
                     name="pk_schedule" value="<%=pk_schedule%>" readonly></td>
@@ -2195,7 +2288,7 @@ String pk_schedule = rs.getString("pk_schedule");
                     26년 1월 1일 > 20260101)</td>
             </tr>
             <tr>
-                <th align="center">회원번호</th>
+                <th align="center">회원코드</th>
                 <td align="left"><input type="text" name="fk_member">(ex:
                     M0001)</td>
             </tr>
@@ -2220,7 +2313,9 @@ String pk_schedule = rs.getString("pk_schedule");
           "<b>실행 위치 구분</b> : <span class=\"path\">&lt;% %&gt;</span> 스크립틀릿은 서버에서(화면이 열릴 때), <span class=\"path\">&lt;script&gt;</span> 안 자바스크립트는 브라우저에서(버튼을 눌렀을 때) 실행됩니다.",
           "일정번호 input은 <span class=\"path\">readonly</span>입니다. <span class=\"path\">disabled</span>와 달리 readonly 값은 폼 제출에 <b>포함</b>되므로 action.jsp가 pk_schedule을 받을 수 있어요.",
           "이 검증은 '빈 칸이 없는지'만 봅니다. 날짜 형식이나 존재하지 않는 회원코드는 걸러내지 못해서, 잘못된 회원코드를 넣으면 DB의 FK 제약 때문에 등록 단계에서 오류가 납니다.",
-          "<span class=\"path\">max(pk_schedule)+1</span>은 테이블이 <b>비어 있으면 NULL</b>이 되어 일정번호 칸에 null이 보입니다. 이 데이터에서는 일정이 4건 들어 있어 문제가 없지만, 알아두면 좋은 경계 상황이에요.",
+          "<span class=\"path\">max(pk_schedule)</span>은 일정이 하나도 없으면 NULL입니다. 기준 코드는 <span class=\"path\">nvl(..., 0)</span>으로 0으로 바꿔 첫 번호가 1이 되게 했습니다.",
+          "이 번호 방식은 <b>혼자 실습할 때</b>만 안전합니다. 두 화면을 동시에 열면 같은 번호를 보게 되고, readonly 칸도 사용자가 값을 바꿔 보내는 것을 막지는 못합니다. 그래서 action.jsp는 번호가 겹치면 등록하지 않고 안내합니다. 여러 사람이 동시에 쓰는 프로그램이라면 시퀀스 같은 번호 발급 방법을 씁니다. 시험 문제에 번호 부여 조건이 있으면 그 조건을 따르세요.",
+          "<b>수업 당시 캡처와 다른 점</b>: form의 method=\"post\", '일정코드'·'회원코드' 표기, nvl 처리, 번호를 꺼낸 뒤 DB 자원 정리",
           "<span class=\"path\">&lt;th&gt;</span>·<span class=\"path\">&lt;td&gt;</span>의 <span class=\"path\">align</span> 속성은 오래된 방식이라 실무에서는 CSS를 쓰지만, 이 캡처의 코드는 이 속성을 사용하고 있습니다."
         ]
       },
@@ -2234,51 +2329,90 @@ String pk_schedule = rs.getString("pk_schedule");
         backLink: { key: "actionjsp", label: "만든 과정 보기" },
         annot: {
           file: "action.jsp", lang: "jsp",
-          shots: [["35-action-jsp.png", "action.jsp — 원본 캡처"]],
+          shots: [["35-action-jsp.png", "action.jsp — 수업 당시 캡처 (기준 코드와 다름)"]],
           code: `
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-§<%-- ↑ 페이지 지시자 (다른 화면과 동일) --%>
 <%@ page import="java.sql.*"%>
 <%@ page import="DBPKG.Util"%>
-§<%-- ↑ java.sql.* 와 DBPKG.Util import --%>
 <%
-§// 요청 값의 인코딩 지정 : POST로 보낸 값에 적용되므로 getParameter 보다 먼저 둔다 (이 폼은 GET 전송 — 아래 '핵심 포인트' 참고)
+§// [1] 요청 인코딩 : POST 로 받은 한글이 깨지지 않도록 getParameter 보다 먼저 둔다
 request.setCharacterEncoding("UTF-8");
-§// DB 커넥션 → Statement 준비
-Connection conn = Util.getConnection();
-Statement stmt = conn.createStatement();
 
-§// reg.jsp 폼의 input name 과 같은 이름으로 값을 받는다 (모두 문자열(String)로 들어온다)
+§// [2] reg.jsp 폼의 input name 과 같은 이름으로 값을 받는다 (모두 문자열로 들어온다)
 String pk_schedule = request.getParameter("pk_schedule");
 String do_date = request.getParameter("do_date");
 String do_memo = request.getParameter("do_memo");
 String fk_member = request.getParameter("fk_member");
-§// INSERT 문을 조립한다 : 값은 작은따옴표('')로 감싸 이어 붙인다
-§//   "...values('" + 변수 + "','" + 변수 + "')"  →  values('5','20260501','메모','M0001') 같은 문장이 만들어진다
-§//   values 의 순서(pk_schedule, do_date, do_memo, fk_member)는 테이블 컬럼 정의 순서와 같아야 한다
-String sql = "insert into tbl_schedule values('" + pk_schedule + "','" + do_date + "','" + do_memo + "','" + fk_member + "')";
 
-§// SQL 실행. (INSERT 는 원칙적으로 executeUpdate(sql) 을 쓴다 — 아래 '핵심 포인트' 참고)
-ResultSet rs = stmt.executeQuery(sql);
+§// [3] 서버 검증 : 브라우저 검사는 건너뛸 수 있으므로 서버에서 다시 확인한다. readonly 칸의 값도 그대로 믿지 않는다
+String msg = null;
+if (pk_schedule == null || !pk_schedule.matches("[0-9]{1,5}")) {
+    msg = "일정코드가 올바르지 않습니다.";
+} else if (do_date == null || !do_date.matches("[0-9]{8}")) {
+    msg = "일정일자는 20260101처럼 숫자 8자리로 입력하세요.";
+} else if (fk_member == null || fk_member.trim().isEmpty()) {
+    msg = "회원코드를 입력하세요.";
+} else if (do_memo == null || do_memo.trim().isEmpty() || do_memo.getBytes("UTF-8").length > 255) {
+§    // do_memo 는 varchar(255) : 길이 단위가 바이트라 한글은 글자당 여러 바이트를 차지한다
+    msg = "일정메모를 확인하세요. (비어 있거나 너무 깁니다)";
+}
+
+§// [4] 검증을 통과했을 때만 DB 에 넣는다
+if (msg == null) {
+§    // ? 는 값을 넣을 자리. SQL 문법과 입력값을 나눠 보내므로 메모에 작은따옴표(')가 있어도 SQL 이 깨지지 않는다
+§    // to_date(?, 'FXYYYYMMDD') : 글자 8자리를 연월일로 읽는다. FX 는 형식이 정확히 맞아야 한다는 뜻
+    String sql = "insert into tbl_schedule (pk_schedule, do_date, do_memo, fk_member) "
+               + "values (?, to_date(?, 'FXYYYYMMDD'), ?, ?)";
+§    // try-with-resources : 괄호 안에서 연 Connection·PreparedStatement 를 블록이 끝날 때 자동으로 닫는다
+    try (Connection conn = Util.getConnection();
+         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+§        // 첫 번째 ? 에는 일정코드, 두 번째에는 일정일자 ... 순서대로 값을 넣는다
+        pstmt.setInt(1, Integer.parseInt(pk_schedule));
+        pstmt.setString(2, do_date);
+        pstmt.setString(3, do_memo);
+        pstmt.setString(4, fk_member.trim());
+§        // INSERT·UPDATE·DELETE 는 executeUpdate. 돌려주는 값은 반영된 행 수
+        int inserted = pstmt.executeUpdate();
+        if (inserted != 1) {
+            msg = "일정이 등록되지 않았습니다.";
+        }
+    } catch (SQLException e) {
+§        // 오라클 오류 번호로 원인을 나눠 안내한다
+        int code = e.getErrorCode();
+        if (code == 1) {
+            msg = "이미 있는 일정코드입니다. 일정등록 화면을 다시 열어 주세요.";
+        } else if (code == 2291) {
+            msg = "없는 회원코드입니다.";
+        } else if (code == 1839 || code == 1843 || code == 1847) {
+            msg = "존재하지 않는 날짜입니다.";
+        } else {
+            msg = "등록 중 DB 오류가 났습니다. (ORA-" + code + ")";
+        }
+    }
+}
 %>
-§<%-- 처리가 끝나면 브라우저에서 실행되는 자바스크립트 : 안내창 → 홈(main.jsp)으로 이동 --%>
+§<%-- [5] 결과 안내 : DB 처리가 성공했을 때만 완료 안내를 띄우고 홈으로, 실패하면 이유를 알리고 입력 화면으로 돌아간다 --%>
 <script>
+<% if (msg == null) { %>
     alert("일정등록이 정상적으로 되었습니다.");
-§    // 이 화면은 iframe 안에서 열려 있으므로, main.jsp 도 같은 iframe 안에서 열린다
-    window.location.href = "main.jsp"
+    window.location.href = "main.jsp";
+<% } else { %>
+    alert("<%= msg %>");
+    history.back();
+<% } %>
 <\/script>
-
 `
         },
         bulletsTitle: "핵심 포인트",
         bullets: [
-          "<b>setCharacterEncoding은 getParameter보다 먼저</b> 둡니다. 다만 이 메서드는 <b>POST</b>로 보낸 값에 적용됩니다. reg.jsp의 폼에는 method가 없어 기본값인 <b>GET</b>으로 전송되고(값이 주소창 URL에 붙어 감), 이때 한글은 Tomcat 설정으로 해석됩니다(Tomcat 8 이상 기본 UTF-8). 그래도 폼을 <span class=\"path\">method=\"post\"</span>로 바꿀 때를 대비해 맨 앞에 두는 습관을 들이세요.",
-          "SQL에서 문자열·날짜 값은 <span class=\"path\">''</span>로 감쌉니다. 이 코드는 숫자 컬럼인 pk_schedule도 따옴표로 감싸는데, 오라클이 문자열을 숫자로 자동 변환해 주는 것으로 알고 있으나, 캡처에는 실행 결과가 없어 확인하지는 못했습니다(원칙은 숫자는 따옴표 없이).",
-          "별도의 commit이 없어도 반영되는 이유는, JDBC 커넥션이 기본적으로 <b>auto-commit</b> 상태이기 때문입니다.",
-          "<b>executeQuery vs executeUpdate</b> : executeQuery는 결과 집합을 돌려받는 SELECT용이고, INSERT·UPDATE·DELETE는 executeUpdate(반환값은 반영된 행 수)를 쓰는 것이 원칙입니다. 이 캡처 코드는 INSERT를 executeQuery로 실행하고 있어요.",
-          "값을 문자열로 직접 이어 붙이는 방식은, 입력에 작은따옴표(<span class=\"path\">'</span>)가 들어가면 SQL이 깨지고 SQL 인젝션 위험도 있습니다. 시험에서는 문제의 방식을 따르되, 실무에서는 <b>PreparedStatement</b>를 쓰세요.",
-          "존재하지 않는 회원코드를 보내면 FK 제약 때문에 INSERT가 예외를 일으키고, 이 코드에는 예외 처리가 없어 안내창 대신 오류 화면이 나올 것으로 예상됩니다(제가 실행해 보지는 않았습니다)."
+          "<b>순서</b>: 인코딩 지정 → 값 받기 → 서버 검증 → DB 처리 → 결과 안내. 검증에 걸리면 DB에 접속하지 않습니다.",
+          "<b>PreparedStatement</b>: SQL의 <span class=\"path\">?</span>는 값을 넣을 자리입니다. <span class=\"path\">setInt</span>, <span class=\"path\">setString</span>의 첫 번째 숫자는 몇 번째 ?인지를 뜻합니다. 입력값을 SQL 문자열에 직접 이어 붙이면 작은따옴표가 들어간 메모에서 SQL이 깨지고 SQL 인젝션 위험도 생깁니다.",
+          "<b>executeUpdate</b>: INSERT·UPDATE·DELETE에 씁니다. 반환값은 반영된 행 수라서, 1이 아니면 등록되지 않은 것으로 봅니다. 조회(SELECT)는 executeQuery입니다.",
+          "<b>자원 정리</b>: try-with-resources가 Connection과 PreparedStatement를 자동으로 닫습니다. 연결은 Util이 만들어 주지만, 닫는 것은 연결을 받아 쓴 이 JSP의 몫입니다.",
+          "<b>실패 안내</b>: 같은 일정코드(ORA-00001), 없는 회원코드(ORA-02291), 달력에 없는 날짜는 각각 안내하고 입력 화면으로 돌아갑니다. 성공 안내는 DB 처리가 끝난 뒤에만 뜹니다.",
+          "<b>수업 당시 캡처와 다른 점</b>: 캡처는 값을 SQL 문자열에 이어 붙이고(숫자 컬럼까지 따옴표로 감쌈), INSERT를 executeQuery로 실행했으며, 서버 검증·자원 정리·실패 안내가 없었습니다. 참고로 Oracle JDBC에서 INSERT를 executeQuery로 실행한다고 반드시 오류가 나지는 않지만, SQL 종류에 맞는 메서드를 쓰는 것이 기준입니다.",
+          "이 코드는 Tomcat·Oracle에서 실행해 보지 않았습니다. [확인 필요] 처음 실행할 때 정상 등록, 빈 메모, 없는 회원코드, 같은 일정코드, 20260231 같은 날짜를 차례로 넣어 안내가 맞게 나오는지 확인하세요."
         ]
       }
     ]
@@ -2311,7 +2445,7 @@ ResultSet rs = stmt.executeQuery(sql);
       '<div class="mk-h">일정 관리 프로그램</div>' +
       '<div class="mk-n"><span>일정등록</span><span>회원현황</span><span>일정현황</span><span>홈으로</span></div>' +
       '<div class="mk-s"><span class="mk-if"><b>iframe 안: ' + file + '</b></span>' + inner + '</div>' +
-      '<div class="mk-f">Copyright (c) 2025. 주식회사 OOOO Inc All Rights Reserved.</div>' +
+      '<div class="mk-f">Copyright (c) 2026. 주식회사 0000 Inc All Rights Reserved.</div>' +
       '</div><figcaption>' + cap + '</figcaption></figure>';
   }
 
@@ -2350,7 +2484,7 @@ ResultSet rs = stmt.executeQuery(sql);
     });
     var bar = '<div class="annot-bar"><span class="fn-name">' + a.file + '</span><span class="lang">' + a.lang.toUpperCase() + '</span><span class="sp"></span>' +
       '<button type="button" class="tg">주석 숨기기</button>';
-    (a.shots || []).forEach(function(s){ bar += '<button type="button" class="shotbtn" data-src="images/' + s[0] + '" data-cap="' + s[1] + '">원본 캡처</button>'; });
+    (a.shots || []).forEach(function(s){ bar += '<button type="button" class="shotbtn" data-src="images/' + s[0] + '" data-cap="' + s[1] + '">원본 캡처 (수업 당시)</button>'; });
     bar += '</div>';
     return '<div class="annot">' + bar + '<div class="annot-body">' + rows + '</div></div>';
   }
@@ -2359,7 +2493,7 @@ ResultSet rs = stmt.executeQuery(sql);
   var globalIdx = 0;
 
   brandSub.textContent = CHAPTERS.length + "개 챕터 · " + CHAPTERS.reduce(function(n,c){return n+c.steps.length;},0) + " 단계";
-  pageFootLeft.textContent = "과정형평가 정보처리산업기사 실기 학습자료 · Chapter " + CHAPTERS.length;
+  pageFootLeft.textContent = "과정평가형 정보처리산업기사 실기 학습자료 · Chapter " + CHAPTERS.length;
 
   function jumpTo(el){
     el.scrollIntoView({block:"start"});
@@ -2380,11 +2514,12 @@ ResultSet rs = stmt.executeQuery(sql);
     var ids = ["scIn","scW","scP"], el = ids.map(function(i){ return document.getElementById(i); });
     var out = document.getElementById("scOut"), need = document.getElementById("scNeed");
     if (!out) return;
-    function val(e){ if (e.value === "") return null; var n = parseFloat(e.value); if (isNaN(n)) return null; return Math.max(0, Math.min(100, n)); }
-    function f1(n){ return (Math.round(n * 10) / 10).toFixed(1); }
+    function val(e){ if (e.value === "") return null; var n = parseFloat(e.value); if (isNaN(n) || n < 0 || n > 100) return "bad"; return n; }
+    function f1(n){ return (Math.floor(n * 10 + 1e-9) / 10).toFixed(1); }
     function calc(){
       var a = val(el[0]), w = val(el[1]), p = val(el[2]);
       need.textContent = "";
+      if (a === "bad" || w === "bad" || p === "bad") { out.innerHTML = "<span class=\"fail\">점수는 0부터 100 사이로 입력하세요.</span> 범위를 벗어난 값이 있어 계산하지 않았습니다."; return; }
       if (a === null || w === null) { out.innerHTML = "내부평가와 필기 점수를 입력하면 계산합니다."; return; }
       var base = a * 0.5 + w * 0.2;
       var req = (80 - base) / 0.3;
@@ -2396,7 +2531,7 @@ ResultSet rs = stmt.executeQuery(sql);
       }
       var tot = base + p * 0.3;
       out.innerHTML = "최종 점수 <span class=\"tot\">" + f1(tot) + "</span>" +
-        (tot >= 80 ? "<span class=\"pass\">합격 기준(80점) 충족</span>" : "<span class=\"fail\">80점까지 " + f1(80 - tot) + "점 부족</span>") +
+        (tot >= 80 ? "<span class=\"pass\">합격 기준(80점) 충족</span>" : "<span class=\"fail\">80점까지 " + (Math.ceil((80 - tot) * 10 - 1e-9) / 10).toFixed(1) + "점 부족</span>") +
         "<span>(내부 " + f1(a * 0.5) + " + 필기 " + f1(w * 0.2) + " + 실무 " + f1(p * 0.3) + ")</span>";
       need.innerHTML = reqText;
     }
@@ -2503,6 +2638,10 @@ ResultSet rs = stmt.executeQuery(sql);
       }
       if (step.warn) {
         html += '<div class="callout warn"><span class="ico">⚠️</span><div><b>주의</b>' + step.warn + '</div></div>';
+      }
+      if (step.done) {
+        html += '<div class="callout ok"><span class="ico ok-dot" aria-hidden="true"></span><div><b>완료 기준</b>' + step.done[0] +
+          (step.done[1] ? '<span class="done-help">막히면 확인할 곳: ' + step.done[1] + '</span>' : '') + '</div></div>';
       }
       html += '</div>';
 
