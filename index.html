@@ -724,7 +724,16 @@
   .mock figcaption { font-size: 12.5px; color: var(--text-dim); padding: 8px 2px 0; }
 </style>
 
-<div class="shell">
+<div class="viewbar" id="viewbar">
+  <div class="vb-in">
+    <span class="vb-lab" id="vbLab">화면 고르기</span>
+    <div class="vb-seg" role="group" aria-labelledby="vbLab">
+      <button type="button" data-view="cur" aria-pressed="true">현재 버전</button><button type="button" data-view="a" aria-pressed="false">A 매뉴얼형</button><button type="button" data-view="c" aria-pressed="false">C 작업 화면형</button>
+    </div>
+    <span class="vb-note">내용은 같고 모양만 다릅니다. 진행 체크는 세 화면이 함께 씁니다.</span>
+  </div>
+</div>
+<div class="shell" id="viewCur">
   <aside class="sidebar">
     <div class="brand">
       <span class="eyebrow">정보처리산업기사 · 실기(과정평가형)</span>
@@ -762,18 +771,19 @@
         <li>바로 아래 <b>전체 흐름</b>에서 무엇을 어떤 순서로 만드는지 큰 그림을 봅니다.</li>
         <li><b>챕터 1~3</b>을 순서대로 따라 합니다. 단계 끝의 <b>완료 기준</b>대로 화면이 나오면 다음 단계로 넘어갑니다.</li>
         <li>코드를 입력하는 단계에서는 <b>전체 코드와 줄별 해설 보기</b> 버튼을 눌러 챕터 4의 코드를 보면서 작성합니다.</li>
-        <li>모두 끝나면 맨 아래 <b>부록</b>에서 실제 시험 구성과 공식 예시 과제(차량주행관리)를 확인합니다.</li>
+        <li>모두 끝나면 맨 아래 <b>부록 A</b>에서 실제 시험 구성과 공식 예시 과제(차량주행관리)를, <b>부록 B</b>에서 form 태그의 입력칸 종류와 값을 꺼내는 방법을 확인합니다.</li>
       </ol>
       <h2 class="ov-h">이 자료에 나오는 표시</h2>
       <div class="twrap"><table class="otbl"><thead><tr><th>표시</th><th>뜻</th></tr></thead><tbody>
-        <tr><td>파란 상자 「왜 이렇게 하나요」</td><td>그 단계를 하는 이유입니다. 처음에는 읽고 넘어가도 됩니다.</td></tr>
-        <tr><td>노란 상자 「주의」</td><td>실수하기 쉬운 곳입니다.</td></tr>
-        <tr><td>초록 상자 「완료 기준」</td><td>이렇게 보이면 그 단계가 끝난 것입니다. 안 되면 '막히면 확인할 곳'부터 봅니다.</td></tr>
+        <tr><td>「왜 이렇게 하나요」</td><td>그 단계를 하는 이유입니다. 처음에는 읽고 넘어가도 됩니다.</td></tr>
+        <tr><td>「주의」</td><td>실수하기 쉬운 곳입니다.</td></tr>
+        <tr><td>「완료 기준」</td><td>이렇게 보이면 그 단계가 끝난 것입니다. 안 되면 '막히면 확인할 곳'부터 봅니다.</td></tr>
         <tr><td>접힌 상자 ▸</td><td>버전 이야기처럼 처음에는 몰라도 되는 내용입니다. 눌러야 펼쳐집니다.</td></tr>
         <tr><td>기준 코드</td><td>이 자료가 권하는, 따라 쓸 코드입니다.</td></tr>
         <tr><td>수업 당시 캡처</td><td>실제 수업 화면을 찍은 그림입니다. 기준 코드와 다른 곳이 있어 비교용으로만 봅니다.</td></tr>
         <tr><td>[확인 필요]</td><td>자료를 만들 때 확인하지 못한 값입니다. 본인 환경에서 직접 확인하세요.</td></tr></tbody></table></div>
-      <p class="ov-sub">왼쪽 목록에서 단계 옆 네모 칸을 누르면 끝낸 단계에 체크 표시가 남습니다. 이 브라우저에만 저장됩니다.</p>
+      <p class="ov-sub">끝낸 단계는 체크해 두세요. 현재 버전은 왼쪽 목록의 네모 칸을, A·C 화면은 단계 끝의 '이 단계를 끝냈습니다'를 누릅니다. 체크는 세 화면이 함께 쓰고 이 브라우저에만 저장됩니다.</p>
+      <p class="ov-sub">맨 위 <b>화면 고르기</b>에서 같은 내용을 다른 모양으로 볼 수 있습니다. <b>A 매뉴얼형</b>은 글자가 크고 한 단으로 읽히며 코드가 각 단계 안에 펼쳐집니다. <b>C 작업 화면형</b>은 한 번에 한 단계씩, 설명과 코드를 나란히 놓고 봅니다.</p>
     </div>
     <div class="overview" id="overview">
       <span class="chapter-tag">OVERVIEW</span>
@@ -915,7 +925,7 @@
 </div>
 
     <div class="official appendix" id="official">
-      <span class="chapter-tag">부록 · 공식 자료 25V5</span>
+      <span class="chapter-tag">부록 A · 공식 자료 25V5</span>
       <h1 class="chapter-title">공식 출제 자료로 보는 정보처리산업기사 실기</h1>
       <p class="chapter-desc">한국산업인력공단의 <b>정보처리산업기사 [25V5] 시험 구성과 외부평가문제 유형</b> 자료를 읽고 정리했습니다. 이 자료에는 시험 방식, 1차 문제 유형 예시, 그리고 2차 작업형의 <b>공식 예시 과제 '차량주행관리 프로그램'</b>이 들어 있습니다. 이 자료는 회원·일정 예제로 연습을 마친 뒤 실제 시험의 모습을 확인하는 부록입니다. 아래 정리는 PDF에 적힌 내용을 바탕으로 했고, 이 자료에서 덧붙인 내용은 따로 표시했습니다.</p>
 
@@ -1033,7 +1043,7 @@
         <button type="button" class="golink" data-go="step-listmember">조회 화면 만든 과정 (list.jsp) →</button></div>
       <div class="of-scr"><div class="top"><span class="tag">다</span><h3>주행내역등록</h3></div>
         <ul><li>제목 "주행내역등록"과 폼. 항목: 주행일자, 차량번호, 출발Km, 도착km, 부서코드, 주유금액. 버튼은 <b>주행내역등록</b>과 <b>다시쓰기</b>.</li><li><b>부서코드는 콤보박스</b>. 항목은 HTML에서 직접 스크립트로 작성한다고 되어 있고, 예시 그림의 선택지는 [10]영업부 · [20]총무부 · [30]구매부 · [40]개발부 (처음에는 "부서").</li><li><b>유효성 체크</b>: 비어 있으면 항목별 알림창 — 주행일자 · 차량번호 · 출발Km · 도착km · 주유금액은 "○○가(이) 입력되지 않았습니다!"(예: "주행일자가 입력되지 않았습니다!", "주유금액이 입력되지 않았습니다!"), 부서코드는 "부서코드가 선택되지 않았습니다!". 원문은 주행일자 알림에서 확인을 누르면 <b>포커스가 주행일자로 이동</b>한다고 적고 있습니다.</li><li>모두 입력 후 등록하면 DB의 주행내역 테이블에 저장 → "주행내역이 정상적으로 등록 되었습니다!" → 확인 시 메인(시작)화면으로 이동.</li><li><b>다시쓰기</b>: "정보를 지우고 처음부터 다시 입력 합니다!" → 확인 시 입력 화면이 모두 클리어되고 포커스가 주행일자로.</li><li>등록할 값은 주행내역 샘플 데이터를 참고하고, 등록 확인은 주행내역조회 화면에서 한다.</li></ul>
-        <button type="button" class="golink" data-go="step-regform">등록 화면·검증 만든 과정 (reg.jsp) →</button><button type="button" class="golink" data-go="step-actionjsp">등록 처리 (action.jsp) →</button></div>
+        <button type="button" class="golink" data-go="step-regform">등록 화면·검증 만든 과정 (reg.jsp) →</button><button type="button" class="golink" data-go="step-actionjsp">등록 처리 (action.jsp) →</button><button type="button" class="golink" data-go="formguide">콤보박스·검사 함수 예 (부록 B) →</button></div>
       <div class="of-scr"><div class="top"><span class="tag">라</span><h3>주행내역조회</h3></div>
         <ul><li>주행내역·부서·차량 <b>3개 테이블을 참조</b>해서 주행일자, 차량번호, 모델, 출발km, 도착km, 부서명, 주유금액을 출력.</li><li>주행일자: <span class="path">yyyy년MM월dd일</span> / 출발·도착km: <span class="path">999,999</span> 형식 (예: 10,000) / 주유금액: 통화기호와 천 단위 구분기호 (예: ₩25,000).</li></ul>
         <button type="button" class="golink" data-go="step-listschedule">JOIN 조회 만든 과정 (list_j.jsp) →</button></div>
@@ -1102,6 +1112,225 @@ to_char(v.drv_start, 'FM999,999')</pre>
       <div class="no-shot" style="margin-top:26px">📄 출처: 한국산업인력공단 「정보처리산업기사 [25V5]」 시험 구성 및 외부평가문제 유형. 문제지의 저작권은 한국산업인력공단에 있고, 이 페이지는 학습용으로 내용을 요약·재구성한 것이라 원문 전체(샘플 데이터 전부, 소스코드 전문 등)는 옮기지 않았습니다. 정확한 값은 원문 PDF로 확인하세요.</div>
     </div>
 
+    <div class="official appendix" id="formguide">
+      <span class="chapter-tag">부록 B · form 태그</span>
+      <h1 class="chapter-title">form 태그 사용법</h1>
+      <p class="chapter-desc">form은 입력칸들을 한 묶음으로 만들어 서버의 JSP로 보내는 태그입니다. 시험 과제의 등록 화면은 모두 form으로 만듭니다. 입력칸 종류마다 생김새와 JSP에서 값을 꺼내는 방법이 조금씩 다르니, 아래 실험실에서 직접 바꿔 보며 익히세요.</p>
+
+      <h2 class="of-h">B-1. form 태그에 쓰는 속성</h2>
+      <pre class="hint">&lt;form action="action.jsp" method="post" name="fm" onsubmit="return check_val()"&gt;
+    ... 입력칸들 ...
+&lt;/form&gt;</pre>
+      <div class="twrap"><table class="otbl"><thead><tr><th>속성</th><th>하는 일</th><th>이 자료의 예</th></tr></thead><tbody>
+        <tr><td class="m">action</td><td>값을 받을 파일</td><td class="m">action="action.jsp"</td></tr>
+        <tr><td class="m">method</td><td>보내는 방식. <b>get</b>은 값이 주소창 뒤에 붙고(안 쓰면 get), <b>post</b>는 주소창에 보이지 않게 요청 본문에 담아 보냅니다</td><td class="m">method="post"</td></tr>
+        <tr><td class="m">name</td><td>자바스크립트에서 이 폼을 부르는 이름</td><td class="m">name="fm" → document.fm</td></tr>
+        <tr><td class="m">onsubmit</td><td>보내기 직전에 실행할 검사. false가 돌아오면 보내지 않습니다</td><td class="m">onsubmit="return check_val()"</td></tr>
+        <tr><td class="m">target</td><td>결과를 열 창 이름. iframe 이름을 적으면 그 안에서 열립니다</td><td>이 과제의 메뉴 링크(a 태그)에서 씀</td></tr>
+        <tr><td class="m">enctype</td><td>파일을 올릴 때만 multipart/form-data로 바꿉니다</td><td>이 과제에서는 쓰지 않음</td></tr></tbody></table></div>
+
+      <h2 class="of-h">B-2. 직접 해 보기: 무엇이 서버로 가나</h2>
+      <p class="of-sub">입력칸을 바꿔 보세요. 아래 검은 칸에 action.jsp가 실제로 받게 되는 이름과 값이 바로 바뀝니다. 비밀번호 칸도 글자 그대로 가고, 꺼 둔(disabled) 칸과 체크하지 않은 체크박스는 아예 가지 않습니다. 이 페이지에서는 실제로 보내지 않습니다.</p>
+      <div class="fg-lab">
+        <form class="fg-demo" id="fgDemo" action="action.jsp" method="post" name="fm" autocomplete="off">
+          <div class="fg-method">method <span class="fg-seg" role="group" aria-label="전송 방식"><button type="button" id="fgGet" aria-pressed="false">get</button><button type="button" id="fgPost" aria-pressed="true">post</button></span></div>
+          <label class="fg-fld"><span>일정코드</span><input type="text" id="fg-pk" name="pk_schedule" value="5" readonly><small>text · readonly</small></label>
+          <label class="fg-fld"><span>일정일자</span><input type="text" id="fg-date" name="do_date" value="20260501" maxlength="8"><small>text · maxlength="8"</small></label>
+          <label class="fg-fld"><span>달력 날짜</span><input type="date" id="fg-cal" name="do_day" value="2026-05-01"><small>date · 2026-05-01 형식으로 감</small></label>
+          <label class="fg-fld"><span>출발km</span><input type="number" id="fg-km" name="drv_start" value="10000" min="0"><small>number</small></label>
+          <label class="fg-fld"><span>비밀번호</span><input type="password" id="fg-pw" name="admin_pw" value="1234"><small>password</small></label>
+          <label class="fg-fld"><span>부서</span><select id="fg-dept" name="dept_code"><option value="">부서</option><option value="10">[10]영업부</option><option value="20" selected>[20]총무부</option><option value="30">[30]구매부</option><option value="40">[40]개발부</option></select><small>select · 보이는 글자 대신 value가 감</small></label>
+          <div class="fg-fld"><span>중요도</span><span class="fg-opts"><label><input type="radio" id="fg-p1" name="priority" value="H">높음</label><label><input type="radio" id="fg-p2" name="priority" value="M" checked>보통</label><label><input type="radio" id="fg-p3" name="priority" value="L">낮음</label></span><small>radio · 하나만 고름</small></div>
+          <div class="fg-fld"><span>알림</span><span class="fg-opts"><label><input type="checkbox" id="fg-n1" name="notify" value="sms" checked>문자</label><label><input type="checkbox" id="fg-n2" name="notify" value="mail">메일</label><label><input type="checkbox" id="fg-n3" name="notify" value="push" checked>앱</label></span><small>checkbox · 여러 개 고름</small></div>
+          <label class="fg-fld"><span>메모</span><textarea id="fg-memo" name="do_memo" rows="2">자격증 원서 접수</textarea><small>textarea</small></label>
+          <label class="fg-fld"><span>등록자</span><input type="text" id="fg-writer" name="writer" value="관리자" disabled><small>text · disabled</small></label>
+          <input type="hidden" id="fg-mode" name="mode" value="insert">
+          <div class="fg-btns"><button type="submit" id="fg-submit">등록</button><button type="reset" id="fg-reset">다시쓰기</button></div>
+        </form>
+        <div class="fg-sent" aria-live="polite">
+          <div class="fg-sent-h">action.jsp가 받는 값</div>
+          <div class="twrap" style="margin:0;border:0;background:transparent"><table><thead><tr><th>name</th><th>값</th><th>JSP에서 꺼내기</th></tr></thead><tbody id="fgRows"></tbody></table></div>
+          <div class="fg-miss" id="fgMiss"></div>
+          <div class="fg-url" id="fgUrl"></div>
+          <div class="fg-flash" id="fgFlash"></div>
+        </div>
+      </div>
+
+      <h2 class="of-h">B-3. 입력칸 유형별 정리</h2>
+      <p class="of-sub">카드 오른쪽 미리보기를 바꾸면 그 아래에 서버로 가는 값이 나옵니다.</p>
+      <div class="fg-cards">
+        <div class="fg-card"><div class="fg-l"><h3>글자 칸 <code>type="text"</code></h3>
+          <p>가장 많이 쓰는 칸입니다. 일정일자, 회원코드처럼 짧은 글자를 받습니다. <b>value</b>는 처음에 들어 있는 글자, <b>maxlength</b>는 입력할 수 있는 최대 글자 수, <b>size</b>는 칸의 보이는 너비입니다. 1차 필기 단답형에 나온 속성들입니다.</p>
+<pre class="hint">&lt;input type="text" name="fk_member" value="M0001" maxlength="5" size="10"&gt;</pre>
+          <div class="fg-rcv">JSP: <code>request.getParameter("fk_member")</code> → <code>"M0001"</code>. 비어 있으면 <code>""</code>(빈 글자)</div></div>
+          <form class="fg-try" data-fg="1"><span class="fg-tl">미리보기</span><input type="text" id="fgc-text" name="fk_member" value="M0001" maxlength="5" size="10"><div class="fg-out"></div></form></div>
+
+        <div class="fg-card"><div class="fg-l"><h3>비밀번호 <code>type="password"</code></h3>
+          <p>화면에는 ●으로 가려지지만 서버에는 입력한 글자 그대로 갑니다. 가려 주는 것은 화면뿐입니다.</p>
+<pre class="hint">&lt;input type="password" name="admin_pw"&gt;</pre>
+          <div class="fg-rcv">JSP: <code>request.getParameter("admin_pw")</code></div></div>
+          <form class="fg-try" data-fg="1"><span class="fg-tl">미리보기</span><input type="password" id="fgc-pw" name="admin_pw" value="1234"><div class="fg-out"></div></form></div>
+
+        <div class="fg-card"><div class="fg-l"><h3>숫자 칸 <code>type="number"</code></h3>
+          <p>숫자만 입력되고 위아래 화살표가 생깁니다. <b>min</b>, <b>max</b>로 범위를 정합니다. 서버에는 숫자가 아니라 글자로 가므로, 계산하려면 바꿔야 합니다.</p>
+<pre class="hint">&lt;input type="number" name="drv_start" min="0"&gt;</pre>
+          <div class="fg-rcv">JSP: <code>Integer.parseInt(request.getParameter("drv_start"))</code></div></div>
+          <form class="fg-try" data-fg="1"><span class="fg-tl">미리보기</span><input type="number" id="fgc-num" name="drv_start" value="10000" min="0"><div class="fg-out"></div></form></div>
+
+        <div class="fg-card"><div class="fg-l"><h3>달력 <code>type="date"</code></h3>
+          <p>달력에서 날짜를 고릅니다. 서버에는 <b>2026-05-01</b>처럼 줄표가 들어간 형식으로 갑니다. 이 자료는 20260501처럼 8자리 글자 칸을 쓰므로, date 칸을 쓴다면 to_date의 형식을 <code>'YYYY-MM-DD'</code>로 바꿔야 합니다.</p>
+<pre class="hint">&lt;input type="date" name="do_day"&gt;</pre>
+          <div class="fg-rcv">JSP: <code>request.getParameter("do_day")</code> → <code>"2026-05-01"</code></div></div>
+          <form class="fg-try" data-fg="1"><span class="fg-tl">미리보기</span><input type="date" id="fgc-date" name="do_day" value="2026-05-01"><div class="fg-out"></div></form></div>
+
+        <div class="fg-card"><div class="fg-l"><h3>숨은 칸 <code>type="hidden"</code></h3>
+          <p>화면에는 안 보이지만 함께 보내는 값입니다. 사용자가 고를 필요가 없는 값(예: 처리 종류)을 실어 보낼 때 씁니다.</p>
+<pre class="hint">&lt;input type="hidden" name="mode" value="insert"&gt;</pre>
+          <div class="fg-rcv">JSP: <code>request.getParameter("mode")</code> → <code>"insert"</code></div></div>
+          <form class="fg-try" data-fg="1"><span class="fg-tl">미리보기</span><span class="fg-note">(화면에 보이는 것이 없습니다)</span><input type="hidden" name="mode" value="insert"><div class="fg-out"></div></form></div>
+
+        <div class="fg-card"><div class="fg-l"><h3>하나만 고르기 <code>type="radio"</code></h3>
+          <p><b>name이 같은 것끼리</b> 한 묶음이 되어 하나만 고를 수 있습니다. 서버에는 고른 것의 value가 갑니다. 아무것도 고르지 않으면 그 name은 가지 않아 null이 됩니다. <b>checked</b>를 적으면 처음부터 골라져 있습니다.</p>
+<pre class="hint">&lt;input type="radio" name="priority" value="H"&gt;높음
+&lt;input type="radio" name="priority" value="M" checked&gt;보통</pre>
+          <div class="fg-rcv">JSP: <code>request.getParameter("priority")</code> → <code>"M"</code></div></div>
+          <form class="fg-try" data-fg="1"><span class="fg-tl">미리보기</span><span class="fg-opts"><label><input type="radio" id="fgc-r1" name="priority" value="H">높음</label><label><input type="radio" id="fgc-r2" name="priority" value="M" checked>보통</label><label><input type="radio" id="fgc-r3" name="priority" value="L">낮음</label></span><div class="fg-out"></div></form></div>
+
+        <div class="fg-card"><div class="fg-l"><h3>여러 개 고르기 <code>type="checkbox"</code></h3>
+          <p>같은 name으로 여러 개를 두면 체크한 것만 모두 갑니다. 그래서 하나가 아니라 <b>배열</b>로 받습니다. 하나도 체크하지 않으면 아무것도 가지 않습니다.</p>
+<pre class="hint">&lt;input type="checkbox" name="notify" value="sms"&gt;문자
+&lt;input type="checkbox" name="notify" value="mail"&gt;메일</pre>
+          <div class="fg-rcv">JSP: <code>request.getParameterValues("notify")</code> → <code>{"sms", "mail"}</code></div></div>
+          <form class="fg-try" data-fg="1"><span class="fg-tl">미리보기</span><span class="fg-opts"><label><input type="checkbox" id="fgc-c1" name="notify" value="sms" checked>문자</label><label><input type="checkbox" id="fgc-c2" name="notify" value="mail" checked>메일</label><label><input type="checkbox" id="fgc-c3" name="notify" value="push">앱</label></span><div class="fg-out"></div></form></div>
+
+        <div class="fg-card"><div class="fg-l"><h3>고르는 상자(콤보박스) <code>&lt;select&gt;</code></h3>
+          <p>공식 과제의 부서코드처럼 정해진 값 중 하나를 고를 때 씁니다. 화면에는 option 사이의 글자가 보이고, 서버에는 <b>value</b>가 갑니다. 첫 줄을 <code>value=""</code>로 두면 '아직 안 골랐음'을 검사할 수 있습니다. <b>selected</b>를 적으면 처음부터 골라져 있습니다.</p>
+<pre class="hint">&lt;select name="dept_code"&gt;
+  &lt;option value=""&gt;부서&lt;/option&gt;
+  &lt;option value="10"&gt;[10]영업부&lt;/option&gt;
+  &lt;option value="20"&gt;[20]총무부&lt;/option&gt;
+&lt;/select&gt;</pre>
+          <div class="fg-rcv">JSP: <code>request.getParameter("dept_code")</code> → <code>"10"</code></div></div>
+          <form class="fg-try" data-fg="1"><span class="fg-tl">미리보기</span><select id="fgc-sel" name="dept_code"><option value="">부서</option><option value="10" selected>[10]영업부</option><option value="20">[20]총무부</option><option value="30">[30]구매부</option><option value="40">[40]개발부</option></select><div class="fg-out"></div></form></div>
+
+        <div class="fg-card"><div class="fg-l"><h3>여러 줄 글자 <code>&lt;textarea&gt;</code></h3>
+          <p>긴 메모처럼 여러 줄을 받습니다. value 속성 대신 <b>여는 태그와 닫는 태그 사이</b>에 처음 글자를 적습니다. rows는 줄 수, cols는 너비입니다.</p>
+<pre class="hint">&lt;textarea name="do_memo" rows="3" cols="30"&gt;&lt;/textarea&gt;</pre>
+          <div class="fg-rcv">JSP: <code>request.getParameter("do_memo")</code></div></div>
+          <form class="fg-try" data-fg="1"><span class="fg-tl">미리보기</span><textarea id="fgc-ta" name="do_memo" rows="2">자격증 원서 접수</textarea><div class="fg-out"></div></form></div>
+
+        <div class="fg-card"><div class="fg-l"><h3>읽기 전용과 꺼 둔 칸 <code>readonly · disabled</code></h3>
+          <p>둘 다 화면에서 고칠 수 없지만, <b>readonly는 서버로 가고 disabled는 가지 않습니다</b>. 그래서 일정등록의 자동 번호는 readonly로 둡니다.</p>
+<pre class="hint">&lt;input type="text" name="pk_schedule" value="5" readonly&gt;
+&lt;input type="text" name="writer" value="관리자" disabled&gt;</pre>
+          <div class="fg-rcv">JSP: pk_schedule은 받을 수 있고, writer는 null</div></div>
+          <form class="fg-try" data-fg="1"><span class="fg-tl">미리보기</span><input type="text" id="fgc-ro" name="pk_schedule" value="5" readonly><input type="text" id="fgc-dis" name="writer" value="관리자" disabled><div class="fg-out"></div></form></div>
+
+        <div class="fg-card"><div class="fg-l"><h3>버튼 세 가지 <code>submit · reset · button</code></h3>
+          <p><b>submit</b>은 폼을 보냅니다(onsubmit 검사를 먼저 거침). <b>reset</b>은 입력칸을 처음 값으로 되돌립니다. <b>button</b>은 아무 일도 하지 않으므로 onclick으로 할 일을 정해 줍니다(예: 조회 화면으로 이동, 다시쓰기 안내).</p>
+<pre class="hint">&lt;input type="submit" value="등록"&gt;
+&lt;input type="reset" value="취소"&gt;
+&lt;input type="button" value="조회" onclick="location.href='list_j.jsp'"&gt;</pre>
+          <div class="fg-rcv">버튼의 value는 name이 없으면 서버로 가지 않습니다</div></div>
+          <form class="fg-try" data-fg="1"><span class="fg-tl">미리보기</span><input type="text" id="fgc-bt" name="do_memo" value="고쳐 본 다음 취소를 눌러 보세요"><span class="fg-opts"><input type="submit" id="fgc-sub" value="등록"><input type="reset" id="fgc-res" value="취소"><input type="button" id="fgc-btn" value="조회" data-msg="button은 보내지 않습니다. 실제 화면에서는 onclick에 적은 일을 합니다."></span><div class="fg-out"></div></form></div>
+
+        <div class="fg-card"><div class="fg-l"><h3>이름표 <code>&lt;label&gt;</code></h3>
+          <p>입력칸 옆 글자를 label로 감싸면 <b>글자를 눌러도</b> 입력칸이 선택됩니다. 작은 체크박스나 라디오를 누르기 쉬워집니다.</p>
+<pre class="hint">&lt;label&gt;&lt;input type="checkbox" name="agree" value="Y"&gt; 동의합니다&lt;/label&gt;</pre>
+          <div class="fg-rcv">서버로 가는 값은 input의 것입니다. label 글자는 가지 않습니다</div></div>
+          <form class="fg-try" data-fg="1"><span class="fg-tl">미리보기</span><label class="fg-opts"><input type="checkbox" id="fgc-lb" name="agree" value="Y"> 동의합니다 (이 글자를 눌러 보세요)</label><div class="fg-out"></div></form></div>
+      </div>
+
+      <h2 class="of-h">B-4. JSP에서 값을 꺼내는 메서드</h2>
+      <p class="of-sub">1차 필기 연결형 문제에 이 세 메서드와 설명을 짝짓는 문제가 나왔습니다.</p>
+      <div class="twrap"><table class="otbl"><thead><tr><th>메서드</th><th>돌려주는 것</th><th>쓰는 때</th></tr></thead><tbody>
+        <tr><td class="m">getParameter("이름")</td><td>값 하나(String). 그 이름이 없으면 null</td><td>text, select, radio, textarea, hidden</td></tr>
+        <tr><td class="m">getParameterValues("이름")</td><td>값 여러 개(String 배열). 하나도 없으면 null</td><td>같은 이름의 checkbox</td></tr>
+        <tr><td class="m">getParameterNames()</td><td>보내온 모든 이름의 목록</td><td>무엇이 왔는지 모를 때 한꺼번에 확인</td></tr></tbody></table></div>
+<pre class="hint">// checkbox 값 여러 개 꺼내기
+String[] notify = request.getParameterValues("notify");
+if (notify != null) {
+    for (String n : notify) {
+        out.print(n + " ");
+    }
+}</pre>
+
+      <h2 class="of-h">B-5. 보내기 전에 검사하기 (JavaScript)</h2>
+      <p class="of-sub">검사 함수는 문제가 있으면 안내창을 띄우고, 그 칸으로 커서를 옮기고, false를 돌려줍니다. form의 onsubmit이 false를 받으면 보내지 않습니다.</p>
+      <div class="twrap"><table class="otbl"><thead><tr><th>검사할 것</th><th>코드</th></tr></thead><tbody>
+        <tr><td>글자 칸이 비었나</td><td class="m">if (f.drv_date.value == "")</td></tr>
+        <tr><td>숫자가 아닌가</td><td class="m">if (isNaN(f.drv_start.value))</td></tr>
+        <tr><td>콤보박스를 안 골랐나</td><td class="m">if (f.dept_code.value == "")</td></tr>
+        <tr><td>라디오를 안 골랐나</td><td class="m">if (f.priority.value == "")</td></tr>
+        <tr><td>체크박스를 하나도 안 골랐나</td><td class="m">if (!f.querySelector("[name=notify]:checked"))</td></tr></tbody></table></div>
+      <p class="of-sub" style="margin-top:18px">공식 예시 과제(주행내역등록)의 요구사항에 맞춰 이 자료에서 작성한 예입니다. 안내 문구는 문제지 그대로이고, 입력칸 이름은 테이블 명세의 컬럼 이름을 따랐습니다. Tomcat에서 실행해 보지는 않았습니다 [확인 필요].</p>
+<pre class="hint">&lt;script&gt;
+function check_val() {
+    var f = document.fm;
+    if (f.drv_date.value == "")  { alert("주행일자가 입력되지 않았습니다!");  f.drv_date.focus();  return false; }
+    if (f.car_no.value == "")    { alert("차량번호가 입력되지 않았습니다!");  f.car_no.focus();    return false; }
+    if (f.drv_start.value == "") { alert("출발Km가 입력되지 않았습니다!");    f.drv_start.focus(); return false; }
+    if (f.drv_end.value == "")   { alert("도착km가 입력되지 않았습니다!");    f.drv_end.focus();   return false; }
+    if (f.dept_code.value == "") { alert("부서코드가 선택되지 않았습니다!"); f.dept_code.focus(); return false; }
+    if (f.drv_money.value == "") { alert("주유금액이 입력되지 않았습니다!");  f.drv_money.focus(); return false; }
+    return true;
+}
+function reset_val() {
+    alert("정보를 지우고 처음부터 다시 입력 합니다!");
+    document.fm.reset();
+    document.fm.drv_date.focus();
+}
+&lt;/script&gt;
+
+&lt;form name="fm" action="action.jsp" method="post" onsubmit="return check_val()"&gt;
+  주행일자 &lt;input type="text" name="drv_date"&gt;
+  차량번호 &lt;input type="text" name="car_no"&gt;
+  출발Km   &lt;input type="text" name="drv_start"&gt;
+  도착km   &lt;input type="text" name="drv_end"&gt;
+  부서코드 &lt;select name="dept_code"&gt;
+             &lt;option value=""&gt;부서&lt;/option&gt;
+             &lt;option value="10"&gt;[10]영업부&lt;/option&gt;
+             &lt;option value="20"&gt;[20]총무부&lt;/option&gt;
+             &lt;option value="30"&gt;[30]구매부&lt;/option&gt;
+             &lt;option value="40"&gt;[40]개발부&lt;/option&gt;
+           &lt;/select&gt;
+  주유금액 &lt;input type="text" name="drv_money"&gt;
+  &lt;input type="submit" value="주행내역등록"&gt;
+  &lt;input type="button" value="다시쓰기" onclick="reset_val()"&gt;
+&lt;/form&gt;</pre>
+      <p class="of-sub">다시쓰기를 reset 버튼이 아니라 button + reset_val()로 만든 이유는, 문제지가 안내창을 먼저 띄우고 지운 뒤 주행일자로 커서를 옮기라고 요구하기 때문입니다.</p>
+
+      <h2 class="of-h">B-6. 작은따옴표도 안전하게: PreparedStatement</h2>
+      <p class="of-sub">단계 18의 action.jsp는 값을 SQL 문자열에 이어 붙입니다. 메모에 작은따옴표(')가 들어가면 SQL이 중간에 끊겨 오류가 납니다. 시험 데이터에는 작은따옴표가 없어서 단계 18 방식으로 충분하지만, 이 문제를 피하는 방법은 알아 두세요.</p>
+      <div class="fg-two">
+<pre class="hint">// 단계 18 방식 : 값을 이어 붙인다
+Statement stmt = conn.createStatement();
+String sql = "insert into tbl_schedule values("
+           + pk_schedule + ", "
+           + "to_date('" + do_date + "', 'YYYYMMDD'), "
+           + "'" + do_memo + "', "
+           + "'" + fk_member + "')";
+stmt.executeUpdate(sql);</pre>
+<pre class="hint">// PreparedStatement : ? 자리에 값을 따로 넣는다
+String sql = "insert into tbl_schedule values("
+           + "?, to_date(?, 'YYYYMMDD'), ?, ?)";
+PreparedStatement pstmt = conn.prepareStatement(sql);
+pstmt.setInt(1, Integer.parseInt(pk_schedule));
+pstmt.setString(2, do_date);
+pstmt.setString(3, do_memo);
+pstmt.setString(4, fk_member);
+pstmt.executeUpdate();</pre>
+      </div>
+      <p class="of-sub">setInt·setString의 첫 숫자는 몇 번째 ?인지를 뜻합니다. 값과 SQL 문법이 따로 가기 때문에 따옴표를 직접 붙이지 않고, 작은따옴표가 든 메모도 그대로 저장됩니다.</p>
+
+      <h2 class="of-h">B-7. get과 post, 그리고 한글</h2>
+      <div class="twrap"><table class="otbl"><thead><tr><th></th><th>get</th><th>post</th></tr></thead><tbody>
+        <tr><th>값이 가는 곳</th><td>주소창 뒤 (action.jsp?pk_schedule=5&amp;...)</td><td>요청 본문 (주소창에 안 보임)</td></tr>
+        <tr><th>method를 안 쓰면</th><td>이쪽이 기본</td><td></td></tr>
+        <tr><th>한글 처리</th><td>Tomcat 설정을 따름 (Tomcat 8 이상은 기본 UTF-8)</td><td>getParameter 전에 <code>request.setCharacterEncoding("UTF-8")</code> 필요</td></tr>
+        <tr><th>쓰는 때</th><td>검색처럼 주소를 공유해도 되는 요청</td><td>등록·수정처럼 데이터를 바꾸는 요청. 이 자료의 일정등록</td></tr></tbody></table></div>
+    </div>
+
     <footer class="pagefoot">
       <span id="pageFootLeft">과정평가형 정보처리산업기사 실기 학습자료</span>
       <span>Eclipse · Tomcat · Oracle · SQL</span>
@@ -1115,6 +1344,9 @@ to_char(v.drv_start, 'FM999,999')</pre>
   <div class="lb-cap" id="lbCap"></div>
 </div>
 
+<div id="viewA" class="view-a" hidden></div>
+<div id="viewC" class="view-c" hidden></div>
+
 <script>
 (function(){
   "use strict";
@@ -1127,7 +1359,7 @@ to_char(v.drv_start, 'FM999,999')</pre>
 <h2 class="env-title">시작 전 준비: 설치할 프로그램 네 가지</h2>
 <p class="env-sub">단계 1은 아래 네 프로그램이 설치된 상태에서 시작합니다. 아직 설치하지 않았다면 위에서부터 차례로 설치하세요. 시험장 PC에 미리 설치되어 있는지는 [확인 필요]이니, 시험에서는 감독 안내를 따릅니다.</p>
 <div class="twrap"><table class="otbl"><thead><tr><th>순서</th><th>프로그램</th><th>하는 일</th><th>설치 후 확인</th></tr></thead><tbody>
-<tr><td>1</td><td><b>JDK 24</b><br><a href="https://www.oracle.com/java/technologies/downloads/" target="_blank" rel="noopener">Oracle Java 다운로드</a></td><td>Java 프로그램을 만들고 실행하는 기본 도구. 나머지 프로그램이 모두 이 위에서 돌아갑니다</td><td>명령 프롬프트에 <span class="path">java -version</span>을 입력해 24가 보이면 됩니다. 지원이 끝난 버전이라 목록에 없으면 같은 사이트의 Java Archive에서 찾습니다 [확인 필요]</td></tr>
+<tr><td>1</td><td><b>JDK 25</b><br><a href="https://www.oracle.com/java/technologies/downloads/" target="_blank" rel="noopener">Oracle Java 다운로드</a></td><td>Java 프로그램을 만들고 실행하는 기본 도구. 나머지 프로그램이 모두 이 위에서 돌아갑니다</td><td>명령 프롬프트에 <span class="path">java -version</span>을 입력해 25가 보이면 됩니다. 다운로드 페이지 맨 앞에 더 새 버전이 보이면 <b>JDK 25</b> 탭을 골라 받습니다</td></tr>
 <tr><td>2</td><td><b>Eclipse</b> IDE for Enterprise Java and Web Developers<br><a href="https://www.eclipse.org/downloads/packages/" target="_blank" rel="noopener">Eclipse 패키지</a></td><td>코드를 쓰고 서버를 실행하는 작업 프로그램</td><td>실행하면 Workspace를 묻는 창이 뜹니다 (단계 1)</td></tr>
 <tr><td>3</td><td><b>Apache Tomcat 11</b><br><a href="https://tomcat.apache.org/download-11.cgi" target="_blank" rel="noopener">Tomcat 11 다운로드</a></td><td>JSP 파일을 실행해 웹 화면으로 바꿔 주는 서버</td><td>zip 파일을 압축 해제한 폴더 위치를 기억해 둡니다 (단계 3에서 씀)</td></tr>
 <tr><td>4</td><td><b>Oracle Database XE</b><br><a href="https://www.oracle.com/database/technologies/xe-downloads.html" target="_blank" rel="noopener">Oracle XE 다운로드</a></td><td>데이터를 표 형태로 저장하는 데이터베이스</td><td>설치 중에 정한 비밀번호를 기억해 둡니다 (이 실습: 1234, 단계 5에서 씀). 수업과 같은 버전을 쓰세요</td></tr></tbody></table></div>
@@ -1136,35 +1368,35 @@ to_char(v.drv_start, 'FM999,999')</pre>
 <details class="more"><summary>이 자료의 개발 환경 — 무엇을, 어떤 버전으로, 왜<span>처음이면 건너뛰어도 됩니다</span></summary>
 <div class="env-wrap">
 <h2 class="env-title">이 자료의 개발 환경 — 무엇을, 어떤 버전으로, 왜</h2>
-<p class="env-sub">네 가지가 맞물려 동작합니다. <b>JDK</b> 위에서 <b>Eclipse</b>로 코드를 쓰고, <b>Tomcat</b>이 JSP를 실행하며, 데이터는 <b>Oracle</b>에 저장됩니다. 버전과 현황은 각 공식 사이트에서 2026-10-15에 확인했습니다. 시험장에 설치된 버전은 이 자료로는 알 수 없습니다.</p>
+<p class="env-sub">네 가지가 맞물려 동작합니다. <b>JDK</b> 위에서 <b>Eclipse</b>로 코드를 쓰고, <b>Tomcat</b>이 JSP를 실행하며, 데이터는 <b>Oracle</b>에 저장됩니다. 버전과 현황은 각 공식 사이트에서 2026-10-15에 확인했고, JDK 25 관련 내용은 2026-10-19에 다시 확인했습니다. 시험장에 설치된 버전은 이 자료로는 알 수 없습니다.</p>
 <div class="env-grid">
 
 <div class="env-card"><div class="env-k">JAVA</div><h3>JDK (Java Development Kit)</h3>
-<div class="env-ver">사용 버전: <b>JDK 24 (고정)</b> <span>(2025-03-18 출시, 마지막 업데이트 24.0.2)</span></div>
+<div class="env-ver">사용 버전: <b>JDK 25 (고정)</b> <span>(2025-09-16 출시, 장기지원 LTS 버전)</span></div>
 <p>Java 프로그램을 컴파일하고 실행하는 도구 모음입니다. Tomcat과 Eclipse가 Java 위에서 돌아가고, JSP도 Tomcat 안에서 Java 코드로 바뀌어 실행되기 때문에 가장 먼저 설치합니다.</p>
-<div class="env-why"><b>이 버전인 이유</b>이 자료의 실습 환경을 <b>JDK 24로 통일</b>했습니다. Tomcat 11은 <b>Java 17 이상</b>을 요구하는데, 24는 이 조건을 만족합니다. 함께 공부하는 사람들이 같은 버전을 쓰면 버전 차이 때문에 생기는 문제를 줄일 수 있습니다.</div>
-<div class="env-note warnish">⚠️ 알고 쓰면 좋은 점<br>① JDK 24는 장기지원(LTS) 버전이 아니고, Oracle의 기본 지원이 <b>2025-09-16에 끝나</b> 이후로는 업데이트가 나오지 않습니다. 인터넷에 오래 노출되는 환경이나 장기간 쓸 환경이라면 LTS(21·25)가 더 안전합니다.<br>② Oracle 21c 드라이버의 공식 호환 JDK는 ojdbc8이 8·11, ojdbc11이 11·17·19·21입니다. <b>24는 이 목록에 없어서</b>, 실제로 연결이 되는지 Test Connection과 화면 실행으로 직접 확인하세요.<br>③ 시험장 PC의 JDK 버전은 이 자료로는 알 수 없습니다.</div></div>
+<div class="env-why"><b>이 버전인 이유</b>이 자료의 실습 환경을 <b>JDK 25로 통일</b>했습니다. JDK 25는 <b>장기지원(LTS) 버전</b>이라 Oracle 기본 지원(Premier Support)이 2030년 9월까지 이어지고, Tomcat 11이 요구하는 <b>Java 17 이상</b> 조건도 만족합니다. 함께 공부하는 사람들이 같은 버전을 쓰면 버전 차이 때문에 생기는 문제를 줄일 수 있습니다.</div>
+<div class="env-note warnish">⚠️ 알고 쓰면 좋은 점<br>① Oracle JDK 25는 2028년 9월까지 나오는 업데이트를 무료 라이선스(NFTC)로 받을 수 있고, 그 뒤 업데이트는 OTN 라이선스로 바뀔 예정입니다. 실습에는 상관없지만 회사에서 오래 쓸 환경이라면 라이선스를 확인하세요.<br>② Oracle 드라이버 호환표에서 JDK 25가 적힌 것은 23ai용 <b>ojdbc17.jar</b>뿐입니다. 이 자료가 쓰는 21c 드라이버는 ojdbc8이 8·11, ojdbc11이 11·17·19·21까지만 적혀 있어 <b>25는 목록에 없습니다</b>. 실제로 연결이 되는지 Test Connection과 화면 실행으로 직접 확인하세요.<br>③ 시험장 PC의 JDK 버전은 이 자료로는 알 수 없습니다.</div></div>
 
 <div class="env-card"><div class="env-k">IDE</div><h3>Eclipse IDE</h3>
 <div class="env-ver">사용 버전: <b>[확인 필요] 실제 설치 버전</b> <span>(작성 시점 공식 최신판은 2026-09 R. Help → About Eclipse IDE에서 확인)</span></div>
 <p>코드 작성·실행·서버 관리를 한 화면에서 하는 통합개발환경입니다. 이 자료에서 쓰는 Dynamic Web Project, Servers 뷰, Run on Server 같은 웹 개발 기능은 <b>Eclipse IDE for Enterprise Java and Web Developers</b> 패키지에 들어 있습니다.</p>
-<div class="env-why"><b>이 버전인 이유</b>Tomcat 11과 JDK 24를 함께 써야 하므로, 둘을 지원하는 Eclipse가 필요합니다. 이 실습 화면의 서버 목록에 <b>Tomcat v11.0 Server</b>가 있고(단계 3 캡처), Run On Server 창에도 Jakarta EE 11 웹 모듈을 지원한다고 표시됩니다.</div>
+<div class="env-why"><b>이 버전인 이유</b>Tomcat 11과 JDK 25를 함께 써야 하므로, 둘을 지원하는 Eclipse가 필요합니다. Eclipse 2025-09판은 Marketplace의 'Java 25 Support' 추가 기능을 설치해야 Java 25를 다룰 수 있고, 2025-12판부터 기본으로 들어간다고 안내되었습니다 [확인 필요]. 새로 설치한다면 최신판을 받으면 됩니다. 이 실습 화면의 서버 목록에 <b>Tomcat v11.0 Server</b>가 있고(단계 3 캡처), Run On Server 창에도 Jakarta EE 11 웹 모듈을 지원한다고 표시됩니다.</div>
 <div class="env-note">공식 다운로드 페이지는 설치본에 실행용 JRE가 함께 들어 있다고 안내합니다. 오래된 Eclipse에도 Tomcat 11 항목이 있는지는 [확인 필요]입니다.</div></div>
 
 <div class="env-card"><div class="env-k">SERVER</div><h3>Apache Tomcat</h3>
 <div class="env-ver">사용 버전: <b>11.0</b> <span>(이 실습 설치 폴더: apache-tomcat-11.0.4)</span></div>
 <p>JSP·서블릿을 실행하는 오픈소스 웹 애플리케이션 서버입니다. 브라우저 요청을 받아 JSP를 실행하고, 그 결과인 HTML을 돌려줍니다.</p>
-<div class="env-why"><b>이 버전인 이유</b>최신 웹 표준(Servlet 6.1, JSP 4.0)을 지원하는 현재 버전이고, Java 17 이상이면 실행되므로 이 자료의 JDK 24와 함께 쓸 수 있습니다. Dynamic web module 6.1과 짝이 맞습니다.</div>
+<div class="env-why"><b>이 버전인 이유</b>최신 웹 표준(Servlet 6.1, JSP 4.0)을 지원하는 현재 버전이고, Java 17 이상이면 실행되므로 이 자료의 JDK 25와 함께 쓸 수 있습니다. Dynamic web module 6.1과 짝이 맞습니다.</div>
 <div class="env-note">자세한 버전 비교는 단계 3에 있습니다.</div></div>
 
 <div class="env-card"><div class="env-k">DATABASE</div><h3>Oracle Database Express Edition (XE)</h3>
 <div class="env-ver">DB 서버 버전: <b>[확인 필요]</b> <span>(수업 안내는 11g XE, 단계 4의 드라이버 경로에는 21c가 보임)</span></div>
 <p>테이블을 만들고 데이터를 저장·조회하는 DB 서버입니다. db.sql로 만든 회원·일정 테이블이 여기에 저장되고, JSP는 JDBC로 접속합니다.</p>
 <div class="env-why"><b>이 버전인 이유</b><b>무료</b>이고 가볍습니다. Oracle 공식 안내 기준 한도는 사용자 데이터 11GB, 메모리 1GB, CPU 1개라 실습 PC에 부담이 적습니다. 기본 서비스 이름이 <b>XE</b>, 포트가 <b>1521</b>이라 문제지 접속 주소(<span class="path">@//localhost:1521/xe</span>)와 맞습니다. 21c XE에는 기본 PDB용 서비스 <b>XEPDB1</b>도 따로 있습니다(단계 5 참고).</div>
-<div class="env-note warnish">⚠️ 실제 버전 확인 방법<br>① DB 서버 버전은 접속한 뒤 <span class="path">select banner from v$version;</span>을 실행해 확인하고 적어 두세요. 단계 4의 드라이버 경로(<span class="path">…\\21c\\dbhomeXE\\jdbc\\lib</span>)는 이 PC에 21c 파일이 있다는 단서일 뿐, 접속한 서버의 버전을 확정하지 않습니다.<br>② 드라이버는 파일명(ojdbc8.jar) 외에 배포 버전도 기록하세요. JDK 24와 이 드라이버 조합은 Oracle 공식 호환표에 없으므로, 단계 5(Eclipse 연결)와 단계 7(JSP 연결)에서 각각 실제로 연결되는지 확인합니다. 공식 목록에 없다는 것과 실제로 실행되지 않는다는 것은 다른 문제입니다.</div></div>
+<div class="env-note warnish">⚠️ 실제 버전 확인 방법<br>① DB 서버 버전은 접속한 뒤 <span class="path">select banner from v$version;</span>을 실행해 확인하고 적어 두세요. 단계 4의 드라이버 경로(<span class="path">…\\21c\\dbhomeXE\\jdbc\\lib</span>)는 이 PC에 21c 파일이 있다는 단서일 뿐, 접속한 서버의 버전을 확정하지 않습니다.<br>② 드라이버는 파일명(ojdbc8.jar) 외에 배포 버전도 기록하세요. JDK 25와 이 드라이버 조합은 Oracle 공식 호환표에 없으므로, 단계 5(Eclipse 연결)와 단계 7(JSP 연결)에서 각각 실제로 연결되는지 확인합니다. 공식 목록에 없다는 것과 실제로 실행되지 않는다는 것은 다른 문제입니다.</div></div>
 
 </div>
-<div class="env-src">출처: <a href="https://tomcat.apache.org/whichversion.html" target="_blank" rel="noopener">Apache Tomcat — Which Version</a> · <a href="https://endoflife.date/oracle-jdk" target="_blank" rel="noopener">endoflife.date — Oracle JDK</a> · <a href="https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc11-production/21.1.0.0" target="_blank" rel="noopener">ojdbc11 호환 JDK</a> · <a href="https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc8-production/21.1.0.0" target="_blank" rel="noopener">ojdbc8 호환 JDK</a> · <a href="https://www.eclipse.org/downloads/packages/" target="_blank" rel="noopener">Eclipse IDE Packages</a> · <a href="https://www.oracle.com/database/technologies/database-11g-express-edition.html" target="_blank" rel="noopener">Oracle 11g XE</a> · <a href="https://www.oracle.com/database/technologies/faq-jdbc.html" target="_blank" rel="noopener">Oracle JDBC FAQ (호환표)</a></div>
+<div class="env-src">출처: <a href="https://tomcat.apache.org/whichversion.html" target="_blank" rel="noopener">Apache Tomcat — Which Version</a> · <a href="https://www.oracle.com/java/technologies/java-se-support-roadmap.html" target="_blank" rel="noopener">Oracle Java SE Support Roadmap</a> · <a href="https://endoflife.date/oracle-jdk" target="_blank" rel="noopener">endoflife.date — Oracle JDK</a> · <a href="https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc11-production/21.1.0.0" target="_blank" rel="noopener">ojdbc11 호환 JDK</a> · <a href="https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc8-production/21.1.0.0" target="_blank" rel="noopener">ojdbc8 호환 JDK</a> · <a href="https://www.eclipse.org/downloads/packages/" target="_blank" rel="noopener">Eclipse IDE Packages</a> · <a href="https://heise.de/-10641093" target="_blank" rel="noopener">heise — Eclipse 2025-09와 Java 25</a> · <a href="https://www.oracle.com/database/technologies/database-11g-express-edition.html" target="_blank" rel="noopener">Oracle 11g XE</a> · <a href="https://www.oracle.com/database/technologies/faq-jdbc.html" target="_blank" rel="noopener">Oracle JDBC FAQ (호환표)</a></div>
 </div>
 </details>`,
     title: "개발 환경 구성 — Eclipse에서 Tomcat·Oracle 붙이기",
@@ -1225,12 +1457,12 @@ to_char(v.drv_start, 'FM999,999')</pre>
       body: [
         "JSP가 실제로 실행되려면 WAS(Web Application Server)가 필요합니다. Eclipse에 Tomcat을 서버로 등록해서, 프로젝트를 그 위에 올려 실행합니다."
       ],
-      extra: `<div class="tc-box"><div class="tc-h">Apache Tomcat이란?</div><p>Apache 소프트웨어 재단이 만드는 <b>오픈소스 웹 애플리케이션 서버(서블릿 컨테이너)</b>입니다. 공식 사이트는 Tomcat을 Jakarta Servlet, Jakarta Pages(JSP), Jakarta Expression Language, Jakarta WebSocket 등의 명세를 구현한 소프트웨어라고 소개합니다.</p><ul><li><b>하는 일</b> — 브라우저가 <span class="path">index.jsp</span>를 요청하면, Tomcat이 JSP를 Java 코드(서블릿)로 바꾸고 컴파일해 실행한 뒤, 그 결과로 만들어진 HTML을 브라우저에 돌려줍니다. 그래서 JSP는 Tomcat 없이 파일만 열어서는 동작하지 않습니다.</li><li><b>포트</b> — HTTP 자체의 기본 포트는 <span class="path">80</span>이고, Tomcat은 기본 설정에서 HTTP 연결을 <span class="path">8080</span>으로 받습니다. 이 실습은 8090으로 바꾸므로 주소에 <span class="path">http://localhost:8090/...</span>처럼 포트를 적습니다. <span class="path">8005</span>는 서버 종료 명령을 받는 포트로, Eclipse 화면에는 "Tomcat admin port"라고 표시됩니다.</li><li><b>누가 해석하나</b> — JSP처럼 <b>서버에서 해석되는 스크립트(SSS, Server Side Script)</b>는 Tomcat(서버)이 실행합니다. 반면 <b>CSS</b>(그리고 HTML·자바스크립트)는 서버가 아니라 <b>웹 브라우저</b>가 해석합니다. Tomcat은 style.css를 읽어서 그대로 보내줄 뿐이고, 화면에 색·배치를 입히는 것은 브라우저입니다.</li></ul><div class="twrap"><table class="otbl"><thead><tr><th>구분</th><th>해석·실행하는 곳</th><th>이 자료의 예</th></tr></thead><tbody><tr><td>JSP (스크립틀릿·표현식), Java</td><td><b>서버</b> (Tomcat)</td><td>list.jsp의 DB 조회, action.jsp의 INSERT</td></tr><tr><td>HTML</td><td><b>웹 브라우저</b></td><td>header·nav·table 같은 화면 구조</td></tr><tr><td>CSS</td><td><b>웹 브라우저</b></td><td>style.css의 색·높이·정렬</td></tr><tr><td>JavaScript</td><td><b>웹 브라우저</b></td><td>reg.jsp의 check_val() 입력 검증, alert()</td></tr></tbody></table></div><ul><li><b>Eclipse와의 관계</b> — Eclipse는 코드를 작성하는 도구이고, 실제 실행은 Tomcat이 합니다. Servers 뷰에 등록한 Tomcat에 프로젝트를 올려(Run on Server) 실행합니다.</li></ul><details class="more" style="margin:14px 0 6px"><summary>Tomcat 버전 이야기<span>처음이면 건너뛰어도 됩니다</span></summary><div class="more-body"><div class="tc-h">이 자료는 Tomcat 11 버전을 사용합니다</div><div class="twrap"><table class="otbl"><thead><tr><th>Tomcat</th><th>Servlet</th><th>JSP(Pages)</th><th>EL</th><th>필요한 Java</th></tr></thead><tbody><tr><td><b>11.0.x (이 자료)</b></td><td>6.1</td><td>4.0</td><td>6.0</td><td><b>17 이상</b></td></tr><tr><td>10.1.x</td><td>6.0</td><td>3.1</td><td>5.0</td><td>11 이상</td></tr><tr><td>9.0.x</td><td>4.0</td><td>2.3</td><td>3.0</td><td>8 이상</td></tr></tbody></table></div><ul><li><b>Java 17 이상</b>이 설치되어 있어야 Tomcat 11이 실행됩니다. 이 자료는 <b>JDK 24</b>를 사용합니다.</li><li>Tomcat 11의 Servlet 버전이 <b>6.1</b>이라서, 단계 6에서 Dynamic Web Project를 만들 때 <b>Dynamic web module version 6.1</b>이 짝을 이룹니다.</li><li>Tomcat 10부터 서블릿 패키지 이름이 <span class="path">javax.servlet</span>에서 <span class="path">jakarta.servlet</span>으로 바뀌었습니다. 이 자료의 JSP는 <span class="path">java.sql.*</span>와 <span class="path">DBPKG.Util</span>만 import해서 영향이 없지만, 서블릿 클래스를 직접 만들 때는 <span class="path">jakarta.servlet</span>을 써야 합니다.</li><li>이 실습의 설치 폴더는 <span class="path">apache-tomcat-11.0.4</span>입니다(캡처 9). 공식 사이트 기준 최신 11.0 버전은 11.0.27(2026-10-12 배포)입니다. 시험장에서는 설치되어 있는 버전을 따르세요.</li></ul><div class="tc-src">출처: Apache Tomcat 공식 사이트 (tomcat.apache.org, "Which Version Do I Want?" 페이지), 2026-10-15 확인</div></div></details></div>`,
+      extra: `<div class="tc-box"><div class="tc-h">Apache Tomcat이란?</div><p>Apache 소프트웨어 재단이 만드는 <b>오픈소스 웹 애플리케이션 서버(서블릿 컨테이너)</b>입니다. 공식 사이트는 Tomcat을 Jakarta Servlet, Jakarta Pages(JSP), Jakarta Expression Language, Jakarta WebSocket 등의 명세를 구현한 소프트웨어라고 소개합니다.</p><ul><li><b>하는 일</b> — 브라우저가 <span class="path">index.jsp</span>를 요청하면, Tomcat이 JSP를 Java 코드(서블릿)로 바꾸고 컴파일해 실행한 뒤, 그 결과로 만들어진 HTML을 브라우저에 돌려줍니다. 그래서 JSP는 Tomcat 없이 파일만 열어서는 동작하지 않습니다.</li><li><b>포트</b> — HTTP 자체의 기본 포트는 <span class="path">80</span>이고, Tomcat은 기본 설정에서 HTTP 연결을 <span class="path">8080</span>으로 받습니다. 이 실습은 8090으로 바꾸므로 주소에 <span class="path">http://localhost:8090/...</span>처럼 포트를 적습니다. <span class="path">8005</span>는 서버 종료 명령을 받는 포트로, Eclipse 화면에는 "Tomcat admin port"라고 표시됩니다.</li><li><b>누가 해석하나</b> — JSP처럼 <b>서버에서 해석되는 스크립트(SSS, Server Side Script)</b>는 Tomcat(서버)이 실행합니다. 반면 <b>CSS</b>(그리고 HTML·자바스크립트)는 서버가 아니라 <b>웹 브라우저</b>가 해석합니다. Tomcat은 style.css를 읽어서 그대로 보내줄 뿐이고, 화면에 색·배치를 입히는 것은 브라우저입니다.</li></ul><div class="twrap"><table class="otbl"><thead><tr><th>구분</th><th>해석·실행하는 곳</th><th>이 자료의 예</th></tr></thead><tbody><tr><td>JSP (스크립틀릿·표현식), Java</td><td><b>서버</b> (Tomcat)</td><td>list.jsp의 DB 조회, action.jsp의 INSERT</td></tr><tr><td>HTML</td><td><b>웹 브라우저</b></td><td>header·nav·table 같은 화면 구조</td></tr><tr><td>CSS</td><td><b>웹 브라우저</b></td><td>style.css의 색·높이·정렬</td></tr><tr><td>JavaScript</td><td><b>웹 브라우저</b></td><td>reg.jsp의 check_val() 입력 검증, alert()</td></tr></tbody></table></div><ul><li><b>Eclipse와의 관계</b> — Eclipse는 코드를 작성하는 도구이고, 실제 실행은 Tomcat이 합니다. Servers 뷰에 등록한 Tomcat에 프로젝트를 올려(Run on Server) 실행합니다.</li></ul><details class="more" style="margin:14px 0 6px"><summary>Tomcat 버전 이야기<span>처음이면 건너뛰어도 됩니다</span></summary><div class="more-body"><div class="tc-h">이 자료는 Tomcat 11 버전을 사용합니다</div><div class="twrap"><table class="otbl"><thead><tr><th>Tomcat</th><th>Servlet</th><th>JSP(Pages)</th><th>EL</th><th>필요한 Java</th></tr></thead><tbody><tr><td><b>11.0.x (이 자료)</b></td><td>6.1</td><td>4.0</td><td>6.0</td><td><b>17 이상</b></td></tr><tr><td>10.1.x</td><td>6.0</td><td>3.1</td><td>5.0</td><td>11 이상</td></tr><tr><td>9.0.x</td><td>4.0</td><td>2.3</td><td>3.0</td><td>8 이상</td></tr></tbody></table></div><ul><li><b>Java 17 이상</b>이 설치되어 있어야 Tomcat 11이 실행됩니다. 이 자료는 <b>JDK 25</b>를 사용합니다.</li><li>Tomcat 11의 Servlet 버전이 <b>6.1</b>이라서, 단계 6에서 Dynamic Web Project를 만들 때 <b>Dynamic web module version 6.1</b>이 짝을 이룹니다.</li><li>Tomcat 10부터 서블릿 패키지 이름이 <span class="path">javax.servlet</span>에서 <span class="path">jakarta.servlet</span>으로 바뀌었습니다. 이 자료의 JSP는 <span class="path">java.sql.*</span>와 <span class="path">DBPKG.Util</span>만 import해서 영향이 없지만, 서블릿 클래스를 직접 만들 때는 <span class="path">jakarta.servlet</span>을 써야 합니다.</li><li>이 실습의 설치 폴더는 <span class="path">apache-tomcat-11.0.4</span>입니다(캡처 9). 공식 사이트 기준 최신 11.0 버전은 11.0.27(2026-10-12 배포)입니다. 시험장에서는 설치되어 있는 버전을 따르세요.</li></ul><div class="tc-src">출처: Apache Tomcat 공식 사이트 (tomcat.apache.org, "Which Version Do I Want?" 페이지), 2026-10-15 확인</div></div></details></div>`,
       bulletsTitle: "등록 절차",
       bullets: [
         "File → New → Other… → Server → Server 위저드 실행.",
         "서버 목록에서 설치된 버전에 맞는 <b>Tomcat v11.0 Server</b> 선택, 호스트명은 localhost 유지.",
-        "Tomcat 설치 폴더(예: <span class=\"path\">apache-tomcat-11.0.4</span>)를 지정. 같은 화면에 JRE를 고르는 칸이 있으면 설치한 <b>JDK 24</b>를 선택합니다(목록에 없으면 Window → Preferences → Java → Installed JREs에서 JDK 24 폴더를 추가).",
+        "Tomcat 설치 폴더(예: <span class=\"path\">apache-tomcat-11.0.4</span>)를 지정. 같은 화면에 JRE를 고르는 칸이 있으면 설치한 <b>JDK 25</b>를 선택합니다(목록에 없으면 Window → Preferences → Java → Installed JREs에서 JDK 25 폴더를 추가).",
         "Servers 뷰에 등록된 서버가 [Stopped, Republish] 상태로 표시됨을 확인.",
         "서버 더블클릭 → Ports에서 <b>Tomcat admin port(8005)</b>는 유지, <b>HTTP/1.1 포트</b>를 8080에서 필요한 값(여기서는 8090)으로 변경.",
         "Servers 뷰 상단의 실행(▶) 버튼으로 서버 시작 → 상태가 Started로 바뀌는지 확인."
@@ -1531,8 +1763,8 @@ try (Connection con = Util.getConnection()) {
         "DB를 쓰는 JSP(list·list_j·reg·action) 상단에 <b>page import</b>로 <span class=\"path\">java.sql.*</span>와 <span class=\"path\">DBPKG.Util</span>을 빠뜨리지 않았다",
         "공통 메뉴의 <span class=\"path\">target=\"section_page\"</span>와 iframe의 <span class=\"path\">name=\"section_page\"</span> 값이 정확히 일치한다",
         "조회 화면은 <b>SELECT + executeQuery</b>, 등록/수정/삭제는 <b>executeUpdate</b>(반환값은 반영된 행 수)를 쓴다",
-        "사용자 입력값은 SQL 문자열에 이어 붙이지 않고 <b>PreparedStatement의 ?</b>로 넘긴다. 날짜는 <span class=\"path\">to_date(?, 'FXYYYYMMDD')</span>로 형식을 적는다",
-        "사용한 ResultSet·Statement·Connection을 닫았다 (조회 화면은 끝에서 close, action.jsp는 try-with-resources)",
+        "INSERT 문을 이어 붙일 때 <b>숫자는 그대로, 글자는 작은따옴표 안에, 날짜는 <span class=\"path\">to_date('20260501', 'YYYYMMDD')</span></b>로 넣었다",
+        "사용한 ResultSet·Statement·Connection을 화면 끝에서 <span class=\"path\">close()</span>로 닫았다",
         "폼 제출 전 자바스크립트로 필수입력을 검증하고, 실패 시 <span class=\"path\">return false</span>로 실제 제출을 막았다"
       ]
     },
@@ -1706,7 +1938,7 @@ try (Connection con = Util.getConnection()) {
           "<span class=\"path\">check_val()</span>은 일정일자·회원코드·일정메모를 순서대로 검사 — 비어 있으면 <span class=\"path\">alert()</span> + <span class=\"path\">focus()</span>로 해당 입력칸에 커서를 되돌리고 <span class=\"path\">return false</span>.",
           "등록 버튼은 <span class=\"path\">&lt;input type=\"submit\"&gt;</span>로 action.jsp에 전송, 조회 버튼은 <span class=\"path\">&lt;input type=\"button\" onclick=\"location.href='list_j.jsp'\"&gt;</span>로 페이지만 이동.",
           "화면 표기는 <b>일정코드</b>(DB 컬럼 pk_schedule)와 <b>회원코드</b>(fk_member)로 통일했습니다. 수업 당시 캡처는 이 화면에서만 '일정번호', '회원번호'라고 적었습니다.",
-          "브라우저 검사는 입력 실수를 빨리 알려 주는 역할입니다. 사용자는 이 검사를 건너뛰고 값을 보낼 수도 있으므로, 같은 확인을 action.jsp(서버)에서 다시 합니다."
+          "이 검사는 브라우저에서만 합니다. 이 자료의 action.jsp는 받은 값을 다시 검사하지 않으므로, 회원코드는 회원 테이블에 있는 <span class=\"path\">M0001</span>~<span class=\"path\">M0005</span> 중에서, 일정일자는 숫자 8자리로 넣으세요."
         ],
         shots: [
           ["33-reg-jsp-js.png","reg.jsp — check_val() 검증 스크립트 (수업 당시 캡처)"],
@@ -1718,32 +1950,25 @@ try (Connection con = Util.getConnection()) {
         noteLink: "n-action",
         kicker: "등록 처리",
         title: "action.jsp — 일정등록 처리",
-        done: ["정상 입력 1건을 등록하면 완료 안내 후 홈으로 가고, 일정현황이 5행으로 늘어납니다. 메모에 작은따옴표(\')를 넣어도 등록되고, 없는 회원코드를 넣으면 실패 안내가 나옵니다.", "안내창의 문구, Tomcat Console의 오류 메시지"],
+        done: ["[일정등록]에서 값을 넣고 [등록]을 누르면 \"일정등록이 정상적으로 되었습니다.\" 안내창이 뜨고, 확인을 누르면 홈(main.jsp)으로 갑니다. [일정현황]을 열면 새 일정이 5번째 줄에 보입니다.", "오류 번호를 먼저 봅니다. ORA-02291은 없는 회원코드, ORA-00001은 이미 있는 일정코드, ORA-01861은 날짜 형식(숫자 8자리인지)입니다. 한글 메모가 깨지면 setCharacterEncoding이 getParameter보다 위에 있는지 확인합니다"],
         body: [
-          "reg.jsp가 보낸 값을 받아 DB에 넣는 처리 전용 JSP입니다. 화면(reg.jsp)은 입력과 1차 검사를, action.jsp는 서버 검증과 DB 반영을 맡습니다."
+          "일정등록 화면에서 [등록]을 누르면 입력한 값이 이 파일로 넘어옵니다. action.jsp는 그 값으로 INSERT 문을 만들어 DB에 저장하고, 안내창을 띄운 뒤 홈 화면으로 돌아갑니다. 눈에 보이는 화면이 없는 처리 전용 파일입니다.",
+          "수업 당시 캡처와 같은 짧은 구조를 그대로 쓰고, 실행에 꼭 필요한 곳만 고쳤습니다(아래 비교 참고)."
         ],
         bullets: [
-          "<span class=\"path\">request.setCharacterEncoding(\"UTF-8\")</span>를 <b>getParameter보다 먼저</b> 둡니다. 폼이 POST로 보내기 때문에 이 설정이 있어야 한글 메모가 깨지지 않습니다.",
-          "<span class=\"path\">request.getParameter(\"pk_schedule\")</span>처럼 reg.jsp의 input name과 같은 이름으로 값을 받습니다.",
-          "받은 값을 서버에서 다시 검사합니다. 필수값, 일정일자 8자리, 메모 길이를 확인하고 걸리면 DB에 접속하지 않습니다.",
-          "SQL은 <span class=\"path\">?</span> 자리를 둔 PreparedStatement로 실행합니다. 메모에 작은따옴표가 있어도 SQL 문법과 값이 섞이지 않습니다.",
-          "INSERT는 <span class=\"path\">executeUpdate()</span>로 실행하고, 반환값(반영된 행 수)이 1인지 확인합니다.",
-          "DB 처리가 성공했을 때만 완료 안내 후 main.jsp로, 실패하면 이유를 알리고 입력 화면으로 돌아갑니다. 전체 코드와 줄별 해설은 아래 버튼의 코드 주석 해설에 있습니다."
+          "프로젝트 <span class=\"path\">default</span> 우클릭 → New → <b>JSP File</b> → 부모 폴더 <span class=\"path\">default/src/main/webapp</span>, 이름 <span class=\"path\">action.jsp</span> → Finish. 자동으로 들어간 내용은 지우고 기준 코드를 입력합니다.",
+          "<span class=\"path\">request.setCharacterEncoding(\"UTF-8\")</span>을 <b>getParameter보다 먼저</b> 둡니다. 폼이 POST로 보내기 때문에 이 줄이 없거나 아래에 있으면 한글 메모가 깨집니다.",
+          "<span class=\"path\">request.getParameter(\"do_date\")</span>처럼 reg.jsp 입력칸의 <b>name과 같은 이름</b>으로 값을 꺼냅니다. 값은 모두 문자열로 들어옵니다.",
+          "꺼낸 값을 이어 붙여 INSERT 문을 만듭니다. 규칙은 하나입니다. <b>숫자는 그대로</b>(일정코드), <b>글자는 작은따옴표 안에</b>(메모, 회원코드), <b>날짜는 to_date로</b>(일정일자).",
+          "INSERT는 <span class=\"path\">executeUpdate(sql)</span>로 실행합니다. 조회(SELECT)에 쓰는 executeQuery와 짝을 헷갈리지 마세요.",
+          "끝에서 <span class=\"path\">stmt.close()</span>, <span class=\"path\">conn.close()</span>로 연결을 닫고, <span class=\"path\">&lt;script&gt;</span>에서 안내창을 띄운 뒤 main.jsp로 이동합니다."
         ],
-        extra: `<div class="sub-h">핵심 부분 (전체 코드는 코드 주석 해설)</div>
-<pre class="hint">String sql = "insert into tbl_schedule (pk_schedule, do_date, do_memo, fk_member) "
-           + "values (?, to_date(?, 'FXYYYYMMDD'), ?, ?)";
+        extra: `<div class="sub-h">값을 넣으면 실제로 만들어지는 SQL</div>
+<pre class="hint">일정코드 5, 일정일자 20260501, 메모 '자격증 원서 접수', 회원코드 M0003 을 넣으면
 
-try (Connection conn = Util.getConnection();
-     PreparedStatement pstmt = conn.prepareStatement(sql)) {
-    pstmt.setInt(1, Integer.parseInt(pk_schedule));
-    pstmt.setString(2, do_date);
-    pstmt.setString(3, do_memo);
-    pstmt.setString(4, fk_member.trim());
-    int inserted = pstmt.executeUpdate();   // 반영된 행 수
-}</pre>`,
-        warn: "아래 캡처는 수업 당시 코드라 기준 코드와 다릅니다. 캡처는 입력값을 SQL 문자열에 이어 붙이고 INSERT를 <span class=\"path\">executeQuery</span>로 실행하며, 서버 검증·자원 정리·실패 안내가 없습니다. 비교용으로만 보고, 따라 작성할 때는 위 기준 코드를 쓰세요.",
-        shots: [["35-action-jsp.png","action.jsp — 수업 당시 캡처 (기준 코드와 다름)"]]
+insert into tbl_schedule values(5, to_date('20260501', 'YYYYMMDD'), '자격증 원서 접수', 'M0003')</pre>`,
+        warn: "메모에 작은따옴표(')를 넣으면 SQL 문장이 중간에 끊겨 오류(ORA-00917 등)가 납니다. 값을 이어 붙이는 간단한 방식의 한계입니다. 시험 데이터에는 작은따옴표가 없어 이 방식으로 충분하고, 피하는 방법은 <b>부록 B-6</b>(PreparedStatement)에 있습니다.",
+        shots: [["35-action-jsp.png","action.jsp — 수업 당시 캡처 (INSERT를 executeQuery로 실행하고, 날짜를 글자 그대로 넣음)"]]
       }
     ]
   },
@@ -1751,7 +1976,7 @@ try (Connection conn = Util.getConnection();
     id: "ch4",
     tag: "CHAPTER 4",
     title: "코드 주석 해설 — 파일별로 한 줄씩 읽기",
-    desc: "앞 챕터에서 만든 코드를 파일별로 싣고, 무슨 일을 하는 줄인지 주석으로 풀어 썼습니다. 여기 실린 코드는 <b>따라 작성할 기준 코드</b>입니다. 수업 당시 캡처에서 오류나 완성 화면과 맞지 않는 부분을 고쳤기 때문에, 줄 번호와 내용이 '원본 캡처'와 다를 수 있습니다. db.sql(날짜 입력), list.jsp·list_j.jsp·reg.jsp(자원 정리, 제목·표기), action.jsp(등록 처리 전체)가 고친 파일이고, 고친 곳은 각 해설의 핵심 포인트에 적었습니다. 주석 줄에는 번호가 없고, '주석 숨기기'로 코드만 볼 수 있습니다. 처음 읽을 때는 파일의 흐름을 먼저 보고, 줄별 주석은 필요할 때 펼쳐 보세요.",
+    desc: "앞 챕터에서 만든 코드를 파일별로 싣고, 무슨 일을 하는 줄인지 주석으로 풀어 썼습니다. 여기 실린 코드는 <b>따라 작성할 기준 코드</b>입니다. 수업 당시 캡처에서 오류나 완성 화면과 맞지 않는 부분을 고쳤기 때문에, 줄 번호와 내용이 '원본 캡처'와 다를 수 있습니다. db.sql(날짜 입력), list.jsp·list_j.jsp·reg.jsp(자원 정리, 제목·표기), action.jsp(executeUpdate, 날짜 to_date, close)가 고친 파일이고, 고친 곳은 각 해설의 핵심 포인트에 적었습니다. 주석 줄에는 번호가 없고, '주석 숨기기'로 코드만 볼 수 있습니다. 처음 읽을 때는 파일의 흐름을 먼저 보고, 줄별 주석은 필요할 때 펼쳐 보세요.",
     checklist: {
       title: "Chapter 4 핵심 체크리스트",
       sub: "코드를 처음 읽을 때 이 순서와 기준을 쓰면 구조가 빨리 보입니다.",
@@ -1885,7 +2110,7 @@ public class Util {
         bullets: [
           "<span class=\"path\">Class.forName(...)</span>이 <b>ojdbc8.jar</b>를 찾지 못하면 ClassNotFoundException이 납니다. Tomcat이 실행될 때는 <span class=\"path\">WEB-INF/lib</span>에 있는 jar를 사용하므로, 챕터 1에서 jar를 그곳에 넣어 두어야 합니다.",
           "접속 주소의 <span class=\"path\">@//localhost:1521/xe</span>는 서비스명(Service Name) 방식입니다. 계정·비밀번호(<span class=\"path\">system</span>, <span class=\"path\">1234</span>)는 문제의 보기나 본인 DB 설치 값에 맞춰야 해요.",
-          "<span class=\"path\">Util.getConnection()</span>은 연결을 만들어 돌려주기만 합니다. 여기서 닫으면 호출한 JSP가 그 연결을 쓸 수 없으니, <b>연결을 받아 쓴 JSP가 작업을 마친 뒤</b> ResultSet·Statement와 함께 닫습니다. 이 자료의 기준 코드는 조회 화면 끝에서 <span class=\"path\">close()</span>를 부르고, action.jsp에서는 try-with-resources를 씁니다."
+          "<span class=\"path\">Util.getConnection()</span>은 연결을 만들어 돌려주기만 합니다. 여기서 닫으면 호출한 JSP가 그 연결을 쓸 수 없으니, <b>연결을 받아 쓴 JSP가 작업을 마친 뒤</b> ResultSet·Statement와 함께 닫습니다. 이 자료의 기준 코드는 조회 화면과 action.jsp 모두 끝에서 <span class=\"path\">close()</span>를 부릅니다."
         ]
       },
       {
@@ -2375,9 +2600,9 @@ conn.close();
         bullets: [
           "<b>실행 위치 구분</b> : <span class=\"path\">&lt;% %&gt;</span> 스크립틀릿은 서버에서(화면이 열릴 때), <span class=\"path\">&lt;script&gt;</span> 안 자바스크립트는 브라우저에서(버튼을 눌렀을 때) 실행됩니다.",
           "일정코드 input은 <span class=\"path\">readonly</span>입니다. <span class=\"path\">disabled</span>와 달리 readonly 값은 폼 제출에 <b>포함</b>되므로 action.jsp가 pk_schedule을 받을 수 있어요.",
-          "이 검증은 '빈 칸이 없는지'만 봅니다. 날짜 형식이나 없는 회원코드는 action.jsp(서버)가 다시 검사해 안내합니다.",
+          "이 검증은 '빈 칸이 없는지'만 봅니다. 날짜 형식이 틀리거나(ORA-01861) 없는 회원코드를 넣으면(ORA-02291) action.jsp에서 DB 오류가 납니다.",
           "<span class=\"path\">max(pk_schedule)</span>은 일정이 하나도 없으면 NULL입니다. 기준 코드는 <span class=\"path\">nvl(..., 0)</span>으로 0으로 바꿔 첫 번호가 1이 되게 했습니다.",
-          "이 번호 방식은 <b>혼자 실습할 때</b>만 안전합니다. 두 화면을 동시에 열면 같은 번호를 보게 되고, readonly 칸도 사용자가 값을 바꿔 보내는 것을 막지는 못합니다. 그래서 action.jsp는 번호가 겹치면 등록하지 않고 안내합니다. 여러 사람이 동시에 쓰는 프로그램이라면 시퀀스 같은 번호 발급 방법을 씁니다. 시험 문제에 번호 부여 조건이 있으면 그 조건을 따르세요.",
+          "이 번호 방식은 <b>혼자 실습할 때</b>만 안전합니다. 두 화면을 동시에 열면 같은 번호를 보게 되고, readonly 칸도 사용자가 값을 바꿔 보내는 것을 막지는 못합니다. 번호가 겹치면 action.jsp에서 ORA-00001 오류가 납니다. 여러 사람이 동시에 쓰는 프로그램이라면 시퀀스 같은 번호 발급 방법을 씁니다. 시험 문제에 번호 부여 조건이 있으면 그 조건을 따르세요.",
           "<b>수업 당시 캡처와 다른 점</b>: form의 method=\"post\", '일정코드'·'회원코드' 표기, nvl 처리, 번호를 꺼낸 뒤 DB 자원 정리",
           "<span class=\"path\">&lt;th&gt;</span>·<span class=\"path\">&lt;td&gt;</span>의 <span class=\"path\">align</span> 속성은 오래된 방식이라 실무에서는 CSS를 쓰지만, 이 캡처의 코드는 이 속성을 사용하고 있습니다."
         ]
@@ -2387,95 +2612,65 @@ conn.close();
         kicker: "JSP · 처리",
         title: "action.jsp 해설",
         body: [
-          "화면이 없는 '처리 전용' JSP입니다. reg.jsp가 보낸 값을 받아 INSERT를 실행하고, 끝나면 안내창을 띄운 뒤 홈으로 돌려보냅니다."
+          "화면이 없는 '처리 전용' JSP입니다. reg.jsp가 보낸 값을 꺼내 INSERT 문을 만들어 실행하고, 끝나면 안내창을 띄운 뒤 홈으로 돌려보냅니다. 수업 당시 캡처와 같은 짧은 구조입니다."
         ],
         backLink: { key: "actionjsp", label: "만든 과정 보기" },
         annot: {
           file: "action.jsp", lang: "jsp",
-          shots: [["35-action-jsp.png", "action.jsp — 수업 당시 캡처 (기준 코드와 다름)"]],
+          shots: [["35-action-jsp.png", "action.jsp — 수업 당시 캡처"]],
           code: `
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+§<%-- ↑ 페이지 지시자 (다른 화면과 동일) --%>
 <%@ page import="java.sql.*"%>
 <%@ page import="DBPKG.Util"%>
+§<%-- ↑ java.sql.* 와 DBPKG.Util import --%>
 <%
-§// [1] 요청 인코딩 : POST 로 받은 한글이 깨지지 않도록 getParameter 보다 먼저 둔다
+§// 한글이 깨지지 않도록 값을 꺼내기(getParameter) 전에 먼저 둔다
 request.setCharacterEncoding("UTF-8");
 
-§// [2] reg.jsp 폼의 input name 과 같은 이름으로 값을 받는다 (모두 문자열로 들어온다)
+§// Util 로 DB 에 연결하고, SQL 을 실어 보낼 Statement 를 만든다
+Connection conn = Util.getConnection();
+Statement stmt = conn.createStatement();
+
+§// reg.jsp 입력칸의 name 과 같은 이름으로 값을 꺼낸다 (모두 문자열로 들어온다)
 String pk_schedule = request.getParameter("pk_schedule");
 String do_date = request.getParameter("do_date");
 String do_memo = request.getParameter("do_memo");
 String fk_member = request.getParameter("fk_member");
 
-§// [3] 서버 검증 : 브라우저 검사는 건너뛸 수 있으므로 서버에서 다시 확인한다. readonly 칸의 값도 그대로 믿지 않는다
-String msg = null;
-if (pk_schedule == null || !pk_schedule.matches("[0-9]{1,5}")) {
-    msg = "일정코드가 올바르지 않습니다.";
-} else if (do_date == null || !do_date.matches("[0-9]{8}")) {
-    msg = "일정일자는 20260101처럼 숫자 8자리로 입력하세요.";
-} else if (fk_member == null || fk_member.trim().isEmpty()) {
-    msg = "회원코드를 입력하세요.";
-} else if (do_memo == null || do_memo.trim().isEmpty() || do_memo.getBytes("UTF-8").length > 255) {
-§    // do_memo 는 varchar(255) : 길이 단위가 바이트라 한글은 글자당 여러 바이트를 차지한다
-    msg = "일정메모를 확인하세요. (비어 있거나 너무 깁니다)";
-}
+§// 꺼낸 값을 이어 붙여 INSERT 문을 만든다. 숫자는 그대로, 글자는 작은따옴표 안에, 날짜는 to_date 로
+§//   예) insert into tbl_schedule values(5, to_date('20260501', 'YYYYMMDD'), '자격증 원서 접수', 'M0003')
+String sql = "insert into tbl_schedule values("
+           + pk_schedule + ", "
+           + "to_date('" + do_date + "', 'YYYYMMDD'), "
+           + "'" + do_memo + "', "
+           + "'" + fk_member + "')";
 
-§// [4] 검증을 통과했을 때만 DB 에 넣는다
-if (msg == null) {
-§    // ? 는 값을 넣을 자리. SQL 문법과 입력값을 나눠 보내므로 메모에 작은따옴표(')가 있어도 SQL 이 깨지지 않는다
-§    // to_date(?, 'FXYYYYMMDD') : 글자 8자리를 연월일로 읽는다. FX 는 형식이 정확히 맞아야 한다는 뜻
-    String sql = "insert into tbl_schedule (pk_schedule, do_date, do_memo, fk_member) "
-               + "values (?, to_date(?, 'FXYYYYMMDD'), ?, ?)";
-§    // try-with-resources : 괄호 안에서 연 Connection·PreparedStatement 를 블록이 끝날 때 자동으로 닫는다
-    try (Connection conn = Util.getConnection();
-         PreparedStatement pstmt = conn.prepareStatement(sql)) {
-§        // 첫 번째 ? 에는 일정코드, 두 번째에는 일정일자 ... 순서대로 값을 넣는다
-        pstmt.setInt(1, Integer.parseInt(pk_schedule));
-        pstmt.setString(2, do_date);
-        pstmt.setString(3, do_memo);
-        pstmt.setString(4, fk_member.trim());
-§        // INSERT·UPDATE·DELETE 는 executeUpdate. 돌려주는 값은 반영된 행 수
-        int inserted = pstmt.executeUpdate();
-        if (inserted != 1) {
-            msg = "일정이 등록되지 않았습니다.";
-        }
-    } catch (SQLException e) {
-§        // 오라클 오류 번호로 원인을 나눠 안내한다
-        int code = e.getErrorCode();
-        if (code == 1) {
-            msg = "이미 있는 일정코드입니다. 일정등록 화면을 다시 열어 주세요.";
-        } else if (code == 2291) {
-            msg = "없는 회원코드입니다.";
-        } else if (code == 1839 || code == 1843 || code == 1847) {
-            msg = "존재하지 않는 날짜입니다.";
-        } else {
-            msg = "등록 중 DB 오류가 났습니다. (ORA-" + code + ")";
-        }
-    }
-}
+§// INSERT·UPDATE·DELETE 는 executeUpdate 로 실행한다 (조회는 executeQuery)
+stmt.executeUpdate(sql);
+
+§// 다 쓴 Statement 와 연결을 닫는다
+stmt.close();
+conn.close();
 %>
-§<%-- [5] 결과 안내 : DB 처리가 성공했을 때만 완료 안내를 띄우고 홈으로, 실패하면 이유를 알리고 입력 화면으로 돌아간다 --%>
+§<%-- 여기부터는 브라우저에서 실행된다 : 안내창을 띄우고 홈(main.jsp)으로 이동 --%>
 <script>
-<% if (msg == null) { %>
     alert("일정등록이 정상적으로 되었습니다.");
+§    // 이 화면은 iframe 안에서 열려 있으므로 main.jsp 도 같은 iframe 안에서 열린다
     window.location.href = "main.jsp";
-<% } else { %>
-    alert("<%= msg %>");
-    history.back();
-<% } %>
 <\/script>
 `
         },
         bulletsTitle: "핵심 포인트",
         bullets: [
-          "<b>순서</b>: 인코딩 지정 → 값 받기 → 서버 검증 → DB 처리 → 결과 안내. 검증에 걸리면 DB에 접속하지 않습니다.",
-          "<b>PreparedStatement</b>: SQL의 <span class=\"path\">?</span>는 값을 넣을 자리입니다. <span class=\"path\">setInt</span>, <span class=\"path\">setString</span>의 첫 번째 숫자는 몇 번째 ?인지를 뜻합니다. 입력값을 SQL 문자열에 직접 이어 붙이면 작은따옴표가 들어간 메모에서 SQL이 깨지고 SQL 인젝션 위험도 생깁니다.",
-          "<b>executeUpdate</b>: INSERT·UPDATE·DELETE에 씁니다. 반환값은 반영된 행 수라서, 1이 아니면 등록되지 않은 것으로 봅니다. 조회(SELECT)는 executeQuery입니다.",
-          "<b>자원 정리</b>: try-with-resources가 Connection과 PreparedStatement를 자동으로 닫습니다. 연결은 Util이 만들어 주지만, 닫는 것은 연결을 받아 쓴 이 JSP의 몫입니다.",
-          "<b>실패 안내</b>: 같은 일정코드(ORA-00001), 없는 회원코드(ORA-02291), 달력에 없는 날짜는 각각 안내하고 입력 화면으로 돌아갑니다. 성공 안내는 DB 처리가 끝난 뒤에만 뜹니다.",
-          "<b>수업 당시 캡처와 다른 점</b>: 캡처는 값을 SQL 문자열에 이어 붙이고(숫자 컬럼까지 따옴표로 감쌈), INSERT를 executeQuery로 실행했으며, 서버 검증·자원 정리·실패 안내가 없었습니다. 참고로 Oracle JDBC에서 INSERT를 executeQuery로 실행한다고 반드시 오류가 나지는 않지만, SQL 종류에 맞는 메서드를 쓰는 것이 기준입니다.",
-          "이 코드는 Tomcat·Oracle에서 실행해 보지 않았습니다. [확인 필요] 처음 실행할 때 정상 등록, 빈 메모, 없는 회원코드, 같은 일정코드, 20260231 같은 날짜를 차례로 넣어 안내가 맞게 나오는지 확인하세요."
+          "<b>순서</b>: 인코딩 지정 → DB 연결 → 값 꺼내기 → SQL 만들기 → 실행 → 닫기 → 안내창. 화면 코드가 없어서 이 순서만 기억하면 됩니다.",
+          "<b>SQL 이어 붙이기 규칙</b>: 테이블의 컬럼 순서(일정코드, 일정일자, 일정메모, 회원코드)대로 값을 넣습니다. 일정코드는 숫자라 따옴표 없이, 메모와 회원코드는 글자라 <span class=\"path\">'...'</span> 안에, 일정일자는 <span class=\"path\">to_date('20260501', 'YYYYMMDD')</span>로 날짜로 바꿉니다.",
+          "<b>executeUpdate</b>: INSERT·UPDATE·DELETE에 씁니다. 돌려주는 값은 반영된 줄 수(여기서는 1)입니다. 조회(SELECT)는 executeQuery입니다.",
+          "<b>오류가 나면</b>: 화면에 500 오류와 함께 ORA 번호가 나옵니다. ORA-02291은 없는 회원코드, ORA-00001은 이미 있는 일정코드, ORA-01861은 날짜가 숫자 8자리가 아닐 때입니다. 이 간단한 코드는 오류를 따로 안내하지 않으므로, 그 번호로 원인을 찾습니다.",
+          "<b>수업 당시 캡처와 다른 점</b>: 캡처는 INSERT를 executeQuery로 실행했고, 일정코드(숫자)까지 따옴표로 감쌌고, 날짜를 글자 그대로 넣었고, 연결을 닫지 않았습니다. 이 네 곳만 고쳤습니다. Oracle JDBC에서 INSERT를 executeQuery로 실행해도 반드시 오류가 나지는 않지만, SQL 종류에 맞는 메서드를 쓰는 것이 기준입니다.",
+          "메모에 작은따옴표(')가 들어가면 SQL이 깨집니다. 피하는 방법(PreparedStatement)은 부록 B-6에 있습니다.",
+          "이 코드는 Tomcat·Oracle에서 직접 실행해 보지 않았습니다. [확인 필요] 처음 실행할 때 정상 등록 1건과 일정현황 5번째 줄을 확인하세요."
         ]
       }
     ]
@@ -2717,9 +2912,12 @@ if (msg == null) {
   (function(){
     var a2 = document.createElement("div"); a2.className = "nav-group-label"; a2.textContent = "부록"; nav.appendChild(a2);
     var b = document.createElement("button"); b.type = "button"; b.className = "nav-anchor";
-    b.innerHTML = '공식 자료로 보는 시험<small>시험 구성 · 공식 예시 과제</small>';
-    b.addEventListener("click", function(){ jumpTo(document.getElementById("official")); });
-    nav.appendChild(b);
+    [["official","A. 공식 자료로 보는 시험","시험 구성 · 공식 예시 과제"],["formguide","B. form 태그 사용법","입력칸 종류 · 값 꺼내기 · 검사"]].forEach(function(x){
+      var b = document.createElement("button"); b.type = "button"; b.className = "nav-anchor";
+      b.innerHTML = x[1] + '<small>' + x[2] + '</small>';
+      b.addEventListener("click", function(){ jumpTo(document.getElementById(x[0])); });
+      nav.appendChild(b);
+    });
   })();
 
   // ---- progress (localStorage, per-viewer convenience only) ----
@@ -2823,6 +3021,1113 @@ if (msg == null) {
   document.addEventListener("keydown", function(ev){
     if (ev.key === "Escape") closeLightbox();
   });
+  // 다른 화면(A·C)이 같은 자료와 진행 체크를 쓰도록 내보낸다
+  window.NOTE = {
+    chapters: CHAPTERS, renderCode: renderCode, renderAnnot: renderAnnot, hl: hl, esc: esc,
+    openLightbox: openLightbox, jumpTo: jumpTo, done: done, saveDone: save,
+    refresh: function(){ links.forEach(function(l){ l.classList.toggle("done", !!done[l.dataset.key]); }); updateProgress(); }
+  };
+})();
+</script>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap');
+
+  /* ===== 세 화면 공통 토큰 : A 매뉴얼형(종이 · 초록 잉크), C 작업 화면형(Eclipse 틀 · 청록) ===== */
+  :root {
+    --a-paper: #f5f6f4; --a-sheet: #fcfcfb; --a-side: #eceee9; --a-ink: #1b2220; --a-ink2: #55615c; --a-rule: #d9ddd8;
+    --a-acc: #2c6b5a; --a-acc-soft: #e3efe9; --a-ok: #2a7a52; --a-ok-soft: #e6f2eb; --a-cau: #8f5a00; --a-cau-soft: #f8eedb; --a-cau-line: #e6cf9f;
+    --a-code: #18201e; --a-code-ink: #dde5e1; --a-code-dim: #7d8a85;
+    --c-ui: #e7eaed; --c-pane: #ffffff; --c-ink: #1c2126; --c-ink2: #5e6873; --c-line: #d3d8dd; --c-acc: #0a7480; --c-acc-soft: #dcf0f1;
+    --c-editor: #1e2327; --c-editor-ink: #e0e4e8; --c-gutter: #69737d; --c-on: rgba(77, 208, 225, .15); --c-on-bar: #4dd0e1;
+    --c-ok: #217a4a; --c-ok-soft: #e3f2e9; --c-cau: #8f5a00; --c-cau-soft: #f8eedb; --c-cau-line: #e6cf9f;
+    --vb-bg: #ffffff; --vb-ink: #1b1f27; --vb-dim: #5c6472; --vb-line: #dde1e7; --vb-on: #1b1f27; --vb-on-ink: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --a-paper: #121614; --a-sheet: #171c1a; --a-side: #1c2220; --a-ink: #e6ebe8; --a-ink2: #a1ada8; --a-rule: #2c3431;
+      --a-acc: #7fcfb4; --a-acc-soft: #18302a; --a-ok: #6fcf9b; --a-ok-soft: #17281f; --a-cau: #e7b45c; --a-cau-soft: #2d2415; --a-cau-line: #57431f;
+      --a-code: #0e1312; --a-code-ink: #dde5e1; --a-code-dim: #75817c;
+      --c-ui: #14171a; --c-pane: #1b1f23; --c-ink: #e3e7eb; --c-ink2: #9aa4ae; --c-line: #2c3237; --c-acc: #5cc8d2; --c-acc-soft: #163236;
+      --c-editor: #111417; --c-ok: #6fd39b; --c-ok-soft: #15281e; --c-cau: #e7b45c; --c-cau-soft: #2d2415; --c-cau-line: #57431f;
+      --vb-bg: #1a1f28; --vb-ink: #e7e9ee; --vb-dim: #9aa3b4; --vb-line: #2b323f; --vb-on: #e7e9ee; --vb-on-ink: #12151b;
+    }
+  }
+  :root[data-theme="dark"] {
+    --a-paper: #121614; --a-sheet: #171c1a; --a-side: #1c2220; --a-ink: #e6ebe8; --a-ink2: #a1ada8; --a-rule: #2c3431;
+    --a-acc: #7fcfb4; --a-acc-soft: #18302a; --a-ok: #6fcf9b; --a-ok-soft: #17281f; --a-cau: #e7b45c; --a-cau-soft: #2d2415; --a-cau-line: #57431f;
+    --a-code: #0e1312; --a-code-ink: #dde5e1; --a-code-dim: #75817c;
+    --c-ui: #14171a; --c-pane: #1b1f23; --c-ink: #e3e7eb; --c-ink2: #9aa4ae; --c-line: #2c3237; --c-acc: #5cc8d2; --c-acc-soft: #163236;
+    --c-editor: #111417; --c-ok: #6fd39b; --c-ok-soft: #15281e; --c-cau: #e7b45c; --c-cau-soft: #2d2415; --c-cau-line: #57431f;
+    --vb-bg: #1a1f28; --vb-ink: #e7e9ee; --vb-dim: #9aa3b4; --vb-line: #2b323f; --vb-on: #e7e9ee; --vb-on-ink: #12151b;
+  }
+  body[data-view="a"] { background: var(--a-paper); --vb-bg: var(--a-sheet); --vb-ink: var(--a-ink); --vb-dim: var(--a-ink2); --vb-line: var(--a-rule); --vb-on: var(--a-acc); --vb-on-ink: var(--a-sheet); }
+  body[data-view="c"] { background: var(--c-ui); --vb-bg: var(--c-pane); --vb-ink: var(--c-ink); --vb-dim: var(--c-ink2); --vb-line: var(--c-line); --vb-on: var(--c-acc); --vb-on-ink: var(--c-pane); }
+
+  /* ===== 화면 고르기 막대 ===== */
+  .viewbar { background: var(--vb-bg); color: var(--vb-ink); border-bottom: 1px solid var(--vb-line); font-size: 13px; }
+  .vb-in { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; padding-block: 7px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .vb-lab { font-weight: 700; }
+  .vb-seg { display: inline-flex; flex-wrap: wrap; border: 1px solid var(--vb-line); border-radius: 8px; overflow: hidden; }
+  .vb-seg button { font: inherit; font-size: 13px; padding: 4px 12px; border: 0; border-right: 1px solid var(--vb-line); background: transparent; color: var(--vb-ink); cursor: pointer; }
+  .vb-seg button:last-child { border-right: 0; }
+  .vb-seg button[aria-pressed="true"] { background: var(--vb-on); color: var(--vb-on-ink); font-weight: 700; }
+  .vb-note { color: var(--vb-dim); font-size: 12px; }
+  .vpick { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--text-dim); }
+  .vpick select { font: inherit; font-size: 13px; padding: 3px 6px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text); min-width: 0; }
+  .sidebar .vpick { padding: 0 6px; }
+
+  /* ===== 부록 B : form 태그 (세 화면 공통, 토큰만 사용) ===== */
+  .fg-lab { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; margin: 12px 0 8px; align-items: start; }
+  .fg-lab > * { min-width: 0; }
+  .fg-demo { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; display: grid; gap: 0; font-size: 13.5px; }
+  .fg-method { display: flex; align-items: center; gap: 8px; padding-bottom: 8px; border-bottom: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: var(--text-dim); }
+  .fg-seg { display: inline-flex; border: 1px solid var(--border); border-radius: 7px; overflow: hidden; }
+  .fg-seg button { font: inherit; font-size: 12.5px; padding: 2px 12px; border: 0; background: var(--surface); color: var(--text-dim); cursor: pointer; }
+  .fg-seg button[aria-pressed="true"] { background: var(--accent); color: var(--surface); font-weight: 700; }
+  .fg-fld { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 2px 10px; align-items: center; padding: 7px 0; border-bottom: 1px dashed var(--border); }
+  .fg-fld > span:first-child { color: var(--text-dim); font-size: 12.5px; }
+  .fg-fld small { grid-column: 2; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim); }
+  .fg-demo input[type=text], .fg-demo input[type=password], .fg-demo input[type=number], .fg-demo input[type=date], .fg-demo select, .fg-demo textarea,
+  .fg-try input[type=text], .fg-try input[type=password], .fg-try input[type=number], .fg-try input[type=date], .fg-try select, .fg-try textarea {
+    font: inherit; font-size: 14px; width: 100%; min-width: 0; padding: 5px 8px; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--text);
+  }
+  .fg-demo input[readonly], .fg-try input[readonly] { background: var(--surface-2); }
+  .fg-demo input:disabled, .fg-try input:disabled { opacity: .55; }
+  .fg-opts { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: center; }
+  .fg-opts label, label.fg-opts { display: inline-flex; gap: 5px; align-items: center; cursor: pointer; }
+  .fg-btns { display: flex; gap: 8px; padding-top: 10px; }
+  .fg-btns button, .fg-try input[type=submit], .fg-try input[type=reset], .fg-try input[type=button] { font: inherit; font-size: 13.5px; padding: 4px 14px; border-radius: 6px; border: 1px solid var(--text-dim); background: var(--surface); color: var(--text); cursor: pointer; }
+  .fg-btns button[type=submit] { background: var(--accent); border-color: var(--accent); color: var(--surface); font-weight: 700; }
+  #formguide table.otbl td.m:first-child { white-space: nowrap; }
+  .fg-sent td:first-child { white-space: nowrap; }
+  .fg-sent { position: sticky; top: 64px; background: var(--code-bg); color: var(--code-text); border-radius: 12px; padding: 12px 14px; font-size: 12.8px; line-height: 1.6; }
+  .fg-sent-h { font-size: 11.5px; letter-spacing: .06em; opacity: .7; margin-bottom: 6px; }
+  .fg-sent table { border-collapse: collapse; width: 100%; }
+  .fg-sent th, .fg-sent td { text-align: left; vertical-align: top; padding: 4px 6px; border-bottom: 1px solid rgba(255,255,255,.09); }
+  .fg-sent th { font-weight: 500; opacity: .65; font-size: 11.5px; }
+  .fg-sent td { font-family: 'JetBrains Mono', 'Noto Sans KR', monospace; font-size: 12px; overflow-wrap: anywhere; }
+  .fg-sent td.v { color: #ffd76a; }
+  .fg-sent td.e { opacity: .55; }
+  .fg-miss { margin-top: 8px; color: #f0a8a8; font-size: 12.5px; }
+  .fg-url { margin-top: 8px; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; word-break: break-all; background: rgba(255,255,255,.06); border-radius: 6px; padding: 7px 9px; }
+  .fg-url b { font-family: 'Noto Sans KR', sans-serif; font-weight: 500; opacity: .7; display: block; font-size: 11px; }
+  .fg-flash { color: #9fd8b6; font-size: 12.5px; margin-top: 8px; min-height: 1.3em; }
+  .fg-cards { display: grid; gap: 12px; margin: 12px 0 8px; }
+  .fg-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 250px); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--surface); }
+  .fg-l { padding: 12px 14px; min-width: 0; font-size: 13.5px; }
+  .fg-l h3 { font-size: 15px; margin: 0 0 4px; display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: baseline; }
+  .fg-l h3 code { font-size: 12.5px; color: var(--accent); font-weight: 600; }
+  .fg-l p { margin: 0 0 6px; }
+  .fg-l pre.hint { margin: 6px 0; }
+  .fg-rcv { font-size: 12.5px; color: var(--text-dim); }
+  .fg-rcv code { font-size: 11.5px; background: var(--surface-2); padding: 1px 5px; border-radius: 4px; color: var(--text); }
+  .fg-try { border-left: 1px solid var(--border); background: var(--surface-2); padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; min-width: 0; margin: 0; }
+  .fg-tl { font-size: 11px; letter-spacing: .06em; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; }
+  .fg-note { font-size: 12.5px; color: var(--text-dim); }
+  .fg-try .fg-opts { gap: 6px 10px; }
+  .fg-out { font-family: 'JetBrains Mono', 'Noto Sans KR', monospace; font-size: 11.5px; line-height: 1.55; background: var(--code-bg); color: var(--code-text); border-radius: 8px; padding: 7px 9px; overflow-wrap: anywhere; min-height: 2.6em; }
+  .fg-out .k { opacity: .6; }
+  .fg-out .v { color: #ffd76a; }
+  .fg-out .m { color: #9fd8b6; font-family: 'Noto Sans KR', sans-serif; }
+  .fg-two { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px; }
+  .fg-two > pre { margin: 0; min-width: 0; }
+  @media (max-width: 640px) {
+    .fg-card { grid-template-columns: minmax(0, 1fr); }
+    .fg-try { border-left: 0; border-top: 1px solid var(--border); }
+    .fg-fld { grid-template-columns: minmax(0, 1fr); }
+    .fg-fld small { grid-column: 1; }
+  }
+
+  /* ===== A 매뉴얼형 ===== */
+  .view-a {
+    --bg: var(--a-paper); --surface: var(--a-sheet); --surface-2: var(--a-side); --border: var(--a-rule); --text: var(--a-ink); --text-dim: var(--a-ink2);
+    --accent: var(--a-acc); --accent-strong: var(--a-acc); --accent-soft: var(--a-acc-soft); --ok: var(--a-ok); --ok-soft: var(--a-ok-soft);
+    --warn: var(--a-cau); --warn-soft: var(--a-cau-soft); --warn-border: var(--a-cau-line); --code-bg: var(--a-code); --code-text: var(--a-code-ink); --shadow: none;
+    --fa: "IBM Plex Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    --fam: "IBM Plex Mono", "JetBrains Mono", Consolas, "Malgun Gothic", monospace;
+    background: var(--a-paper); color: var(--a-ink); font-family: var(--fa); font-size: 16.5px; line-height: 1.75; word-break: keep-all; overflow-wrap: anywhere;
+  }
+  .view-a code, .view-a .path { font-family: var(--fam); }
+  .view-a :focus-visible { outline: 2px solid var(--a-acc); outline-offset: 2px; }
+  .va-app { display: grid; grid-template-columns: 288px minmax(0, 1fr); min-height: 100vh; }
+  .va-app > * { min-width: 0; }
+  .va-toc { position: sticky; top: env(safe-area-inset-top, 0px); align-self: start; height: 100vh; overflow-y: auto; background: var(--a-side); border-right: 1px solid var(--a-rule); padding: 22px 14px 40px; font-size: 14px; line-height: 1.5; }
+  .va-brand { padding: 0 8px 16px; border-bottom: 1px solid var(--a-rule); margin-bottom: 10px; }
+  .va-brand small { display: block; font-size: 12px; color: var(--a-ink2); letter-spacing: .02em; }
+  .va-brand b { font-size: 17px; }
+  .va-bar { height: 4px; background: var(--a-rule); border-radius: 2px; margin-top: 12px; overflow: hidden; }
+  .va-bar i { display: block; height: 100%; width: 0; background: var(--a-ok); transition: width .2s; }
+  .va-bar-l { font-size: 12px; color: var(--a-ink2); margin-top: 6px; font-variant-numeric: tabular-nums; }
+  .va-toc .vpick { padding: 6px 8px 2px; }
+  .va-grp { font-size: 11.5px; font-weight: 600; letter-spacing: .08em; color: var(--a-ink2); padding: 16px 8px 6px; }
+  .va-flat { display: block; width: 100%; text-align: left; font: inherit; color: var(--a-ink); background: transparent; border: 0; padding: 6px 8px; border-radius: 6px; cursor: pointer; }
+  .va-flat:hover { background: var(--a-paper); }
+  .va-flat.here { background: var(--a-acc-soft); color: var(--a-acc); font-weight: 600; }
+  .va-toc details > summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 30px minmax(0, 1fr) auto; align-items: baseline; gap: 4px; padding: 7px 8px; border-radius: 6px; }
+  .va-toc details > summary::-webkit-details-marker { display: none; }
+  .va-toc details > summary:hover { background: var(--a-paper); }
+  .va-toc summary .no { font-family: var(--fam); font-size: 12px; color: var(--a-ink2); }
+  .va-toc summary .t { font-weight: 600; }
+  .va-toc summary .c { font-family: var(--fam); font-size: 11.5px; color: var(--a-ink2); font-variant-numeric: tabular-nums; }
+  .va-toc details[open] > summary .no, .va-toc details[open] > summary .t { color: var(--ch, var(--a-acc)); }
+  .va-toc ol { list-style: none; margin: 2px 0 8px; padding: 0 0 0 6px; }
+  .va-toc ol button { display: grid; grid-template-columns: 26px minmax(0, 1fr) 14px; gap: 4px; align-items: baseline; width: 100%; text-align: left; font: inherit; font-size: 13.5px; color: var(--a-ink); background: transparent; border: 0; padding: 5px 8px; border-radius: 6px; cursor: pointer; }
+  .va-toc ol button:hover { background: var(--a-paper); }
+  .va-toc ol .n { font-family: var(--fam); font-size: 11.5px; color: var(--a-ink2); }
+  .va-toc ol .d { width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid var(--a-rule); align-self: center; }
+  .va-toc ol button.done .d { background: var(--a-ok); border-color: var(--a-ok); }
+  .va-toc ol button.here { background: var(--ch-soft, var(--a-acc-soft)); color: var(--ch, var(--a-acc)); font-weight: 600; }
+  .va-toc ol button.here .n { color: var(--ch, var(--a-acc)); }
+  .va-page { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 0 96px; }
+  .va-col { max-width: 760px; margin: 0 auto; }
+  .va-topbar { display: none; }
+  .va-scrim { display: none; }
+
+  /* A : 가져온 정적 구역(처음 읽는 분께 · 전체 흐름 · 부록)을 매뉴얼 글자 크기로 */
+  .view-a .overview, .view-a .official { margin: 0; padding: 48px 0 40px; border-bottom: 1px solid var(--a-rule); }
+  .view-a .official.appendix { margin-top: 72px; padding-top: 36px; border-top: 3px double var(--a-rule); border-bottom: 0; }
+  .view-a .chapter-tag { background: transparent; padding: 0; border-radius: 0; font-family: var(--fam); font-size: 12.5px; letter-spacing: .1em; font-weight: 600; }
+  .view-a .chapter-title { font-weight: 700; font-size: clamp(25px, 3.4vw, 31px); letter-spacing: -.015em; }
+  .view-a .chapter-desc { font-size: 16.5px; color: var(--a-ink2); max-width: 64ch; }
+  .view-a .overview h2.ov-h, .view-a .official h2.of-h { font-size: 21px; margin-top: 40px; }
+  .view-a .overview .ov-sub, .view-a .official .of-sub { font-size: 14.5px; }
+  .view-a .overview ol.ov-list { font-size: 15.5px; }
+  .view-a .overview figure { box-shadow: none; border-radius: 10px; }
+  .view-a table.otbl { font-size: 14px; }
+  .view-a table.otbl th { font-size: 12.5px; }
+  .view-a table.otbl td.m { font-size: 13px; }
+  .view-a .twrap { border-radius: 10px; }
+  .view-a .of-card, .view-a .of-scr { box-shadow: none; border-radius: 10px; }
+  .view-a .of-card li, .view-a .of-scr li { font-size: 14.5px; }
+  .view-a .callout { border-radius: 0 10px 10px 0; border: 0; border-left: 3px solid var(--a-acc); font-size: 15px; }
+  .view-a .callout.warn { border-left-color: var(--a-cau); }
+  .view-a .callout.ok { border-left-color: var(--a-ok); }
+  .view-a .callout .ico, .view-c .callout .ico { display: none; }
+  .view-a .no-shot { font-size: 14px; }
+  .view-a pre.hint { font-family: var(--fam); font-size: 13.5px; border-radius: 10px; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .view-a .gl-grid dt { font-size: 14.5px; }
+  .view-a .gl-grid dd { font-size: 14.5px; }
+  .view-a .sub-h { font-size: 14px; color: var(--ch, var(--a-acc)); letter-spacing: .04em; margin: 26px 0 8px; }
+  .view-a details.more { border-radius: 10px; }
+  .view-a details.more > summary { font-size: 15px; }
+  .view-a .env-card p, .view-a .env-why, .view-a .env-note, .view-a .env-sub { font-size: 14.5px; }
+  .view-a .golink { font-size: 13.5px; }
+  .view-a .fg-l, .view-a .fg-demo { font-size: 14.5px; }
+  .view-a .fg-l h3 { font-size: 16.5px; }
+  .view-a .fg-rcv { font-size: 13.5px; }
+
+  /* A : 챕터 */
+  .va-chap { padding-top: 64px; scroll-margin-top: 12px; }
+  .va-chap-h { padding-bottom: 26px; border-bottom: 1px solid var(--a-rule); margin-bottom: 8px; }
+  .va-eyebrow { font-family: var(--fam); font-size: 12.5px; letter-spacing: .1em; color: var(--ch, var(--a-acc)); font-weight: 600; }
+  .va-chap-h h1 { font-size: clamp(27px, 4vw, 34px); font-weight: 700; letter-spacing: -.015em; margin: 6px 0 2px; line-height: 1.3; text-wrap: balance; }
+  .va-chap-h .va-sub { font-size: 18px; color: var(--a-ink2); margin: 0 0 14px; }
+  .va-chap-h .va-lead { font-size: 16.5px; margin: 0; max-width: 64ch; }
+  .va-intro { margin-top: 26px; }
+
+  /* A : 단계 */
+  .va-step { margin-top: 64px; scroll-margin-top: 12px; }
+  .va-head { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 0 8px; align-items: start; }
+  .va-no { font-family: var(--fam); font-weight: 600; font-size: 40px; line-height: 1; color: var(--ch, var(--a-acc)); letter-spacing: -.04em; padding-top: 6px; }
+  .va-kick { font-size: 13px; color: var(--a-ink2); letter-spacing: .02em; }
+  .va-head h2 { font-size: 26px; font-weight: 700; letter-spacing: -.01em; margin: 2px 0 0; line-height: 1.35; text-wrap: balance; }
+  .va-body { margin-left: 72px; min-width: 0; }
+  .va-body > p { margin: 14px 0; }
+  .va-body > p.va-lead2 { font-size: 17.5px; }
+  .va-h3 { font-size: 14px; font-weight: 700; letter-spacing: .04em; color: var(--ch, var(--a-acc)); margin: 30px 0 10px; }
+  ul.va-list { list-style: none; padding: 0; margin: 14px 0; display: grid; gap: 10px; }
+  ul.va-list > li { position: relative; padding-left: 22px; }
+  ul.va-list > li::before { content: ""; position: absolute; left: 4px; top: .78em; width: 8px; height: 2px; background: var(--ch, var(--a-acc)); }
+  .view-a .path { font-size: .86em; background: var(--a-side); border: 0; border-radius: 4px; padding: 1px 6px; }
+  .va-shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin: 20px 0; }
+  .va-shots figure { margin: 0; min-width: 0; }
+  .va-shots img { display: block; width: 100%; border: 1px solid var(--a-rule); border-radius: 8px; background: #fff; cursor: zoom-in; }
+  .va-shots figcaption { font-size: 13px; color: var(--a-ink2); margin-top: 6px; line-height: 1.5; }
+  .view-a pre.code { border-radius: 10px; font-family: var(--fam); font-size: 13.5px; }
+  .view-a .annot { border-radius: 10px; }
+  .view-a .annot-bar { background: rgba(255,255,255,.04); border-bottom: 1px solid rgba(255,255,255,.08); font-size: 12.5px; }
+  .view-a .annot-body { font-family: var(--fam); font-size: 13.5px; line-height: 1.7; }
+  .view-a .annot .row.nt { background: transparent; border-left: 0; }
+  .view-a .annot .row.nt .cd { font-family: var(--fa); font-size: 13.5px; color: #9fd8b6; padding-left: calc(3.2em + 10px); }
+  details.va-codefold { margin: 22px 0; border: 1px solid var(--a-rule); border-radius: 10px; background: var(--a-sheet); }
+  details.va-codefold > summary { cursor: pointer; list-style: none; padding: 12px 16px; display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; font-weight: 600; }
+  details.va-codefold > summary::-webkit-details-marker { display: none; }
+  details.va-codefold > summary::before, details.va-fold > summary::before { content: ""; flex: none; width: 0; height: 0; border-left: 6px solid var(--a-ink2); border-top: 4px solid transparent; border-bottom: 4px solid transparent; align-self: center; transition: transform .15s; }
+  details.va-codefold[open] > summary::before, details.va-fold[open] > summary::before { transform: rotate(90deg); }
+  details.va-codefold > summary code { font-size: 14px; color: var(--ch, var(--a-acc)); }
+  details.va-codefold > summary small { font-weight: 400; color: var(--a-ink2); font-size: 13px; }
+  .va-codefold-in { padding: 0 12px 12px; }
+  .va-codefold-in .annot { margin-top: 0; }
+  .va-note { margin: 18px 0; border-left: 3px solid var(--a-cau); background: var(--a-cau-soft); border-radius: 0 10px 10px 0; padding: 12px 16px; font-size: 15.5px; }
+  .va-note > b:first-child { display: block; color: var(--a-cau); font-size: 14px; margin-bottom: 2px; }
+  details.va-fold { margin: 12px 0; border: 1px solid var(--a-rule); border-radius: 10px; background: var(--a-sheet); }
+  details.va-fold > summary { cursor: pointer; padding: 11px 16px; font-weight: 600; font-size: 15px; list-style: none; display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; }
+  details.va-fold > summary::-webkit-details-marker { display: none; }
+  details.va-fold > summary small { font-weight: 400; color: var(--a-ink2); font-size: 13px; }
+  .va-fold-in { padding: 0 16px 14px; font-size: 15.5px; }
+  .va-done { margin: 22px 0 12px; border-left: 3px solid var(--a-ok); background: var(--a-ok-soft); border-radius: 0 10px 10px 0; padding: 14px 18px; }
+  .va-done .lab { font-weight: 700; color: var(--a-ok); font-size: 14.5px; }
+  .va-done .help { display: block; margin-top: 6px; font-size: 14.5px; color: var(--a-ink2); }
+  .va-done .help b { color: var(--a-ink); font-weight: 600; }
+  .va-done.plain { background: transparent; border-left-color: var(--a-rule); padding-block: 10px; }
+  .va-check { display: flex; gap: 10px; align-items: center; margin-top: 10px; font-size: 15px; font-weight: 600; cursor: pointer; width: fit-content; }
+  .va-done.plain .va-check { margin-top: 0; font-weight: 500; color: var(--a-ink2); }
+  .va-check input { width: 18px; height: 18px; margin: 0; accent-color: var(--a-ok); flex: none; }
+  .va-check input:checked + span { color: var(--a-ok); }
+  .va-pager { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 30px; }
+  .va-pager button { display: block; width: 100%; font: inherit; text-align: left; border: 1px solid var(--a-rule); border-radius: 10px; padding: 11px 14px; color: var(--a-ink); background: var(--a-sheet); font-size: 14.5px; line-height: 1.45; cursor: pointer; min-width: 0; }
+  .va-pager button small { display: block; color: var(--a-ink2); font-size: 12.5px; }
+  .va-pager button.next { text-align: right; grid-column: 2; }
+  .va-pager button:hover { border-color: var(--ch, var(--a-acc)); }
+  .va-cl { margin-top: 56px; border-top: 2px solid var(--ch, var(--a-acc)); padding-top: 18px; }
+  .va-cl h3 { font-size: 19px; margin: 0 0 4px; }
+  .va-cl p { margin: 0 0 12px; color: var(--a-ink2); font-size: 15px; }
+  .va-cl ol { margin: 0; padding-left: 22px; display: grid; gap: 8px; font-size: 15.5px; }
+  .va-flash { animation: vaflash 1.4s ease-out; }
+  @keyframes vaflash { 0% { background: var(--a-acc-soft); } 100% { background: transparent; } }
+  .va-foot { margin-top: 60px; font-size: 12.5px; color: var(--a-ink2); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; border-top: 1px solid var(--a-rule); padding-top: 14px; }
+
+  @media (max-width: 980px) {
+    .va-app { grid-template-columns: minmax(0, 1fr); }
+    .va-toc { position: fixed; z-index: 40; inset: 0 auto auto 0; height: 100vh; height: 100dvh; width: min(310px, 86vw); transform: translateX(-102%); visibility: hidden; transition: transform .2s, visibility .2s; padding-top: calc(22px + env(safe-area-inset-top, 0px)); padding-left: calc(14px + env(safe-area-inset-left, 0px)); box-shadow: 0 0 40px rgba(0,0,0,.18); }
+    .va-toc.open { transform: none; visibility: visible; }
+    .va-scrim:not([hidden]) { display: block; position: fixed; inset: 0; z-index: 35; background: rgba(0,0,0,.28); }
+    .va-topbar { display: flex; position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; align-items: center; gap: 10px; background: var(--a-paper); border-bottom: 1px solid var(--a-rule); margin: 0 calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding: 8px max(16px, env(safe-area-inset-right, 0px)) 8px max(16px, env(safe-area-inset-left, 0px)); font-size: 14px; }
+    .va-topbar button { font: inherit; font-size: 14px; padding: 4px 12px; border-radius: 6px; border: 1px solid var(--a-rule); background: var(--a-sheet); color: var(--a-ink); cursor: pointer; flex: none; }
+    .va-where { color: var(--a-ink2); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .view-a [id] { scroll-margin-top: 64px; }
+    body[data-view="a"]::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 25; background: var(--a-paper); }
+  }
+  @media (max-width: 720px) {
+    .view-a { font-size: 16px; }
+    .va-head { grid-template-columns: minmax(0, 1fr); }
+    .va-no { font-size: 30px; padding-top: 0; margin-bottom: 4px; }
+    .va-body { margin-left: 0; }
+    .va-head h2 { font-size: 22px; }
+    .va-pager { grid-template-columns: minmax(0, 1fr); }
+    .va-pager button.next { grid-column: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) { .va-toc, .va-bar i, details.va-codefold > summary::before, details.va-fold > summary::before { transition: none; } .va-flash { animation: none; } }
+
+  /* ===== C 작업 화면형 ===== */
+  .view-c {
+    --bg: var(--c-pane); --surface: var(--c-pane); --surface-2: var(--c-ui); --border: var(--c-line); --text: var(--c-ink); --text-dim: var(--c-ink2);
+    --accent: var(--c-acc); --accent-strong: var(--c-acc); --accent-soft: var(--c-acc-soft); --ok: var(--c-ok); --ok-soft: var(--c-ok-soft);
+    --warn: var(--c-cau); --warn-soft: var(--c-cau-soft); --warn-border: var(--c-cau-line); --code-bg: var(--c-editor); --code-text: var(--c-editor-ink); --shadow: none;
+    --fc: "Noto Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+    --fcm: "JetBrains Mono", "D2Coding", Consolas, "Malgun Gothic", monospace;
+    background: var(--c-ui); color: var(--c-ink); font-family: var(--fc); font-size: 15.5px; line-height: 1.7; word-break: keep-all; overflow-wrap: anywhere;
+  }
+  .view-c :focus-visible { outline: 2px solid var(--c-acc); outline-offset: 2px; }
+  .vc-shell { padding-left: max(12px, env(safe-area-inset-left, 0px)); padding-right: max(12px, env(safe-area-inset-right, 0px)); padding-block: 12px 60px; max-width: 1560px; margin: 0 auto; }
+  .vc-top { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; background: var(--c-pane); border: 1px solid var(--c-line); border-radius: 8px 8px 0 0; padding: 8px 12px; font-size: 14px; position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; }
+  .vc-app { font-weight: 700; }
+  .vc-crumb { color: var(--c-ink2); min-width: 0; }
+  .vc-crumb b { color: var(--c-ink); }
+  .vc-sp { flex: 1; }
+  .vc-prog { font-family: var(--fcm); font-size: 12.5px; color: var(--c-ink2); font-variant-numeric: tabular-nums; }
+  .vc-pickrow { padding: 10px 12px 2px; }
+  .vc-top button { font: inherit; font-size: 13.5px; color: var(--c-ink); background: var(--c-pane); border: 1px solid var(--c-line); border-radius: 6px; padding: 3px 10px; cursor: pointer; white-space: nowrap; }
+  .vc-top button.next { background: var(--c-acc); border-color: var(--c-acc); color: var(--c-pane); font-weight: 700; }
+  .vc-top button:disabled { opacity: .4; cursor: default; }
+  .vc-navbtn { display: none; }
+  .vc-main { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 1px; background: var(--c-line); border: 1px solid var(--c-line); border-top: 0; border-radius: 0 0 8px 8px; }
+  .vc-main > * { min-width: 0; }
+  .vc-nav { background: var(--c-pane); border-radius: 0 0 0 8px; }
+  .vc-navin { position: sticky; top: 52px; max-height: calc(100vh - 60px); overflow-y: auto; padding-bottom: 16px; }
+  .vc-ph { font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--c-ink2); padding: 8px 12px; border-bottom: 1px solid var(--c-line); display: flex; align-items: center; gap: 8px; min-height: 37px; }
+  .vc-ng { font-size: 11.5px; font-weight: 700; letter-spacing: .06em; color: var(--c-ink2); padding: 12px 12px 4px; }
+  .vc-ni { display: grid; grid-template-columns: 24px minmax(0, 1fr) auto; gap: 4px; align-items: baseline; width: 100%; text-align: left; font: inherit; font-size: 13.5px; line-height: 1.45; color: var(--c-ink); background: transparent; border: 0; border-left: 3px solid transparent; padding: 5px 10px 5px 9px; cursor: pointer; }
+  .vc-ni:hover { background: var(--c-ui); }
+  .vc-ni .n { font-family: var(--fcm); font-size: 11.5px; color: var(--c-ink2); }
+  .vc-ni .c { font-family: var(--fcm); font-size: 11px; color: var(--c-ink2); }
+  .vc-ni .d { width: 12px; }
+  .vc-ni.done .d::after { content: ""; display: inline-block; width: 4px; height: 9px; border: solid var(--c-ok); border-width: 0 2px 2px 0; transform: rotate(45deg); margin-left: 3px; }
+  .vc-ni.ch { font-weight: 700; margin-top: 6px; }
+  .vc-ni.ch .n { color: var(--ch, var(--c-acc)); font-weight: 700; }
+  .vc-ni.cur { background: var(--c-acc-soft); border-left-color: var(--c-acc); color: var(--c-acc); font-weight: 600; }
+  .vc-stage { background: var(--c-ui); border-radius: 0 0 8px 0; min-height: 70vh; }
+  .vc-doc { background: var(--c-pane); min-height: 70vh; border-radius: 0 0 8px 0; }
+  .vc-doc-in { max-width: 920px; padding: 22px clamp(14px, 3vw, 36px) 40px; }
+  .view-c .overview, .view-c .official { margin: 0; padding: 0; border: 0; }
+  .view-c .official.appendix { margin: 0; padding: 0; border: 0; }
+  .view-c .chapter-tag { border-radius: 6px; }
+  .view-c .chapter-title { font-weight: 700; }
+  .view-c .of-card, .view-c .of-scr, .view-c .overview figure { border-radius: 8px; }
+  .view-c .callout { border-radius: 8px; }
+  .view-c pre.hint { white-space: pre-wrap; overflow-wrap: anywhere; }
+  .vc-chap-h { border-left: 4px solid var(--ch, var(--c-acc)); padding: 2px 0 2px 16px; margin-bottom: 18px; }
+  .vc-chap-h .k { font-family: var(--fcm); font-size: 12.5px; color: var(--ch, var(--c-acc)); font-weight: 600; }
+  .vc-chap-h h1 { font-size: 26px; margin: 2px 0 6px; line-height: 1.35; }
+  .vc-chap-h p { margin: 0; color: var(--c-ink2); max-width: 70ch; }
+  .vc-steplist { list-style: none; margin: 18px 0; padding: 0; display: grid; gap: 6px; }
+  .vc-steplist button { display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; gap: 8px; align-items: baseline; width: 100%; text-align: left; font: inherit; font-size: 15px; color: var(--c-ink); background: var(--c-pane); border: 1px solid var(--c-line); border-radius: 8px; padding: 9px 12px; cursor: pointer; }
+  .vc-steplist button:hover { border-color: var(--c-acc); }
+  .vc-steplist .n { font-family: var(--fcm); color: var(--ch, var(--c-acc)); font-weight: 600; }
+  .vc-steplist small { display: block; color: var(--c-ink2); font-size: 13px; }
+  .vc-steplist .d { font-size: 12.5px; color: var(--c-ok); white-space: nowrap; }
+  .vc-cl { margin-top: 26px; border: 1px solid var(--c-line); border-radius: 8px; padding: 14px 16px; }
+  .vc-cl h3 { font-size: 16px; margin: 0 0 2px; }
+  .vc-cl p { margin: 0 0 8px; font-size: 14px; color: var(--c-ink2); }
+  .vc-cl ol { margin: 0; padding-left: 20px; display: grid; gap: 4px; font-size: 14.5px; }
+
+  .vc-bench { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); grid-template-areas: "explain editor" "run run"; gap: 1px; background: var(--c-line); border-radius: 0 0 8px 0; overflow: hidden; }
+  .vc-bench.no-ed { grid-template-columns: minmax(0, 1fr); grid-template-areas: "explain" "run"; }
+  .vc-pane { background: var(--c-pane); min-width: 0; }
+  .vc-explain { grid-area: explain; display: flex; flex-direction: column; }
+  .vc-body { padding: 16px 18px 22px; overflow-y: auto; max-height: min(78vh, 920px); }
+  .vc-bench.no-ed .vc-body { max-height: none; max-width: 860px; }
+  .vc-kick { font-family: var(--fcm); font-size: 12.5px; color: var(--ch, var(--c-acc)); font-weight: 600; }
+  .vc-body h1 { font-size: 23px; font-weight: 700; margin: 2px 0 10px; line-height: 1.35; text-wrap: balance; }
+  .vc-body > p { margin: 0 0 12px; }
+  .vc-body > p.lead { font-size: 16.5px; }
+  .vc-h2 { font-size: 12.5px; font-weight: 700; letter-spacing: .06em; color: var(--c-ink2); margin: 20px 0 8px; }
+  .vc-list { margin: 0 0 8px; padding-left: 20px; font-size: 15px; display: grid; gap: 6px; }
+  .view-c .path { font-family: var(--fcm); font-size: .86em; background: var(--c-ui); border: 0; border-radius: 4px; padding: 0 5px; }
+  .vc-ann { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+  .vc-ann button { width: 100%; text-align: left; font: inherit; font-size: 14.5px; line-height: 1.55; color: var(--c-ink); background: var(--c-pane); border: 1px solid var(--c-line); border-radius: 8px; padding: 8px 12px; cursor: pointer; display: grid; grid-template-columns: 66px minmax(0, 1fr); gap: 8px; }
+  .vc-ann button:hover { border-color: var(--c-acc); }
+  .vc-ann button[aria-pressed="true"] { border-color: var(--c-acc); background: var(--c-acc-soft); }
+  .vc-ann .at { font-family: var(--fcm); font-size: 12px; color: var(--c-acc); font-weight: 600; padding-top: 2px; }
+  .vc-ann .ex { font-family: var(--fcm); font-size: 12.5px; display: block; background: var(--c-ui); border-radius: 6px; padding: 4px 8px; margin-top: 4px; white-space: pre-wrap; }
+  .vc-editor { grid-area: editor; background: var(--c-editor); color: var(--c-editor-ink); display: flex; flex-direction: column; min-height: 320px; }
+  .vc-etabs { display: flex; background: rgba(0,0,0,.25); font-size: 13px; overflow-x: auto; flex: none; }
+  .vc-etabs button { font: inherit; font-size: 13px; color: var(--c-gutter); background: transparent; border: 0; border-right: 1px solid rgba(255,255,255,.06); padding: 8px 14px; cursor: pointer; white-space: nowrap; }
+  .vc-etabs button[aria-selected="true"] { color: var(--c-editor-ink); background: var(--c-editor); box-shadow: inset 0 2px 0 var(--c-on-bar); }
+  .vc-etabs .sp { flex: 1; }
+  .vc-etabs button.cp { color: var(--c-editor-ink); border-left: 1px solid rgba(255,255,255,.06); border-right: 0; }
+  .vc-code { margin: 0; padding: 10px 0 16px; overflow: auto; max-height: min(78vh, 920px); font-family: var(--fcm); font-size: 13.5px; line-height: 1.75; flex: 1; }
+  .vc-r { display: block; white-space: pre; padding-right: 16px; min-height: 1.75em; }
+  .vc-r .g { display: inline-block; width: 3.4em; padding-right: 14px; text-align: right; color: var(--c-gutter); user-select: none; }
+  .vc-r.on { background: var(--c-on); box-shadow: inset 3px 0 0 var(--c-on-bar); }
+  .vc-r.on .g { color: var(--c-on-bar); }
+  .vc-code .t-str { color: #a5d6a7; } .vc-code .t-jsp { color: #ffb74d; font-weight: 600; } .vc-code .t-kw { color: #ce93d8; } .vc-code .t-tag { color: #81b4ff; }
+  .vc-plain { margin: 0; padding: 12px 16px; overflow: auto; font-family: var(--fcm); font-size: 13.5px; line-height: 1.75; white-space: pre; flex: 1; }
+  .vc-plain .kw { color: #ce93d8; } .vc-plain .str { color: #a5d6a7; } .vc-plain .cm { color: #7f8b96; } .vc-plain .fn { color: #ffb74d; }
+  .vc-cap { padding: 14px; overflow: auto; max-height: min(78vh, 920px); flex: 1; }
+  .vc-cap img { display: block; max-width: 100%; border-radius: 6px; background: #fff; cursor: zoom-in; }
+  .vc-cap p { margin: 10px 0 0; font-size: 13.5px; color: var(--c-editor-ink); opacity: .85; }
+  .vc-run { grid-area: run; }
+  .vc-rtabs { display: flex; border-bottom: 1px solid var(--c-line); font-size: 13.5px; overflow-x: auto; }
+  .vc-rtabs button { font: inherit; font-size: 13.5px; background: transparent; border: 0; padding: 8px 14px; color: var(--c-ink2); cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; }
+  .vc-rtabs button[aria-selected="true"] { color: var(--c-ink); font-weight: 700; border-bottom-color: var(--c-acc); }
+  .vc-rbody { padding: 14px 16px 18px; }
+  .vc-rbody .mock { max-width: 680px; margin: 0; }
+  .vc-done-t { font-size: 15.5px; }
+  .vc-done-h { margin-top: 8px; font-size: 14px; color: var(--c-ink2); }
+  .vc-done-h b { color: var(--c-ink); }
+  .vc-check { display: inline-flex; gap: 10px; align-items: center; margin-top: 12px; font-weight: 600; cursor: pointer; padding: 6px 12px 6px 10px; border: 1px solid var(--c-line); border-radius: 8px; }
+  .vc-check input { width: 18px; height: 18px; margin: 0; accent-color: var(--c-ok); }
+  .vc-check input:checked + span { color: var(--c-ok); }
+  .vc-warn { border-left: 3px solid var(--c-cau); background: var(--c-cau-soft); border-radius: 0 8px 8px 0; padding: 10px 14px; font-size: 15px; }
+  details.vc-fold { margin: 14px 0 0; border: 1px solid var(--c-line); border-radius: 8px; }
+  details.vc-fold > summary { cursor: pointer; padding: 9px 12px; font-weight: 600; font-size: 14.5px; }
+  details.vc-fold > div { padding: 0 12px 12px; font-size: 14.5px; }
+  .view-c [id] { scroll-margin-top: 64px; }
+  .vc-flash { animation: vcflash 1.4s ease-out; }
+  @keyframes vcflash { 0% { box-shadow: 0 0 0 3px var(--c-acc); } 100% { box-shadow: 0 0 0 3px transparent; } }
+  .vc-scrim { display: none; }
+
+  @media (max-width: 1100px) {
+    .vc-main { grid-template-columns: minmax(0, 1fr); }
+    .vc-navbtn { display: inline-block; }
+    .vc-nav { position: fixed; z-index: 40; inset: 0 auto 0 0; width: min(300px, 86vw); transform: translateX(-102%); visibility: hidden; transition: transform .2s, visibility .2s; border-radius: 0; box-shadow: 0 0 40px rgba(0,0,0,.2); padding-top: env(safe-area-inset-top, 0px); padding-left: env(safe-area-inset-left, 0px); }
+    .vc-nav.open { transform: none; visibility: visible; }
+    .vc-nav { inset: 0 auto auto 0; height: 100vh; height: 100dvh; }
+    .vc-navin { position: static; max-height: none; height: 100%; }
+    .vc-scrim:not([hidden]) { display: block; position: fixed; inset: 0; z-index: 35; background: rgba(0,0,0,.28); }
+    .vc-stage, .vc-doc, .vc-bench { border-radius: 0 0 8px 8px; }
+  }
+  @media (max-width: 760px) {
+    .vc-bench { grid-template-columns: minmax(0, 1fr); grid-template-areas: "explain" "editor" "run"; }
+    .vc-body, .vc-code, .vc-cap { max-height: none; }
+    .vc-code { max-height: 70vh; }
+    .vc-crumb { flex-basis: 100%; order: 5; font-size: 13px; }
+    .vc-app { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { .vc-nav { transition: none; } .vc-flash { animation: none; } }
+</style>
+
+<script>
+/* ===== 부록 B : form 실험실과 유형 카드 (세 화면 공통, 요소에 직접 연결) ===== */
+(function(){
+  "use strict";
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  var demo = document.getElementById("fgDemo");
+  if (demo) {
+    var method = "post";
+    var bGet = document.getElementById("fgGet"), bPost = document.getElementById("fgPost");
+    var rowsEl = document.getElementById("fgRows"), miss = document.getElementById("fgMiss");
+    var urlEl = document.getElementById("fgUrl"), flash = document.getElementById("fgFlash");
+    var render = function(){
+      var fd = new FormData(demo), got = {}, order = [];
+      fd.forEach(function(v, k){ if (!got[k]) { got[k] = []; order.push(k); } got[k].push(String(v)); });
+      var h = "";
+      order.forEach(function(k){
+        var vals = got[k], multi = vals.length > 1 || k === "notify", shown, cls = "v";
+        if (multi) shown = "{" + vals.map(function(v){ return '"' + v + '"'; }).join(", ") + "}";
+        else if (vals[0] === "") { shown = '"" (빈 값)'; cls = "e"; }
+        else shown = '"' + vals[0] + '"';
+        h += "<tr><td>" + esc(k) + '</td><td class="' + cls + '">' + esc(shown) + "</td><td>" + esc((multi ? "getParameterValues" : "getParameter") + '("' + k + '")') + "</td></tr>";
+      });
+      rowsEl.innerHTML = h;
+      var gone = [], seen = {};
+      Array.prototype.forEach.call(demo.elements, function(el){
+        if (!el.name || got[el.name] || seen[el.name]) return;
+        seen[el.name] = true;
+        gone.push(el.name + (el.disabled ? " (disabled)" : el.type === "checkbox" ? " (체크 안 함)" : el.type === "radio" ? " (고르지 않음)" : ""));
+      });
+      miss.textContent = gone.length ? "가지 않는 이름: " + gone.join(", ") + " → JSP에서 꺼내면 null" : "";
+      var qs = new URLSearchParams(fd).toString();
+      urlEl.innerHTML = method === "get"
+        ? "<b>get: 주소창 뒤에 값이 붙습니다. 한글은 %EC%9E%90 같은 꼴로 바뀝니다</b>localhost:8090/default/action.jsp?" + esc(qs)
+        : "<b>post: 주소창에는 파일 이름만 보이고, 값은 요청 본문에 담깁니다</b>localhost:8090/default/action.jsp";
+    };
+    var setMethod = function(m){
+      method = m;
+      demo.setAttribute("method", m);
+      bGet.setAttribute("aria-pressed", m === "get" ? "true" : "false");
+      bPost.setAttribute("aria-pressed", m === "post" ? "true" : "false");
+      flash.textContent = "";
+      render();
+    };
+    bGet.addEventListener("click", function(){ setMethod("get"); });
+    bPost.addEventListener("click", function(){ setMethod("post"); });
+    demo.addEventListener("input", function(){ flash.textContent = ""; render(); });
+    demo.addEventListener("change", function(){ render(); });
+    demo.addEventListener("submit", function(e){
+      e.preventDefault(); render();
+      flash.textContent = (method === "get" ? "등록을 누르면 주소창이 위 주소로 바뀝니다." : "등록을 누르면 action.jsp가 위 값을 받습니다. 주소창에는 값이 보이지 않습니다.") + " 이 페이지에서는 실제로 보내지 않습니다.";
+    });
+    demo.addEventListener("reset", function(){ setTimeout(function(){ render(); flash.textContent = "다시쓰기(reset): 모든 칸이 처음 값으로 돌아갔습니다."; }, 0); });
+    render();
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll("form.fg-try"), function(f){
+    var out = f.querySelector(".fg-out");
+    if (!out) return;
+    function show(msg){
+      var fd = new FormData(f), parts = [];
+      fd.forEach(function(v, k){ parts.push('<span class="k">' + esc(k) + '=</span><span class="v">' + (v === "" ? "(빈 값)" : esc(v)) + "</span>"); });
+      out.innerHTML = (parts.length ? '<span class="k">서버로 가는 값</span><br>' + parts.join("<br>") : '<span class="k">서버로 가는 값 없음</span>') + (msg ? '<br><span class="m">' + esc(msg) + "</span>" : "");
+    }
+    f.addEventListener("input", function(){ show(); });
+    f.addEventListener("change", function(){ show(); });
+    f.addEventListener("submit", function(e){ e.preventDefault(); show("submit: 이 값들을 action 파일로 보냅니다. 여기서는 보내지 않습니다."); });
+    f.addEventListener("reset", function(){ setTimeout(function(){ show("reset: 처음 값으로 돌아갔습니다."); }, 0); });
+    var b = f.querySelector("input[type=button]");
+    if (b) b.addEventListener("click", function(){ show(b.getAttribute("data-msg")); });
+    show();
+  });
+})();
+
+/* ===== 화면 고르기 : 현재 버전 / A 매뉴얼형 / C 작업 화면형 ===== */
+(function(){
+  "use strict";
+  var N = window.NOTE;
+  if (!N) return;
+  var CH = N.chapters;
+  var viewCur = document.getElementById("viewCur");
+  var viewA = document.getElementById("viewA");
+  var viewC = document.getElementById("viewC");
+  var VIEW_KEY = "jpsa-view", CPOS_KEY = "jpsa-c-pos";
+
+  // ---------- 데이터 펼치기 ----------
+  var STEPS = [], byKey = {}, chById = {}, n0 = 0;
+  CH.forEach(function(ch){
+    var no = ch.tag.replace(/[^0-9]/g, "");
+    ch._no = no.length < 2 ? "0" + no : no;
+    ch._short = ch.title.split(" — ")[0];
+    ch._sub = ch.title.split(" — ")[1] || "";
+    ch._first = n0 + 1;
+    ch.steps.forEach(function(s){ n0 += 1; var o = { s: s, ch: ch, i: n0 }; STEPS.push(o); byKey[s.key] = o; });
+    ch._last = n0;
+    chById[ch.id] = ch;
+  });
+  var TOTAL = STEPS.length;
+  var DOCS = { start: "처음 읽는 분께", overview: "전체 흐름 한눈에 보기", glossary: "용어 풀이", official: "부록 A. 공식 자료로 보는 시험", formguide: "부록 B. form 태그 사용법" };
+
+  function esc(s){ return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+  function plain(html){ return String(html).replace(/<[^>]*>/g, "").replace(/"/g, "&quot;"); }
+  function fixIds(html, p){ return String(html).replace(/\bid="([^"]+)"/g, 'id="' + p + '-$1"').replace(/url\(#/g, "url(#" + p + "-"); }
+  function annotOf(o){
+    if (o.s.annot) return o.s.annot;
+    if (o.s.noteLink && byKey[o.s.noteLink]) return byKey[o.s.noteLink].s.annot || null;
+    return null;
+  }
+  function scrollToEl(el){
+    if (!el) return;
+    el.scrollIntoView({ block: "start" });
+    setTimeout(function(){ el.scrollIntoView({ block: "start" }); }, 450);
+  }
+  function flash(el, cls){ if (!el) return; el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); }
+  function copyText(btn, text, selEl, label){
+    function ok(){ btn.textContent = "복사됨"; setTimeout(function(){ btn.textContent = label; }, 1500); }
+    function fb(){
+      try { var r = document.createRange(); r.selectNodeContents(selEl); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = "선택됨 · Ctrl+C"; } catch (e) {}
+      setTimeout(function(){ btn.textContent = label; }, 2500);
+    }
+    try { navigator.clipboard.writeText(text).then(ok, fb); } catch (e) { fb(); }
+  }
+
+  // ---------- 진행 체크 (현재 버전과 같은 객체를 함께 쓴다) ----------
+  var done = N.done;
+  function isDone(k){ return !!done[k]; }
+  function doneCount(list){ var c = 0; list.forEach(function(o){ if (isDone(o.s.key)) c += 1; }); return c; }
+  function setDone(k, v){ done[k] = !!v; N.saveDone(); N.refresh(); refreshA(); refreshC(); }
+
+  // ---------- 정적 구역 (처음 읽는 분께 · 전체 흐름 · 부록 A · 부록 B) ----------
+  var STATIC = ["start", "overview", "official", "formguide"].map(function(id){
+    var el = document.getElementById(id);
+    return el ? { id: id, el: el, parent: el.parentNode, next: el.nextSibling } : null;
+  }).filter(Boolean);
+  function staticEl(id){ for (var i = 0; i < STATIC.length; i++) if (STATIC[i].id === id) return STATIC[i].el; return null; }
+  function staticOf(node){ for (var i = 0; i < STATIC.length; i++) if (STATIC[i].el.contains(node)) return STATIC[i].id; return null; }
+  function restoreHome(){
+    for (var i = STATIC.length - 1; i >= 0; i--) {
+      var x = STATIC[i];
+      x.parent.insertBefore(x.el, x.next && x.next.parentNode === x.parent ? x.next : null);
+    }
+  }
+
+  var PICK = '<label class="vpick"><span>화면</span><select data-viewpick aria-label="화면 고르기"><option value="cur">현재 버전</option><option value="a">A 매뉴얼형</option><option value="c">C 작업 화면형</option></select></label>';
+  var pw = document.querySelector("#viewCur .progress-wrap");
+  if (pw) pw.insertAdjacentHTML("afterend", PICK);
+
+  var cur = "cur";
+
+  // 지금 읽고 있는 곳 (화면을 바꿀 때 같은 곳으로 데려가기 위해)
+  function where(){
+    if (cur === "c") return cPos ? parsePos(cPos) : { t: "top" };
+    if (window.scrollY < 120) return { t: "top" };
+    var host = cur === "a" ? viewA : viewCur;
+    var sel = cur === "a" ? "#start, #overview, .va-chap, .va-step, #official, #formguide" : "#start, #overview, .chapter-block, section.step, #official, #formguide";
+    var list = host.querySelectorAll(sel), line = window.innerHeight * 0.3, pick = null;
+    for (var i = 0; i < list.length; i++) { if (list[i].getBoundingClientRect().top <= line) pick = list[i]; }
+    if (!pick) return { t: "top" };
+    var id = pick.id.replace(/^a-/, "");
+    if (id.indexOf("step-") === 0) return { t: "step", k: id.slice(5) };
+    if (id.indexOf("chapter-") === 0) return { t: "ch", k: id.slice(8) };
+    return { t: "doc", k: id };
+  }
+  function parsePos(p){ var a = p.split(":"); return { t: a[0], k: a[1] }; }
+
+  function syncPickers(){
+    Array.prototype.forEach.call(document.querySelectorAll("select[data-viewpick]"), function(s){ s.value = cur; });
+    Array.prototype.forEach.call(document.querySelectorAll("#viewbar [data-view]"), function(b){ b.setAttribute("aria-pressed", b.getAttribute("data-view") === cur ? "true" : "false"); });
+  }
+
+  function setView(v, keepPlace){
+    if (v !== "a" && v !== "c") v = "cur";
+    var pos = keepPlace === false ? { t: "top" } : where();
+    if (v === "cur") restoreHome();
+    if (v === "a") { buildA(); placeA(); }
+    if (v === "c") buildC();
+    viewCur.hidden = v !== "cur";
+    viewA.hidden = v !== "a";
+    viewC.hidden = v !== "c";
+    document.body.setAttribute("data-view", v);
+    cur = v;
+    syncPickers();
+    try { localStorage.setItem(VIEW_KEY, v); } catch (e) {}
+    N.refresh(); refreshA(); refreshC();
+    if (v === "c") {
+      window.scrollTo(0, 0);
+      if (pos.t === "top") { var saved = null; try { saved = localStorage.getItem(CPOS_KEY); } catch (e) {} openC(saved || "doc:start", true); }
+      else openC(pos.t + ":" + pos.k, true);
+      return;
+    }
+    if (pos.t === "top") { window.scrollTo(0, 0); return; }
+    var el = null;
+    if (v === "a") el = document.getElementById(pos.t === "step" ? "a-step-" + pos.k : pos.t === "ch" ? "a-chapter-" + pos.k : pos.k);
+    else el = document.getElementById(pos.t === "step" ? "step-" + pos.k : pos.t === "ch" ? "chapter-" + pos.k : pos.k);
+    if (el) scrollToEl(el); else window.scrollTo(0, 0);
+  }
+
+  document.addEventListener("change", function(ev){
+    var s = ev.target.closest && ev.target.closest("select[data-viewpick]");
+    if (s) setView(s.value);
+  });
+  var vb = document.getElementById("viewbar");
+  if (vb) vb.addEventListener("click", function(ev){
+    var b = ev.target.closest("[data-view]");
+    if (b && b.getAttribute("data-view") !== cur) setView(b.getAttribute("data-view"));
+  });
+
+  /* ================= A 매뉴얼형 ================= */
+  var aBuilt = false, aToc = null, aScrim = null, aWhere = null;
+
+  function annotA(an){
+    return N.renderAnnot(an).replace('<button type="button" class="tg">', '<button type="button" class="va-cp">코드 복사</button><button type="button" class="tg">');
+  }
+  function shotsA(list){
+    return '<div class="va-shots">' + list.map(function(sh){
+      return '<figure><img src="images/' + sh[0] + '" alt="' + plain(sh[1]) + '" loading="lazy"><figcaption>' + sh[1] + "</figcaption></figure>";
+    }).join("") + "</div>";
+  }
+  function stepA(o){
+    var s = o.s, h = "";
+    h += '<article class="va-step" id="a-step-' + s.key + '" data-key="' + s.key + '">';
+    h += '<div class="va-head"><div class="va-no" aria-hidden="true">' + o.i + '</div><div><div class="va-kick">단계 ' + o.i + " · " + s.kicker + "</div><h2>" + s.title + "</h2></div></div>";
+    h += '<div class="va-body">';
+    (s.body || []).forEach(function(p, i){ h += "<p" + (i === 0 ? ' class="va-lead2"' : "") + ">" + p + "</p>"; });
+    if (s.screen) h += s.screen;
+    if (s.annot) h += annotA(s.annot);
+    if (s.bulletsTitle) h += '<h3 class="va-h3">' + s.bulletsTitle + "</h3>";
+    if (s.bullets) h += '<ul class="va-list">' + s.bullets.map(function(b){ return "<li>" + b + "</li>"; }).join("") + "</ul>";
+    if (s.extra) h += fixIds(s.extra, "a");
+    if (s.shots && s.shots.length) h += shotsA(s.shots);
+    if (s.noShot) h += '<div class="no-shot">' + (s.noShotNote || "이 단계는 실행 절차 정리라 캡처 없이 글로만 정리했습니다.") + "</div>";
+    if (s.code) h += '<pre class="code"><code>' + N.renderCode(s.code) + "</code></pre>";
+    var t = s.noteLink && byKey[s.noteLink];
+    if (t && t.s.annot) {
+      h += '<details class="va-codefold"><summary>전체 코드와 줄별 해설 <code>' + t.s.annot.file + "</code><small>펼쳐 놓고 보면서 입력합니다</small></summary>" +
+        '<div class="va-codefold-in">' + annotA(t.s.annot) + '<button type="button" class="golink" data-go="step-' + t.s.key + '">단계 ' + t.i + " " + t.s.title + " →</button></div></details>";
+    }
+    if (s.extraAfter) h += fixIds(s.extraAfter, "a");
+    if (s.warn) h += '<div class="va-note"><b>주의</b>' + s.warn + "</div>";
+    if (s.tip) h += '<details class="va-fold"><summary>왜 이렇게 하나요<small>처음에는 건너뛰어도 됩니다</small></summary><div class="va-fold-in">' + s.tip + "</div></details>";
+    h += '<div class="va-done' + (s.done ? "" : " plain") + '">';
+    if (s.done) h += '<div class="lab">완료 기준</div><div>' + s.done[0] + "</div>" + (s.done[1] ? '<span class="help"><b>막히면 확인할 곳</b> ' + s.done[1] + "</span>" : "");
+    h += '<label class="va-check"><input type="checkbox" data-done="' + s.key + '"><span>이 단계를 끝냈습니다</span></label></div>';
+    if (s.backLink) h += '<button type="button" class="golink" data-go="step-' + s.backLink.key + '">' + s.backLink.label + " →</button>";
+    var prev = STEPS[o.i - 2], next = STEPS[o.i];
+    h += '<nav class="va-pager" aria-label="이전 단계와 다음 단계">';
+    if (prev) h += '<button type="button" data-go="step-' + prev.s.key + '"><small>← 이전 단계 ' + prev.i + "</small>" + prev.s.title + "</button>";
+    if (next) h += '<button type="button" class="next" data-go="step-' + next.s.key + '"><small>다음 단계 ' + next.i + " →</small>" + next.s.title + "</button>";
+    else h += '<button type="button" class="next" data-go="official"><small>다음 →</small>부록 A. 공식 자료로 보는 시험</button>';
+    h += "</nav></div></article>";
+    return h;
+  }
+  function chapterA(ch){
+    var h = '<section class="va-chap" id="a-chapter-' + ch.id + '" data-ch="' + ch.id + '"><header class="va-chap-h">';
+    h += '<div class="va-eyebrow">' + ch.tag + " · 단계 " + ch._first + "–" + ch._last + "</div><h1>" + ch._short + "</h1>";
+    if (ch._sub) h += '<p class="va-sub">' + ch._sub + "</p>";
+    h += '<p class="va-lead">' + ch.desc + "</p></header>";
+    if (ch.intro) h += '<div class="va-intro">' + fixIds(ch.intro, "a") + "</div>";
+    ch.steps.forEach(function(s){ h += stepA(byKey[s.key]); });
+    if (ch.checklist) {
+      h += '<div class="va-cl"><h3>' + ch.checklist.title + "</h3><p>" + ch.checklist.sub + "</p><ol>" +
+        ch.checklist.items.map(function(it){ return "<li>" + it + "</li>"; }).join("") + "</ol></div>";
+    }
+    return h + "</section>";
+  }
+  function tocA(){
+    var t = '<div class="va-brand"><small>정보처리산업기사 · 과정평가형 실기</small><b>실기 환경구성 노트</b><div class="va-bar"><i id="vaBarFill"></i></div><div class="va-bar-l" id="vaBarL"></div></div>';
+    t += PICK + '<div class="va-grp">시작</div>';
+    ["start", "overview", "glossary"].forEach(function(id){ t += '<button type="button" class="va-flat" data-go="' + id + '">' + DOCS[id] + "</button>"; });
+    t += '<div class="va-grp">따라 하기</div>';
+    CH.forEach(function(ch, ci){
+      t += '<details data-ch="' + ch.id + '"' + (ci === 0 ? " open" : "") + '><summary><span class="no">' + ch._no + '</span><span class="t">' + ch._short + '</span><span class="c" data-chc="' + ch.id + '"></span></summary><ol>';
+      t += '<li><button type="button" data-go="chapter-' + ch.id + '"><span class="n"></span><span>챕터 소개</span><span></span></button></li>';
+      ch.steps.forEach(function(s){
+        var o = byKey[s.key];
+        t += '<li><button type="button" data-go="step-' + s.key + '" data-key="' + s.key + '"><span class="n">' + o.i + "</span><span>" + s.title + '</span><span class="d" aria-hidden="true"></span></button></li>';
+      });
+      t += "</ol></details>";
+    });
+    t += '<div class="va-grp">부록</div>';
+    ["official", "formguide"].forEach(function(id){ t += '<button type="button" class="va-flat" data-go="' + id + '">' + DOCS[id].replace("부록 ", "") + "</button>"; });
+    return t;
+  }
+  function buildA(){
+    if (aBuilt) return;
+    aBuilt = true;
+    var h = '<div class="va-app"><aside class="va-toc" id="vaToc" aria-label="목차">' + tocA() + "</aside>";
+    h += '<div class="va-page"><div class="va-topbar"><button type="button" id="vaTocBtn" aria-controls="vaToc" aria-expanded="false">목차</button><span class="va-where" id="vaWhere">처음 읽는 분께</span></div>';
+    h += '<div class="va-col"><div id="vaTop"></div><div id="vaChapters">' + CH.map(chapterA).join("") + '</div><div id="vaEnd"></div>';
+    h += '<footer class="va-foot"><span>과정평가형 정보처리산업기사 실기 학습자료 · A 매뉴얼형</span><span>Eclipse · Tomcat · Oracle · SQL</span></footer></div></div></div>';
+    h += '<div class="va-scrim" id="vaScrim" hidden></div>';
+    viewA.innerHTML = h;
+    aToc = document.getElementById("vaToc");
+    aScrim = document.getElementById("vaScrim");
+    aWhere = document.getElementById("vaWhere");
+
+    viewA.addEventListener("click", function(ev){
+      var t = ev.target;
+      if (t.closest("#vaTocBtn")) { tocOpenA(!aToc.classList.contains("open")); return; }
+      if (t.closest("#vaScrim")) { tocOpenA(false); return; }
+      var go = t.closest("[data-go]");
+      if (go) { tocOpenA(false); goA(go.getAttribute("data-go")); return; }
+      var tg = t.closest(".tg");
+      if (tg) { var box = tg.closest(".annot"); var hid = box.classList.toggle("hide-notes"); tg.textContent = hid ? "주석 보이기" : "주석 숨기기"; return; }
+      var cp = t.closest(".va-cp");
+      if (cp) {
+        var an = cp.closest(".annot");
+        var text = Array.prototype.map.call(an.querySelectorAll(".row:not(.nt) .cd"), function(c){ return c.textContent; }).join("\n");
+        copyText(cp, text, an.querySelector(".annot-body"), "코드 복사");
+        return;
+      }
+      var sb = t.closest(".shotbtn");
+      if (sb) { N.openLightbox(sb.getAttribute("data-src"), sb.getAttribute("data-cap")); return; }
+      var img = t.closest(".va-shots img");
+      if (img) { var fc = img.parentNode.querySelector("figcaption"); N.openLightbox(img.getAttribute("src"), fc ? fc.textContent : img.alt); }
+    });
+    viewA.addEventListener("change", function(ev){
+      var cb = ev.target.closest && ev.target.closest("input[data-done]");
+      if (cb) setDone(cb.getAttribute("data-done"), cb.checked);
+    });
+
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function(entries){
+        if (cur !== "a") return;
+        entries.forEach(function(e){ if (e.isIntersecting && viewA.contains(e.target)) hereA(e.target); });
+      }, { rootMargin: "-20% 0px -70% 0px", threshold: 0 });
+      Array.prototype.forEach.call(viewA.querySelectorAll(".va-step, .va-chap"), function(el){ io.observe(el); });
+      STATIC.forEach(function(x){ io.observe(x.el); });
+    }
+  }
+  function placeA(){
+    var top = document.getElementById("vaTop"), end = document.getElementById("vaEnd");
+    STATIC.forEach(function(x){ (x.id === "official" || x.id === "formguide" ? end : top).appendChild(x.el); });
+  }
+  function tocOpenA(open){
+    if (!aToc) return;
+    aToc.classList.toggle("open", open);
+    aScrim.hidden = !open;
+    var b = document.getElementById("vaTocBtn");
+    if (b) b.setAttribute("aria-expanded", open ? "true" : "false");
+  }
+  function goA(go){
+    var el = document.getElementById("a-" + go) || document.getElementById(go);
+    if (!el || !viewA.contains(el)) return;
+    var d = el.closest("details");
+    if (d && !d.open) d.open = true;
+    scrollToEl(el);
+    if (el.classList.contains("va-step")) flash(el, "va-flash");
+  }
+  function hereA(el){
+    var btn = null, label = "";
+    if (el.classList.contains("va-step")) {
+      var o = byKey[el.getAttribute("data-key")];
+      btn = aToc.querySelector('ol button[data-key="' + o.s.key + '"]');
+      label = o.ch._no + " " + o.ch._short + " · 단계 " + o.i;
+    } else if (el.classList.contains("va-chap")) {
+      var ch = chById[el.getAttribute("data-ch")];
+      btn = aToc.querySelector('ol button[data-go="chapter-' + ch.id + '"]');
+      label = ch._no + " " + ch._short;
+    } else {
+      btn = aToc.querySelector('.va-flat[data-go="' + el.id + '"]');
+      label = DOCS[el.id] || "";
+    }
+    Array.prototype.forEach.call(aToc.querySelectorAll(".here"), function(b){ if (b !== btn) { b.classList.remove("here"); b.removeAttribute("aria-current"); } });
+    if (aWhere) aWhere.textContent = label;
+    if (!btn) return;
+    btn.classList.add("here");
+    btn.setAttribute("aria-current", "true");
+    var d = btn.closest("details");
+    if (d && !d.open) d.open = true;
+    if (aToc.scrollHeight > aToc.clientHeight + 4) {
+      var r = btn.getBoundingClientRect(), tr = aToc.getBoundingClientRect();
+      if (r.top < tr.top + 40 || r.bottom > tr.bottom - 40) aToc.scrollTop += r.top - tr.top - tr.height / 3;
+    }
+  }
+  function refreshA(){
+    if (!aBuilt) return;
+    var c = doneCount(STEPS);
+    var f = document.getElementById("vaBarFill"), l = document.getElementById("vaBarL");
+    if (f) f.style.width = Math.round(c / TOTAL * 100) + "%";
+    if (l) l.textContent = c + " / " + TOTAL + " 단계 완료";
+    Array.prototype.forEach.call(viewA.querySelectorAll(".va-toc ol button[data-key]"), function(b){ b.classList.toggle("done", isDone(b.getAttribute("data-key"))); });
+    Array.prototype.forEach.call(viewA.querySelectorAll("[data-chc]"), function(sp){
+      var ch = chById[sp.getAttribute("data-chc")];
+      sp.textContent = doneCount(ch.steps.map(function(s){ return byKey[s.key]; })) + "/" + ch.steps.length;
+    });
+    Array.prototype.forEach.call(viewA.querySelectorAll("input[data-done]"), function(cb){ cb.checked = isDone(cb.getAttribute("data-done")); });
+  }
+
+  /* ================= C 작업 화면형 ================= */
+  var cBuilt = false, cPos = null, SEQ = [], cNav = null, cScrim = null, cStage = null, cPark = null, cCode = null;
+  SEQ.push("doc:start", "doc:overview");
+  CH.forEach(function(ch){ SEQ.push("ch:" + ch.id); ch.steps.forEach(function(s){ SEQ.push("step:" + s.key); }); });
+  SEQ.push("doc:official", "doc:formguide");
+
+  function navC(){
+    function ni(open, n, t, extra){ return '<button type="button" class="vc-ni" data-open="' + open + '"' + (extra || "") + '><span class="n">' + n + '</span><span class="t">' + t + "</span><span></span></button>"; }
+    var h = '<div class="vc-navin"><div class="vc-ph">목록</div><div class="vc-pickrow">' + PICK + '</div><div class="vc-ng">시작</div>';
+    h += ni("doc:start", "", DOCS.start) + ni("doc:overview", "", DOCS.overview) + ni("doc:glossary", "", DOCS.glossary);
+    h += '<div class="vc-ng">따라 하기</div>';
+    CH.forEach(function(ch){
+      h += '<button type="button" class="vc-ni ch" data-open="ch:' + ch.id + '" data-ch="' + ch.id + '"><span class="n">' + ch._no + '</span><span class="t">' + ch._short + '</span><span class="c" data-chc="' + ch.id + '"></span></button>';
+      ch.steps.forEach(function(s){
+        var o = byKey[s.key];
+        h += '<button type="button" class="vc-ni" data-open="step:' + s.key + '" data-key="' + s.key + '" data-ch="' + ch.id + '"><span class="n">' + o.i + '</span><span class="t">' + s.title + '</span><span class="d" aria-hidden="true"></span></button>';
+      });
+    });
+    h += '<div class="vc-ng">부록</div>' + ni("doc:official", "A", DOCS.official.replace("부록 A. ", "")) + ni("doc:formguide", "B", DOCS.formguide.replace("부록 B. ", ""));
+    return h + "</div>";
+  }
+  function buildC(){
+    if (cBuilt) return;
+    cBuilt = true;
+    var top = '<div class="vc-top"><button type="button" class="vc-navbtn" id="vcNavBtn" aria-controls="vcNav" aria-expanded="false">목록</button><span class="vc-app">실기 노트</span><span class="vc-crumb" id="vcCrumb"></span><span class="vc-sp"></span><span class="vc-prog" id="vcProg"></span>' +
+      '<button type="button" id="vcPrev">← 이전</button><button type="button" class="next" id="vcNext">다음 →</button></div>';
+    viewC.innerHTML = '<div class="vc-shell">' + top + '<div class="vc-main"><nav class="vc-nav" id="vcNav" aria-label="목록">' + navC() + '</nav><div class="vc-stage" id="vcStage"></div></div></div><div class="vc-scrim" id="vcScrim" hidden></div><div id="vcPark" hidden></div>';
+    cNav = document.getElementById("vcNav");
+    cScrim = document.getElementById("vcScrim");
+    cStage = document.getElementById("vcStage");
+    cPark = document.getElementById("vcPark");
+
+    viewC.addEventListener("click", function(ev){
+      var t = ev.target;
+      if (t.closest("#vcNavBtn")) { navOpenC(!cNav.classList.contains("open")); return; }
+      if (t.closest("#vcScrim")) { navOpenC(false); return; }
+      if (t.closest("#vcPrev")) { stepSeq(-1); return; }
+      if (t.closest("#vcNext")) { stepSeq(1); return; }
+      var op = t.closest("[data-open]");
+      if (op) { navOpenC(false); openC(op.getAttribute("data-open")); return; }
+      var go = t.closest("[data-go]");
+      if (go) { goC(go.getAttribute("data-go")); return; }
+      var tab = t.closest("button[data-tab]");
+      if (tab) { showTab(tab); return; }
+      var an = t.closest(".vc-ann button");
+      if (an) { lightC(an); return; }
+      var cp = t.closest("button[data-cp]");
+      if (cp && cCode) { copyText(cp, cCode.join("\n"), document.getElementById("vcCodeP") || cp, "코드 복사"); return; }
+      var img = t.closest(".vc-cap img");
+      if (img) { var p = img.parentNode.querySelector("p"); N.openLightbox(img.getAttribute("src"), p ? p.textContent : img.alt); return; }
+      var tg = t.closest(".tg");
+      if (tg) { var box = tg.closest(".annot"); var hid = box.classList.toggle("hide-notes"); tg.textContent = hid ? "주석 보이기" : "주석 숨기기"; return; }
+      var sb = t.closest(".shotbtn");
+      if (sb) N.openLightbox(sb.getAttribute("data-src"), sb.getAttribute("data-cap"));
+    });
+    viewC.addEventListener("change", function(ev){
+      var cb = ev.target.closest && ev.target.closest("input[data-done]");
+      if (cb) setDone(cb.getAttribute("data-done"), cb.checked);
+    });
+  }
+  function navOpenC(open){
+    if (!cNav) return;
+    cNav.classList.toggle("open", open);
+    cScrim.hidden = !open;
+    var b = document.getElementById("vcNavBtn");
+    if (b) b.setAttribute("aria-expanded", open ? "true" : "false");
+  }
+  function stepSeq(d){
+    var p = cPos === "doc:glossary" ? "doc:overview" : cPos;
+    var i = SEQ.indexOf(p);
+    var j = i + d;
+    if (j >= 0 && j < SEQ.length) openC(SEQ[j]);
+  }
+  function goC(go){
+    if (go.indexOf("step-") === 0 && byKey[go.slice(5)]) { openC("step:" + go.slice(5)); return; }
+    if (go.indexOf("chapter-") === 0 && chById[go.slice(8)]) { openC("ch:" + go.slice(8)); return; }
+    if (DOCS[go]) { openC("doc:" + go); return; }
+    var el = document.getElementById(go), sid = el ? staticOf(el) : null;
+    if (sid) { openC("doc:" + sid); scrollToEl(el); return; }
+    var inStage = document.getElementById("c-" + go);
+    if (inStage) scrollToEl(inStage);
+  }
+  function showTab(btn){
+    var group = btn.parentNode.querySelectorAll("button[data-tab]");
+    Array.prototype.forEach.call(group, function(b){
+      var on = b === btn, p = document.getElementById(b.getAttribute("data-tab"));
+      b.setAttribute("aria-selected", on ? "true" : "false");
+      if (p) p.hidden = !on;
+    });
+  }
+
+  // 해설 코드의 주석(§ 줄)을 '몇 행 ~ 몇 행' 설명 목록으로 바꾼다
+  function cleanNote(raw){
+    var s = raw.trim();
+    s = s.replace(/^<%--\s*/, "").replace(/\s*--%>$/, "").replace(/^<!--\s*/, "").replace(/\s*-->$/, "");
+    s = s.replace(/^\/\*\s*/, "").replace(/\s*\*\/$/, "").replace(/^\/\/\s*/, "").replace(/^--\s*/, "");
+    var up = s.charAt(0) === "↑";
+    if (up) s = s.slice(1).trim();
+    return { t: s, up: up };
+  }
+  function parseAnnot(an){
+    var lines = an.code.replace(/^\n/, "").replace(/\n$/, "").split("\n");
+    var code = [], groups = [], last = null, n = 0;
+    lines.forEach(function(l){
+      if (l.charAt(0) === "§") {
+        var c = cleanNote(l.slice(1));
+        if (last && last.at === n && last.up === c.up) last.text.push(c.t);
+        else { last = { at: n, up: c.up, text: [c.t] }; groups.push(last); }
+      } else { n += 1; code.push(l); }
+    });
+    var B = {};
+    groups.forEach(function(g){ B[g.at] = true; });
+    function blank(i){ return i < 1 || i > code.length || !code[i - 1].trim(); }
+    function delim(i){ var t = (code[i - 1] || "").trim(); return t === "<%" || t === "%>"; }
+    groups.forEach(function(g){
+      var a, z;
+      if (g.up) {
+        z = g.at; a = z;
+        if (z < 1) return;
+        while (a > 1 && !blank(a - 1) && !B[a - 1] && !delim(a - 1)) a -= 1;
+      } else {
+        a = g.at + 1; z = a;
+        if (blank(a)) return;
+        while (z < code.length && !blank(z + 1) && !B[z] && !delim(z + 1)) z += 1;
+      }
+      g.a = a; g.z = z;
+    });
+    return { code: code, notes: groups };
+  }
+
+  function stepC(o){
+    var s = o.s, an = annotOf(o), parsed = an ? parseAnnot(an) : null, shots = [], seen = {};
+    (s.shots || []).concat((an && an.shots) || []).forEach(function(sh){ if (!seen[sh[0]]) { seen[sh[0]] = true; shots.push(sh); } });
+    var hasCode = !!(parsed || s.code), noEd = !hasCode && !shots.length;
+    cCode = parsed ? parsed.code : null;
+    var h = '<div class="vc-bench' + (noEd ? " no-ed" : "") + '" data-ch="' + o.ch.id + '">';
+
+    // 설명
+    h += '<section class="vc-pane vc-explain" aria-labelledby="vcT"><div class="vc-ph">설명</div><div class="vc-body">';
+    h += '<div class="vc-kick">단계 ' + o.i + " / " + TOTAL + " · " + s.kicker + '</div><h1 id="vcT">' + s.title + "</h1>";
+    (s.body || []).forEach(function(p, i){ h += "<p" + (i === 0 ? ' class="lead"' : "") + ">" + p + "</p>"; });
+    if (s.bulletsTitle) h += '<h2 class="vc-h2">' + s.bulletsTitle + "</h2>";
+    if (s.bullets) h += '<ul class="vc-list">' + s.bullets.map(function(b){ return "<li>" + b + "</li>"; }).join("") + "</ul>";
+    if (s.extra) h += fixIds(s.extra, "c");
+    if (s.noShot) h += '<div class="no-shot">' + (s.noShotNote || "이 단계는 실행 절차 정리라 캡처 없이 글로만 정리했습니다.") + "</div>";
+    if (s.extraAfter) h += fixIds(s.extraAfter, "c");
+    if (s.backLink) h += '<button type="button" class="golink" data-go="step-' + s.backLink.key + '">' + s.backLink.label + " →</button>";
+    if (s.noteLink && byKey[s.noteLink]) h += '<button type="button" class="golink" data-go="step-' + s.noteLink + '">전체 코드와 줄별 해설 보기 (단계 ' + byKey[s.noteLink].i + ") →</button>";
+    if (s.tip) h += '<details class="vc-fold"><summary>왜 이렇게 하나요</summary><div>' + s.tip + "</div></details>";
+    if (parsed) {
+      var items = parsed.notes.filter(function(g){ return g.a; });
+      if (items.length) {
+        h += '<h2 class="vc-h2">코드 읽기 · 항목을 누르면 편집기의 그 줄이 켜집니다</h2><ul class="vc-ann">';
+        items.forEach(function(g){
+          h += '<li><button type="button" data-l="' + g.a + "-" + g.z + '" aria-pressed="false"><span class="at">' + (g.a === g.z ? g.a + "행" : g.a + "–" + g.z + "행") + "</span><span>" + esc(g.text.join(" ")) + "</span></button></li>";
+        });
+        h += "</ul>";
+      }
+    }
+    h += "</div></section>";
+
+    // 편집기
+    if (!noEd) {
+      var tabs = "", panels = "", k = 0;
+      if (parsed) {
+        tabs += '<button type="button" role="tab" data-tab="vcCodeP" aria-selected="true">' + esc(an.file) + "</button>";
+        panels += '<pre class="vc-code" id="vcCodeP" role="tabpanel">' + parsed.code.map(function(l, i){ return '<span class="vc-r" data-ln="' + (i + 1) + '"><span class="g">' + (i + 1) + "</span>" + N.hl(l, an.lang) + "</span>"; }).join("") + "</pre>";
+        k = 1;
+      } else if (s.code) {
+        tabs += '<button type="button" role="tab" data-tab="vcCodeP" aria-selected="true">코드</button>';
+        panels += '<pre class="vc-plain" id="vcCodeP" role="tabpanel">' + N.renderCode(s.code) + "</pre>";
+        cCode = [document.createElement("div")].map(function(d){ d.innerHTML = N.renderCode(s.code); return d.textContent; })[0].split("\n");
+        k = 1;
+      }
+      shots.forEach(function(sh, i){
+        var first = !k && i === 0;
+        tabs += '<button type="button" role="tab" data-tab="vcCap' + i + '" aria-selected="' + (first ? "true" : "false") + '">' + (shots.length > 1 ? "캡처 " + (i + 1) : "수업 캡처") + "</button>";
+        panels += '<div class="vc-cap" id="vcCap' + i + '" role="tabpanel"' + (first ? "" : " hidden") + '><img src="images/' + sh[0] + '" alt="' + plain(sh[1]) + '"><p>' + sh[1] + "</p></div>";
+      });
+      h += '<section class="vc-pane vc-editor" aria-label="편집기"><div class="vc-etabs" role="tablist">' + tabs + '<span class="sp"></span>' + (hasCode ? '<button type="button" class="cp" data-cp>코드 복사</button>' : "") + "</div>" + panels + "</section>";
+    }
+
+    // 실행 결과
+    var rt = "", rp = "", sel = s.screen ? "vcRs" : "vcRd";
+    if (s.screen) { rt += '<button type="button" role="tab" data-tab="vcRs" aria-selected="' + (sel === "vcRs") + '">완성 화면</button>'; rp += '<div class="vc-rbody" id="vcRs" role="tabpanel">' + s.screen + "</div>"; }
+    rt += '<button type="button" role="tab" data-tab="vcRd" aria-selected="' + (sel === "vcRd") + '">완료 기준</button>';
+    rp += '<div class="vc-rbody" id="vcRd" role="tabpanel"' + (sel === "vcRd" ? "" : " hidden") + '><div class="vc-done-t">' + (s.done ? s.done[0] : "이 단계는 따로 정한 완료 기준이 없습니다. 설명대로 마쳤으면 체크하세요.") + "</div>" +
+      (s.done && s.done[1] ? '<div class="vc-done-h"><b>막히면 확인할 곳</b> ' + s.done[1] + "</div>" : "") +
+      '<label class="vc-check"><input type="checkbox" data-done="' + s.key + '"><span>이 단계를 끝냈습니다</span></label></div>';
+    if (s.warn) { rt += '<button type="button" role="tab" data-tab="vcRw" aria-selected="false">주의</button>'; rp += '<div class="vc-rbody" id="vcRw" role="tabpanel" hidden><div class="vc-warn">' + s.warn + "</div></div>"; }
+    h += '<section class="vc-pane vc-run" aria-label="실행 결과와 완료 기준"><div class="vc-rtabs" role="tablist">' + rt + "</div>" + rp + "</section>";
+    return h + "</div>";
+  }
+  function chapterC(ch){
+    var h = '<div class="vc-doc" data-ch="' + ch.id + '"><div class="vc-doc-in"><div class="vc-chap-h"><div class="k">' + ch.tag + " · 단계 " + ch._first + "–" + ch._last + "</div><h1>" + ch.title + "</h1><p>" + ch.desc + "</p></div>";
+    h += '<h2 class="vc-h2">이 챕터의 단계</h2><ul class="vc-steplist">';
+    ch.steps.forEach(function(s){
+      var o = byKey[s.key];
+      h += '<li><button type="button" data-open="step:' + s.key + '"><span class="n">' + o.i + "</span><span>" + s.title + "<small>" + s.kicker + '</small></span><span class="d" data-dk="' + s.key + '"></span></button></li>';
+    });
+    h += "</ul>";
+    if (ch.intro) h += fixIds(ch.intro, "c");
+    if (ch.checklist) h += '<div class="vc-cl"><h3>' + ch.checklist.title + "</h3><p>" + ch.checklist.sub + "</p><ol>" + ch.checklist.items.map(function(it){ return "<li>" + it + "</li>"; }).join("") + "</ol></div>";
+    return h + "</div></div>";
+  }
+  function lightC(btn){
+    var p = btn.getAttribute("data-l").split("-"), a = +p[0], z = +p[1];
+    Array.prototype.forEach.call(viewC.querySelectorAll(".vc-ann button"), function(b){ b.setAttribute("aria-pressed", b === btn ? "true" : "false"); });
+    var codeTab = viewC.querySelector('.vc-etabs button[data-tab="vcCodeP"]');
+    if (codeTab) showTab(codeTab);
+    var pre = document.getElementById("vcCodeP");
+    if (!pre) return;
+    var rows = pre.querySelectorAll(".vc-r"), first = null;
+    Array.prototype.forEach.call(rows, function(r, i){ var on = i + 1 >= a && i + 1 <= z; r.classList.toggle("on", on); if (on && !first) first = r; });
+    if (first && pre.scrollHeight > pre.clientHeight) pre.scrollTop = Math.max(0, first.offsetTop - pre.offsetTop - 48);
+  }
+  function parkStage(){
+    STATIC.forEach(function(x){ if (cStage.contains(x.el)) cPark.appendChild(x.el); });
+  }
+  function openC(id, noScroll){
+    if (!cBuilt) return;
+    if (SEQ.indexOf(id) < 0 && id !== "doc:glossary") id = "doc:start";
+    var p = parsePos(id);
+    parkStage();
+    cCode = null;
+    if (p.t === "doc") {
+      var docId = p.k === "glossary" ? "overview" : p.k;
+      cStage.innerHTML = '<div class="vc-doc"><div class="vc-doc-in"></div></div>';
+      var node = staticEl(docId);
+      if (node) cStage.querySelector(".vc-doc-in").appendChild(node);
+    } else if (p.t === "ch") {
+      cStage.innerHTML = chapterC(chById[p.k]);
+    } else {
+      cStage.innerHTML = stepC(byKey[p.k]);
+    }
+    cPos = id;
+    try { localStorage.setItem(CPOS_KEY, id); } catch (e) {}
+    // 목록 · 위치 · 이전/다음
+    var here = id;
+    Array.prototype.forEach.call(cNav.querySelectorAll(".vc-ni"), function(b){
+      var on = b.getAttribute("data-open") === here;
+      b.classList.toggle("cur", on);
+      if (on) b.setAttribute("aria-current", "true"); else b.removeAttribute("aria-current");
+      if (on && cNav.querySelector(".vc-navin")) {
+        var box = cNav.querySelector(".vc-navin"), r = b.getBoundingClientRect(), br = box.getBoundingClientRect();
+        if (box.scrollHeight > box.clientHeight + 4 && (r.top < br.top + 40 || r.bottom > br.bottom - 20)) box.scrollTop += r.top - br.top - br.height / 3;
+      }
+    });
+    var crumb = "";
+    if (p.t === "step") { var o = byKey[p.k]; crumb = o.ch._no + " " + o.ch._short + " › <b>" + o.i + ". " + o.s.title + "</b>"; }
+    else if (p.t === "ch") { var c = chById[p.k]; crumb = "<b>" + c._no + " " + c._short + "</b>"; }
+    else crumb = "<b>" + DOCS[p.k] + "</b>";
+    document.getElementById("vcCrumb").innerHTML = crumb;
+    var si = SEQ.indexOf(id === "doc:glossary" ? "doc:overview" : id);
+    document.getElementById("vcPrev").disabled = si <= 0;
+    document.getElementById("vcNext").disabled = si >= SEQ.length - 1;
+    refreshC();
+    if (p.k === "glossary") { var g = document.getElementById("glossary"); if (g) scrollToEl(g); return; }
+    if (!noScroll) {
+      var shell = viewC.querySelector(".vc-shell"), y = shell.getBoundingClientRect().top + window.scrollY;
+      if (window.scrollY > y) window.scrollTo(0, y);
+    }
+  }
+  function refreshC(){
+    if (!cBuilt) return;
+    var c = doneCount(STEPS);
+    var pg = document.getElementById("vcProg");
+    if (pg) pg.textContent = c + "/" + TOTAL + " 완료";
+    Array.prototype.forEach.call(viewC.querySelectorAll(".vc-ni[data-key]"), function(b){ b.classList.toggle("done", isDone(b.getAttribute("data-key"))); });
+    Array.prototype.forEach.call(viewC.querySelectorAll(".vc-ni [data-chc]"), function(sp){
+      var ch = chById[sp.getAttribute("data-chc")];
+      sp.textContent = doneCount(ch.steps.map(function(s){ return byKey[s.key]; })) + "/" + ch.steps.length;
+    });
+    Array.prototype.forEach.call(viewC.querySelectorAll("[data-dk]"), function(sp){ sp.textContent = isDone(sp.getAttribute("data-dk")) ? "끝냄" : ""; });
+    Array.prototype.forEach.call(viewC.querySelectorAll("input[data-done]"), function(cb){ cb.checked = isDone(cb.getAttribute("data-done")); });
+  }
+
+  document.addEventListener("keydown", function(ev){
+    if (ev.key !== "Escape") return;
+    if (cur === "a") tocOpenA(false);
+    if (cur === "c") navOpenC(false);
+  });
+
+  // ---------- 처음 화면 ----------
+  document.body.setAttribute("data-view", "cur");
+  var startView = "cur", hash = (location.hash || "").replace("#", "");
+  if (hash === "view-a") startView = "a";
+  else if (hash === "view-c") startView = "c";
+  else if (hash !== "view-cur") { try { var sv = localStorage.getItem(VIEW_KEY); if (sv === "a" || sv === "c") startView = sv; } catch (e) {} }
+  if (startView !== "cur") setView(startView, false);
+  else syncPickers();
 })();
 </script>
 
