@@ -1202,7 +1202,7 @@ to_char(v.drv_start, 'FM999,999')</pre>
     <div class="official appendix" id="formguide">
       <span class="chapter-tag">부록 B · form 태그</span>
       <h1 class="chapter-title">form 태그 사용법</h1>
-      <p class="chapter-desc">form은 입력칸들을 한 묶음으로 만들어 서버의 JSP로 보내는 태그입니다. 시험 과제의 등록 화면은 모두 form으로 만듭니다. 입력칸 종류마다 생김새와 JSP에서 값을 꺼내는 방법이 조금씩 다르니, 아래 실험실에서 직접 바꿔 보며 익히세요.</p>
+      <p class="chapter-desc">form은 입력칸들을 한 묶음으로 만들어 서버의 JSP로 보내는 태그입니다. 시험 과제의 등록 화면은 모두 form으로 만듭니다. 입력칸 종류마다 생김새와 JSP에서 값을 꺼내는 방법이 조금씩 다르니, 아래 실험실에서 직접 바꿔 보며 익히세요. 입력칸 값이 DB 테이블에 들어가기까지는 B-12에서 예제 하나로 따라갑니다.</p>
 
       <h2 class="of-h">B-1. form 태그에 쓰는 속성</h2>
       <pre class="hint">&lt;form action="action.jsp" method="post" name="fm" onsubmit="return check_val()"&gt;
@@ -1478,7 +1478,7 @@ pstmt.executeUpdate();</pre>
         <tr><th>한글 처리</th><td>Tomcat 설정을 따름 (Tomcat 8 이상은 기본 UTF-8)</td><td>getParameter 전에 <code>request.setCharacterEncoding("UTF-8")</code> 필요</td></tr>
         <tr><th>쓰는 때</th><td>검색처럼 주소를 공유해도 되는 요청</td><td>등록·수정처럼 데이터를 바꾸는 요청. 이 자료의 일정등록</td></tr></tbody></table></div>
       <h2 class="of-h" id="fg-types">B-8. 입력칸 종류 한눈에 보기</h2>
-      <p class="of-sub">등록 화면에 나올 수 있는 입력칸을 모두 모았습니다. 기출에서 자주 나온 것은 text, password, radio, checkbox, select, textarea, hidden과 버튼 세 가지입니다(B-11).</p>
+      <p class="of-sub">등록 화면에 나올 수 있는 입력칸을 모두 모았습니다. 기출에서 자주 나온 것은 text, password, radio, checkbox, select, textarea, hidden과 버튼 세 가지입니다(B-11). 각 칸의 값을 DB 열에 넣는 법은 B-12에 있습니다.</p>
       <div class="twrap"><table class="otbl fg-types-tbl"><thead><tr><th>쓰는 태그</th><th>생김새</th><th>서버로 가는 값</th><th>JSP에서 꺼내기</th></tr></thead><tbody>
         <tr><td class="m">&lt;input type=&quot;text&quot;&gt;</td><td>한 줄 글자 칸</td><td>적은 글자. 비우면 ""</td><td class="m">getParameter</td></tr>
         <tr><td class="m">type=&quot;password&quot;</td><td>●로 가려진 칸</td><td>적은 글자 그대로</td><td class="m">getParameter</td></tr>
@@ -1566,6 +1566,281 @@ function setCost(sel) {
         <tr><td>C-3 차량주행관리</td><td>차량등록 · 주행내역등록</td><td>text · select(부서코드) · button 2개(등록, 다시쓰기)</td></tr>
         <tr><td>C-4 도서 대여 관리</td><td>고객가입</td><td>text · password · radio(성별) · select(직업) · checkbox(메일수신) · textarea(자기소개) · button(가입)</td></tr>
         <tr><td></td><td>도서대여신청</td><td>text · select 3개(도서번호, 도서명, 도서위치) · submit · reset</td></tr></tbody></table></div>
+
+      <h2 class="of-h" id="fg-db">B-12. 입력칸 값이 DB에 저장되기까지</h2>
+      <p class="of-sub">입력칸 종류를 한 화면에 모은 연습용 수강생 등록 예제입니다. 시험 과제나 부록 C와는 관계없이 이 자료에서 만들었습니다. 테이블 열 이름, 입력칸의 name, JSP 변수 이름을 모두 같게 맞춰 두었으니 값 하나를 골라 끝까지 따라가 보세요.</p>
+
+      <div class="pe-sub">① 테이블 (db.sql)</div>
+      <pre class="hint">create table tbl_trainee(
+  stu_no    number(5)     not null primary key,  -- 수강생번호 ← text readonly
+  stu_id    varchar(10)   not null,              -- 아이디 ← text
+  stu_pw    varchar(20)   not null,              -- 비밀번호 ← password
+  stu_name  varchar(30)   not null,              -- 이름 ← text
+  gender    varchar(1),                          -- 성별 ← radio (M, F)
+  birth     date,                                -- 생년월일 ← date
+  career    number(2),                           -- 경력(년) ← number
+  course    varchar(3),                          -- 과정 ← select (C01, C02, C03)
+  hobby     varchar(100),                        -- 관심분야 ← checkbox 여러 개 (java,db 꼴)
+  sms_yn    varchar(1),                          -- 문자수신 ← checkbox 하나 (Y, N)
+  intro     varchar(1000),                       -- 자기소개 ← textarea
+  reg_date  date default sysdate                 -- 등록일 ← 폼에 없음. DB가 채운다
+);</pre>
+      <p class="of-sub">varchar(30)의 30은 글자 수가 아니라 바이트 수입니다. Oracle XE를 기본값으로 설치했다면(문자 집합 AL32UTF8) 한글은 한 글자에 3바이트라서 이름 열에는 한글 10자까지 들어갑니다. reg_date처럼 default가 있는 열은 INSERT 열 목록에서 빼면 그 값(sysdate, 저장하는 순간의 날짜와 시각)이 들어갑니다.</p>
+
+      <div class="pe-sub">② 등록 화면 join.jsp의 form <small>표 배치(table · tr · td)는 빼고 입력칸만 적었습니다</small></div>
+      <pre class="hint">&lt;form name="frm" action="join_action.jsp" method="post" onsubmit="return check()"&gt;
+  &lt;!-- 검사 함수 check()는 B-5와 같은 방식. 수강생번호는 일정등록(reg.jsp)처럼 nvl(max(stu_no), 0) + 1 로 구한 값 --&gt;
+  수강생번호 &lt;input type="text" name="stu_no" value="&lt;%=stu_no%&gt;" readonly&gt;
+  아이디 &lt;input type="text" name="stu_id" maxlength="10"&gt;
+  비밀번호 &lt;input type="password" name="stu_pw" maxlength="20"&gt;
+  이름 &lt;input type="text" name="stu_name"&gt;
+
+  성별 &lt;input type="radio" name="gender" value="M" checked&gt;남
+       &lt;input type="radio" name="gender" value="F"&gt;여
+
+  생년월일 &lt;input type="date" name="birth"&gt;
+  경력(년) &lt;input type="number" name="career" min="0" max="40" value="0"&gt;
+
+  과정 &lt;select name="course"&gt;
+         &lt;option value=""&gt;과정 선택&lt;/option&gt;
+         &lt;option value="C01"&gt;정보처리산업기사&lt;/option&gt;
+         &lt;option value="C02"&gt;웹디자인개발기능사&lt;/option&gt;
+         &lt;option value="C03"&gt;SQLD&lt;/option&gt;
+       &lt;/select&gt;
+
+  관심분야 &lt;input type="checkbox" name="hobby" value="java"&gt;자바
+           &lt;input type="checkbox" name="hobby" value="web"&gt;웹
+           &lt;input type="checkbox" name="hobby" value="db"&gt;DB
+
+  문자수신 &lt;input type="checkbox" name="sms_yn" value="Y"&gt;받음
+
+  자기소개 &lt;textarea name="intro" rows="4" cols="40"&gt;&lt;/textarea&gt;
+
+  &lt;input type="submit" value="등록"&gt;
+  &lt;input type="reset" value="다시쓰기"&gt;
+  &lt;input type="button" value="조회" onclick="location.href='list.jsp'"&gt;
+&lt;/form&gt;</pre>
+
+      <div class="pe-sub">③ 값을 받아 저장하는 join_action.jsp</div>
+      <p class="of-sub">단계 18처럼 값을 이어 붙여도 되지만 null, 빈 숫자, 작은따옴표를 하나하나 따로 처리해야 합니다. 그래서 여기서는 ?에 값을 따로 넣는 PreparedStatement(B-6)로 썼습니다.</p>
+      <pre class="hint">&lt;%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%&gt;
+&lt;%@ page import="java.sql.*"%&gt;
+&lt;%@ page import="DBPKG.Util"%&gt;
+&lt;%
+request.setCharacterEncoding("UTF-8");
+
+// 글자로 받아 그대로 넣을 값들
+String stu_no   = request.getParameter("stu_no");
+String stu_id   = request.getParameter("stu_id");
+String stu_pw   = request.getParameter("stu_pw");
+String stu_name = request.getParameter("stu_name");
+String birth    = request.getParameter("birth");    // "2000-03-15", 비우면 ""
+String career   = request.getParameter("career");   // "2", 비우면 ""
+String course   = request.getParameter("course");   // 화면 글자가 아니라 value "C01"
+String intro    = request.getParameter("intro");    // 줄바꿈도 함께 온다
+
+// radio : 하나도 고르지 않으면 이름째 오지 않아서 null
+String gender = request.getParameter("gender");
+
+// checkbox 여러 개 : 배열로 받아 쉼표로 이어 한 열에 넣는다
+String[] hobbyArr = request.getParameterValues("hobby");
+String hobby = (hobbyArr == null) ? null : String.join(",", hobbyArr);
+
+// checkbox 하나 : 체크하면 "Y"가 오고, 안 하면 null이 오므로 "N"으로 바꾼다
+String sms_yn = (request.getParameter("sms_yn") == null) ? "N" : "Y";
+
+// 등록일(reg_date)은 열 목록에서 빼서 default sysdate가 들어가게 한다
+String sql = "insert into tbl_trainee "
+           + "(stu_no, stu_id, stu_pw, stu_name, gender, birth, career, course, hobby, sms_yn, intro) "
+           + "values (?, ?, ?, ?, ?, to_date(?, 'YYYY-MM-DD'), ?, ?, ?, ?, ?)";
+
+Connection conn = Util.getConnection();
+PreparedStatement pstmt = conn.prepareStatement(sql);
+pstmt.setInt(1, Integer.parseInt(stu_no));
+pstmt.setString(2, stu_id);
+pstmt.setString(3, stu_pw);
+pstmt.setString(4, stu_name);
+pstmt.setString(5, gender);              // null이면 DB에도 NULL
+pstmt.setString(6, birth);               // ""이면 to_date 결과가 NULL
+if (career == null || career.equals("")) {
+    pstmt.setNull(7, Types.INTEGER);     // 빈 숫자 칸은 parseInt 하지 않는다
+} else {
+    pstmt.setInt(7, Integer.parseInt(career));
+}
+pstmt.setString(8, course);
+pstmt.setString(9, hobby);
+pstmt.setString(10, sms_yn);
+pstmt.setString(11, intro);
+pstmt.executeUpdate();
+
+pstmt.close();
+conn.close();
+%&gt;
+&lt;script&gt;
+    alert("수강생 등록이 완료되었습니다.");
+    location.href = "list.jsp";
+&lt;/script&gt;</pre>
+
+      <div class="pe-sub">④ 입력칸 종류별로 꺼내고 넣는 법</div>
+      <div class="twrap"><table class="otbl fg-kinds-tbl"><thead><tr><th>입력칸</th><th>JSP에서 꺼내기</th><th>넣는 열</th><th>pstmt에 넣기</th><th>비우거나 안 고르면</th></tr></thead><tbody>
+        <tr><td class="m">text · password · hidden</td><td class="m">getParameter</td><td class="m">varchar</td><td class="m">setString</td><td>""가 오고, Oracle은 빈 글자를 NULL로 저장</td></tr>
+        <tr><td class="m">number</td><td class="m">getParameter → Integer.parseInt</td><td class="m">number</td><td class="m">setInt</td><td>""가 와서 parseInt에서 오류. 먼저 비었는지 보고 setNull</td></tr>
+        <tr><td class="m">date</td><td class="m">getParameter</td><td class="m">date</td><td class="m">to_date(?, 'YYYY-MM-DD')<br>+ setString</td><td>""가 오고 to_date 결과가 NULL</td></tr>
+        <tr><td class="m">radio</td><td class="m">getParameter</td><td class="m">varchar(1) 같은 짧은 글자</td><td class="m">setString</td><td>이름째 오지 않아 null → NULL</td></tr>
+        <tr><td class="m">select</td><td class="m">getParameter</td><td class="m">varchar</td><td class="m">setString</td><td>첫 option의 value(보통 "") → NULL</td></tr>
+        <tr><td class="m">checkbox 여러 개 · select multiple</td><td class="m">getParameterValues<br>→ String.join(",", 배열)</td><td class="m">varchar (넉넉하게)</td><td class="m">setString</td><td>배열이 null. 위 코드처럼 null로 저장</td></tr>
+        <tr><td class="m">checkbox 하나</td><td class="m">getParameter 후 null이면 "N"</td><td class="m">varchar(1)</td><td class="m">setString</td><td>null이 와서 "N"으로 바꿈</td></tr>
+        <tr><td class="m">textarea</td><td class="m">getParameter</td><td class="m">varchar (길게)</td><td class="m">setString</td><td>""가 오고 NULL로 저장. 줄바꿈은 그대로 저장</td></tr>
+        <tr><td>폼에 없는 값 (등록일)</td><td>꺼내지 않음</td><td class="m">date</td><td class="m">default sysdate</td><td>INSERT 열 목록에서 빼면 default 값이 들어감</td></tr>
+        <tr><td class="m">submit · reset · button</td><td>저장하지 않음</td><td></td><td></td><td>name을 준 submit 버튼만 그 value가 함께 감</td></tr></tbody></table></div>
+
+      <div class="pe-sub">⑤ 직접 해 보기: 칸을 바꾸면 무엇이 저장되나</div>
+      <p class="of-sub">왼쪽 칸을 바꾸면 오른쪽에 join_action.jsp가 받는 값과 tbl_trainee에 들어갈 값이 바로 나옵니다. 아이디를 지우거나, 아이디에 한글 4자를 적거나, 경력을 비워 보세요. 실제 DB에 넣지는 않고 그대로 보냈을 때 날 오류만 미리 보여 줍니다.</p>
+      <div class="fg-lab">
+        <form class="fg-demo" id="fgDb" action="join_action.jsp" method="post" name="frm" autocomplete="off">
+          <label class="fg-fld"><span>수강생번호</span><input type="text" name="stu_no" value="1" readonly><small>text · readonly</small></label>
+          <label class="fg-fld"><span>아이디</span><input type="text" id="fgdb-id" name="stu_id" value="hong01" maxlength="10"><small>text · maxlength="10"</small></label>
+          <label class="fg-fld"><span>비밀번호</span><input type="password" name="stu_pw" value="1234" maxlength="20"><small>password</small></label>
+          <label class="fg-fld"><span>이름</span><input type="text" id="fgdb-name" name="stu_name" value="홍길동"><small>text</small></label>
+          <div class="fg-fld"><span>성별</span><span class="fg-opts"><label><input type="radio" name="gender" value="M" checked>남</label><label><input type="radio" name="gender" value="F">여</label></span><small>radio</small></div>
+          <label class="fg-fld"><span>생년월일</span><input type="date" name="birth" value="2000-03-15"><small>date · 화면 모양과 상관없이 2000-03-15 꼴로 감</small></label>
+          <label class="fg-fld"><span>경력(년)</span><input type="number" id="fgdb-career" name="career" value="2" min="0" max="40"><small>number · min="0" max="40"</small></label>
+          <label class="fg-fld"><span>과정</span><select name="course"><option value="">과정 선택</option><option value="C01" selected>정보처리산업기사</option><option value="C02">웹디자인개발기능사</option><option value="C03">SQLD</option></select><small>select</small></label>
+          <div class="fg-fld"><span>관심분야</span><span class="fg-opts"><label><input type="checkbox" name="hobby" value="java" checked>자바</label><label><input type="checkbox" name="hobby" value="web">웹</label><label><input type="checkbox" name="hobby" value="db" checked>DB</label></span><small>checkbox 여러 개</small></div>
+          <div class="fg-fld"><span>문자수신</span><span class="fg-opts"><label><input type="checkbox" name="sms_yn" value="Y">받음</label></span><small>checkbox 하나</small></div>
+          <label class="fg-fld"><span>자기소개</span><textarea name="intro" rows="3">자바 웹 개발을 배우고 싶습니다.</textarea><small>textarea</small></label>
+          <div class="fg-btns"><button type="submit">등록</button><button type="reset">다시쓰기</button></div>
+        </form>
+        <div class="fg-sent" aria-live="polite">
+          <div class="fg-sent-h">join_action.jsp가 받는 값 → tbl_trainee에 들어가는 값</div>
+          <div class="twrap" style="margin:0;border:0;background:transparent"><table class="fg-dbt"><thead><tr><th>열</th><th>받는 값</th><th>저장되는 값</th></tr></thead><tbody id="fgDbRows"></tbody></table></div>
+          <div class="fg-ok" id="fgDbErr"></div>
+          <div class="fg-url fg-sqlv" id="fgDbSql"></div>
+          <div class="fg-flash" id="fgDbFlash"></div>
+        </div>
+      </div>
+
+      <div class="pe-sub">⑥ 수정 화면: 저장된 값을 입력칸에 다시 채우기</div>
+      <p class="of-sub">수정 화면은 DB에서 꺼낸 값을 입력칸에 넣어서 보여 줍니다. text와 date는 value에 넣으면 되지만 radio·checkbox·select는 맞는 항목에 checked나 selected를 붙여야 하고, textarea는 태그 사이에 씁니다.</p>
+      <pre class="hint">&lt;%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%&gt;
+&lt;%@ page import="java.sql.*, java.util.*"%&gt;
+&lt;%@ page import="DBPKG.Util"%&gt;
+&lt;%
+// 목록에서 넘어온 수강생번호로 한 줄을 꺼낸다. 날짜는 date 칸이 읽는 2000-03-15 꼴로 바꿔서
+String sql = "select stu_no, stu_name, gender, to_char(birth, 'YYYY-MM-DD') as birth, "
+           + "career, course, hobby, sms_yn, intro from tbl_trainee where stu_no = ?";
+Connection conn = Util.getConnection();
+PreparedStatement pstmt = conn.prepareStatement(sql);
+pstmt.setInt(1, Integer.parseInt(request.getParameter("stu_no")));
+ResultSet rs = pstmt.executeQuery();
+rs.next();
+
+String stu_no   = rs.getString("stu_no");
+String stu_name = rs.getString("stu_name");
+String gender   = rs.getString("gender");     // "M", "F" 또는 null
+String birth    = rs.getString("birth");      // "2000-03-15" 또는 null
+String career   = rs.getString("career");
+String course   = rs.getString("course");
+String hobby    = rs.getString("hobby");      // "java,db" 또는 null
+String sms_yn   = rs.getString("sms_yn");
+String intro    = rs.getString("intro");
+
+// "java,db"를 목록으로 나눠 두고 contains로 하나씩 확인한다
+List&lt;String&gt; hobbies = (hobby == null) ? new ArrayList&lt;String&gt;() : Arrays.asList(hobby.split(","));
+%&gt;
+&lt;form name="frm" action="update_action.jsp" method="post"&gt;
+  &lt;input type="hidden" name="stu_no" value="&lt;%=stu_no%&gt;"&gt;
+  이름 &lt;input type="text" name="stu_name" value="&lt;%=stu_name%&gt;"&gt;
+
+  성별 &lt;input type="radio" name="gender" value="M" &lt;%="M".equals(gender) ? "checked" : ""%&gt;&gt;남
+       &lt;input type="radio" name="gender" value="F" &lt;%="F".equals(gender) ? "checked" : ""%&gt;&gt;여
+
+  생년월일 &lt;input type="date" name="birth" value="&lt;%=birth == null ? "" : birth%&gt;"&gt;
+  경력(년) &lt;input type="number" name="career" value="&lt;%=career == null ? "" : career%&gt;"&gt;
+
+  과정 &lt;select name="course"&gt;
+         &lt;option value="C01" &lt;%="C01".equals(course) ? "selected" : ""%&gt;&gt;정보처리산업기사&lt;/option&gt;
+         &lt;option value="C02" &lt;%="C02".equals(course) ? "selected" : ""%&gt;&gt;웹디자인개발기능사&lt;/option&gt;
+         &lt;option value="C03" &lt;%="C03".equals(course) ? "selected" : ""%&gt;&gt;SQLD&lt;/option&gt;
+       &lt;/select&gt;
+
+  관심분야 &lt;input type="checkbox" name="hobby" value="java" &lt;%=hobbies.contains("java") ? "checked" : ""%&gt;&gt;자바
+           &lt;input type="checkbox" name="hobby" value="web" &lt;%=hobbies.contains("web") ? "checked" : ""%&gt;&gt;웹
+           &lt;input type="checkbox" name="hobby" value="db" &lt;%=hobbies.contains("db") ? "checked" : ""%&gt;&gt;DB
+
+  문자수신 &lt;input type="checkbox" name="sms_yn" value="Y" &lt;%="Y".equals(sms_yn) ? "checked" : ""%&gt;&gt;받음
+
+  자기소개 &lt;textarea name="intro" rows="4" cols="40"&gt;&lt;%=intro == null ? "" : intro%&gt;&lt;/textarea&gt;
+
+  &lt;input type="submit" value="수정"&gt;
+  &lt;input type="submit" value="삭제" formaction="delete_action.jsp" onclick="return confirm('삭제할까요?')"&gt;
+&lt;/form&gt;
+&lt;%
+rs.close();
+pstmt.close();
+conn.close();
+%&gt;</pre>
+      <ul class="pe-tasks">
+        <li><b>"M".equals(gender)</b>처럼 비교할 글자를 앞에 둡니다. gender가 null이어도 오류 없이 false가 됩니다.</li>
+        <li>키(stu_no)는 <b>hidden</b>이나 readonly로 둡니다. disabled로 두면 서버로 가지 않아서 수정 처리에서 null이 됩니다.</li>
+        <li>관심분야는 저장된 글자 전체에서 찾지 말고 쉼표로 나눈 목록에서 찾습니다. 글자 전체에 contains를 쓰면 "java"가 "javascript" 안에서도 찾아집니다.</li>
+        <li><b>formaction</b>이 있는 버튼은 form의 action 대신 그 파일로 보냅니다. 수정과 삭제를 한 폼에서 나눌 때 씁니다. confirm에서 취소를 누르면 false가 돌아와 보내지 않습니다.</li>
+      </ul>
+      <div class="fg-two">
+<pre class="hint">// update_action.jsp : 값 꺼내기는 join_action.jsp와 같다 (stu_no는 hidden에서 온다)
+String sql = "update tbl_trainee set stu_name = ?, gender = ?, "
+           + "birth = to_date(?, 'YYYY-MM-DD'), career = ?, course = ?, "
+           + "hobby = ?, sms_yn = ?, intro = ? where stu_no = ?";
+PreparedStatement pstmt = conn.prepareStatement(sql);
+pstmt.setString(1, stu_name);
+// ... 2~8번은 join_action.jsp와 같은 방법
+pstmt.setInt(9, Integer.parseInt(stu_no));   // 마지막 ?는 where 조건
+pstmt.executeUpdate();</pre>
+<pre class="hint">// delete_action.jsp : [삭제] 버튼도 같은 폼이라 hidden의 stu_no가 함께 온다
+String sql = "delete from tbl_trainee where stu_no = ?";
+PreparedStatement pstmt = conn.prepareStatement(sql);
+pstmt.setInt(1, Integer.parseInt(request.getParameter("stu_no")));
+pstmt.executeUpdate();</pre>
+      </div>
+
+      <div class="pe-sub">⑦ 조회 화면에서 알아보기 쉽게 바꾸기</div>
+      <p class="of-sub">DB에는 M, C01, Y처럼 짧은 값이 들어 있습니다. 조회 화면에서 남, 정보처리산업기사, 받음으로 보이게 하려면 SQL에서 바꾸는 편이 JSP가 깔끔합니다.</p>
+      <pre class="hint">select stu_no, stu_name,
+       case gender when 'M' then '남' when 'F' then '여' end as gender,
+       to_char(birth, 'YYYY-MM-DD') as birth,
+       career,
+       case course when 'C01' then '정보처리산업기사'
+                   when 'C02' then '웹디자인개발기능사'
+                   when 'C03' then 'SQLD' end as course,
+       hobby,
+       case sms_yn when 'Y' then '받음' else '안 받음' end as sms_yn,
+       intro,
+       to_char(reg_date, 'YYYY-MM-DD HH24:MI') as reg_date
+from tbl_trainee
+order by stu_no</pre>
+      <div class="twrap"><table class="otbl"><thead><tr><th>열</th><th>저장된 값</th><th>보이고 싶은 모양</th><th>바꾸는 곳</th></tr></thead><tbody>
+        <tr><td class="m">gender</td><td class="m">M</td><td>남</td><td class="m">case gender when 'M' then '남' ... end</td></tr>
+        <tr><td class="m">birth</td><td>날짜</td><td class="m">2000-03-15</td><td class="m">to_char(birth, 'YYYY-MM-DD')</td></tr>
+        <tr><td class="m">course</td><td class="m">C01</td><td>정보처리산업기사</td><td class="m">case course when 'C01' then ... end</td></tr>
+        <tr><td class="m">sms_yn</td><td class="m">Y</td><td>받음</td><td class="m">case sms_yn when 'Y' then '받음' else '안 받음' end</td></tr>
+        <tr><td class="m">career</td><td class="m">2</td><td>2년</td><td class="m">&lt;%=career%&gt;년</td></tr>
+        <tr><td class="m">intro</td><td>줄바꿈이 든 글자</td><td>화면에서도 줄을 나눔</td><td class="m">intro.replace("\n", "&lt;br&gt;")</td></tr>
+        <tr><td class="m">reg_date</td><td>날짜와 시각</td><td class="m">2026-10-22 14:05</td><td class="m">to_char(reg_date, 'YYYY-MM-DD HH24:MI')</td></tr></tbody></table></div>
+
+      <div class="pe-sub">⑧ 자주 나는 오류</div>
+      <div class="twrap"><table class="otbl"><thead><tr><th>이렇게 되면</th><th>까닭</th><th>고치는 법</th></tr></thead><tbody>
+        <tr><td>관심분야를 두 개 골랐는데 하나만 저장된다</td><td>getParameter("hobby")로 꺼냈다. 같은 이름이 여러 개면 첫 번째 값만 돌려준다</td><td>getParameterValues로 받아 String.join(",", 배열)</td></tr>
+        <tr><td>과정 열에 C01이 아니라 "정보처리산업기사"가 들어간다</td><td>option에 value를 쓰지 않았다. value가 없으면 화면 글자가 간다</td><td>option마다 value에 열에 넣을 값을 적는다</td></tr>
+        <tr><td>ORA-01400 (NULL을 넣을 수 없음)</td><td>not null 열에 빈 칸이 갔다. Oracle은 빈 글자("")도 NULL로 받는다</td><td>보내기 전에 검사한다(B-5). radio는 하나에 checked를 붙여 둔다</td></tr>
+        <tr><td>ORA-12899 (열에 비해 값이 큼)</td><td>varchar(10)은 10바이트다. maxlength="10"은 글자 수를 세므로 한글 4자(12바이트)도 통과한다</td><td>한글이 들어갈 열은 한 글자를 3바이트로 계산해 크기를 잡는다</td></tr>
+        <tr><td>NumberFormatException: For input string: ""</td><td>비어 있는 숫자 칸을 Integer.parseInt 했다</td><td>비었는지 먼저 보고 setNull</td></tr>
+        <tr><td>ORA-01438 (자릿수 초과)</td><td>number(2) 열에 100 이상을 넣었다</td><td>열 자릿수를 늘리거나 input의 max로 막는다</td></tr>
+        <tr><td>수정 화면에서 radio·select가 처음 항목으로 보인다</td><td>저장된 값에 맞춰 checked·selected를 붙이지 않았다</td><td class="m">"M".equals(gender) ? "checked" : ""</td></tr>
+        <tr><td>수정 화면을 열면 NullPointerException이 난다</td><td>gender.equals("M")에서 gender가 null이었다</td><td>상수를 앞에 둔다. "M".equals(gender)</td></tr>
+        <tr><td>수정 화면의 날짜 칸이 비어 있다</td><td>value가 2000-03-15 꼴이 아니다. 날짜 열을 그냥 getString 하면 시각까지 붙어 나온다</td><td class="m">to_char(birth, 'YYYY-MM-DD')</td></tr>
+        <tr><td>[수정]을 눌러도 바뀌지 않거나 NumberFormatException이 난다</td><td>키 칸(stu_no)을 disabled로 두어 서버로 가지 않았다</td><td>hidden이나 readonly로 둔다</td></tr>
+        <tr><td>한글이 깨진 글자로 저장된다</td><td>setCharacterEncoding을 getParameter보다 뒤에 썼다</td><td>맨 위로 옮긴다(B-7)</td></tr></tbody></table></div>
+      <p class="of-sub">이 예제 코드는 문법 검사만 했고 Tomcat·Oracle에서 직접 실행해 보지 않았습니다. [확인 필요]</p>
     </div>
 
     <div class="official appendix" id="pastexam">
@@ -3277,7 +3552,7 @@ conn.close();
   (function(){
     var a2 = document.createElement("div"); a2.className = "nav-group-label"; a2.textContent = "부록"; nav.appendChild(a2);
     var b = document.createElement("button"); b.type = "button"; b.className = "nav-anchor";
-    [["official","A. 공식 자료로 보는 시험","시험 구성 · 공식 예시 과제"],["formguide","B. form 태그 사용법","입력칸 종류 · 값 꺼내기 · 검사"],["pastexam","C. 기출문제 예제","투표 · 미용실 · 차량 · 도서 소스"]].forEach(function(x){
+    [["official","A. 공식 자료로 보는 시험","시험 구성 · 공식 예시 과제"],["formguide","B. form 태그 사용법","입력칸 종류 · 검사 · DB 저장"],["pastexam","C. 기출문제 예제","투표 · 미용실 · 차량 · 도서 소스"]].forEach(function(x){
       var b = document.createElement("button"); b.type = "button"; b.className = "nav-anchor";
       b.innerHTML = x[1] + '<small>' + x[2] + '</small>';
       b.addEventListener("click", function(){ jumpTo(document.getElementById(x[0])); });
@@ -3495,6 +3770,12 @@ conn.close();
   .fg-out .k { opacity: .6; }
   .fg-out .v { color: #ffd76a; }
   .fg-out .m { color: #9fd8b6; font-family: 'Noto Sans KR', sans-serif; }
+  .fg-dbt td small { display: block; font-family: 'Noto Sans KR', sans-serif; font-size: 10.5px; color: var(--code-text); opacity: .6; }
+  .fg-dbt td.e small { opacity: 1; }
+  .fg-ok { margin-top: 8px; color: #9fd8b6; font-size: 12.5px; }
+  .fg-miss b, .fg-ok b { display: block; font-weight: 700; }
+  .fg-sqlv { white-space: pre-wrap; word-break: normal; overflow-wrap: anywhere; }
+  .fg-kinds-tbl td:first-child { white-space: normal !important; min-width: 120px; }
   .fg-two { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px; }
   .fg-two > pre { margin: 0; min-width: 0; }
   @media (max-width: 640px) {
@@ -3969,6 +4250,85 @@ conn.close();
     });
     show();
   });
+
+  // B-12 : 칸을 바꾸면 join_action.jsp가 받는 값과 tbl_trainee에 들어갈 값을 보여 준다
+  var dbf = document.getElementById("fgDb");
+  if (dbf) {
+    var dbRows = document.getElementById("fgDbRows"), dbErr = document.getElementById("fgDbErr");
+    var dbSql = document.getElementById("fgDbSql"), dbFlash = document.getElementById("fgDbFlash");
+    var COURSE = { C01: "정보처리산업기사", C02: "웹디자인개발기능사", C03: "SQLD" };
+    var enc = window.TextEncoder ? new TextEncoder() : null;
+    // 서버에는 줄바꿈이 \r\n(2바이트)으로 간다
+    var bytes = function(v){ v = v.replace(/\r?\n/g, "\r\n"); return enc ? enc.encode(v).length : unescape(encodeURIComponent(v)).length; };
+    var one = function(v){ return v.replace(/\r?\n/g, "(줄바꿈)"); };
+    var lit = function(v){ return "'" + one(v).replace(/'/g, "''") + "'"; };
+    var renderDb = function(){
+      var fd = new FormData(dbf), rows = [], vals = [], errs = [];
+      var get = function(n){ var v = fd.get(n); return v === null ? null : String(v); };
+      var got = function(v){ return v === null ? "null (오지 않음)" : (v === "" ? '"" (빈 값)' : '"' + one(v) + '"'); };
+      var row = function(col, type, g, saved, note){ rows.push([col, type, g, saved, note || ""]); };
+      var text = function(col, max, notNull){
+        var v = get(col), type = "varchar(" + max + ")";
+        if (v === null || v === "") {
+          row(col, type, got(v), "NULL", v === "" ? "빈 글자는 NULL" : "");
+          vals.push(v === null ? "NULL" : "''");
+          if (notNull) errs.push("ORA-01400: " + col + " 열은 not null인데 값이 비었습니다.");
+          return;
+        }
+        var b = bytes(v);
+        row(col, type, got(v), lit(v), b > max ? b + "바이트 > " + max : (/[^\x00-\x7f]/.test(v) ? b + "바이트" : ""));
+        vals.push(lit(v));
+        if (b > max) errs.push("ORA-12899: " + col + " 값이 " + b + "바이트라서 " + type + "에 들어가지 않습니다. 한글은 한 글자에 3바이트입니다.");
+      };
+      var no = get("stu_no");
+      if (no !== null && /^\d+$/.test(no)) { row("stu_no", "number(5)", got(no), no, "Integer.parseInt"); vals.push(no); }
+      else { row("stu_no", "number(5)", got(no), "—"); vals.push("?"); errs.push('NumberFormatException: For input string: "' + (no || "") + '"'); }
+      text("stu_id", 10, true);
+      text("stu_pw", 20, true);
+      text("stu_name", 30, true);
+      text("gender", 1, false);
+      var bd = get("birth");
+      if (bd === null || bd === "") { row("birth", "date", got(bd), "NULL", "to_date('')는 NULL"); vals.push("to_date(" + (bd === null ? "NULL" : "''") + ", 'YYYY-MM-DD')"); }
+      else { row("birth", "date", got(bd), bd, "to_date로 날짜가 됨"); vals.push("to_date('" + bd + "', 'YYYY-MM-DD')"); }
+      var cr = get("career");
+      if (cr === null || cr === "") { row("career", "number(2)", got(cr), "NULL", "setNull"); vals.push("NULL"); }
+      else if (/^-?\d+$/.test(cr)) {
+        var n = parseInt(cr, 10);
+        row("career", "number(2)", got(cr), String(n), Math.abs(n) > 99 ? "두 자리를 넘음" : "Integer.parseInt");
+        vals.push(String(n));
+        if (Math.abs(n) > 99) errs.push("ORA-01438: career는 number(2)라서 99까지만 들어갑니다. 넣으려던 값 " + n);
+      } else { row("career", "number(2)", got(cr), "—"); vals.push("?"); errs.push('NumberFormatException: For input string: "' + cr + '"'); }
+      var cs = get("course");
+      if (cs === null || cs === "") { row("course", "varchar(3)", got(cs), "NULL", "첫 option의 value가 \"\""); vals.push(cs === null ? "NULL" : "''"); }
+      else { row("course", "varchar(3)", got(cs), lit(cs), COURSE[cs] ? "화면 글자 " + COURSE[cs] + "는 가지 않음" : ""); vals.push(lit(cs)); }
+      var hb = fd.getAll("hobby").map(String);
+      if (!hb.length) { row("hobby", "varchar(100)", "null (오지 않음)", "NULL", "getParameterValues가 null"); vals.push("NULL"); }
+      else { row("hobby", "varchar(100)", "{" + hb.map(function(x){ return '"' + x + '"'; }).join(", ") + "}", lit(hb.join(",")), "String.join"); vals.push(lit(hb.join(","))); }
+      var sm = get("sms_yn");
+      row("sms_yn", "varchar(1)", got(sm), sm === null ? "'N'" : "'Y'", sm === null ? "null이라 N으로 바꿈" : "");
+      vals.push(sm === null ? "'N'" : "'Y'");
+      text("intro", 1000, false);
+      row("reg_date", "date", "(폼에 없음)", "sysdate", "default 값");
+
+      dbRows.innerHTML = rows.map(function(r){
+        return "<tr><td>" + esc(r[0]) + "<small>" + esc(r[1]) + '</small></td><td class="' + (r[2].indexOf("null") === 0 || r[2].indexOf('""') === 0 ? "e" : "v") + '">' + esc(r[2]) +
+          '</td><td class="' + (r[3] === "NULL" || r[3] === "—" ? "e" : "v") + '">' + esc(r[3]) + (r[4] ? "<small>" + esc(r[4]) + "</small>" : "") + "</td></tr>";
+      }).join("");
+      if (errs.length) { dbErr.className = "fg-miss"; dbErr.innerHTML = "<b>이대로 보내면 나는 오류</b>" + errs.map(esc).join("<br>"); }
+      else { dbErr.className = "fg-ok"; dbErr.textContent = "오류 없이 1줄이 들어갑니다. executeUpdate()가 1을 돌려줍니다."; }
+      dbSql.innerHTML = "<b>? 자리를 값으로 풀어 쓰면</b>" + esc("insert into tbl_trainee\n(stu_no, stu_id, stu_pw, stu_name, gender, birth, career, course, hobby, sms_yn, intro)\nvalues (" + vals.join(", ") + ")");
+      return errs.length;
+    };
+    dbf.addEventListener("input", function(){ dbFlash.textContent = ""; renderDb(); });
+    dbf.addEventListener("change", function(){ renderDb(); });
+    dbf.addEventListener("submit", function(e){
+      e.preventDefault();
+      var bad = renderDb();
+      dbFlash.textContent = (bad ? "등록을 누르면 위 오류로 500 오류 화면이 뜹니다." : "등록을 누르면 join_action.jsp가 위 INSERT를 실행하고 안내창을 띄웁니다.") + " 이 페이지에서는 실제로 보내지 않습니다.";
+    });
+    dbf.addEventListener("reset", function(){ setTimeout(function(){ renderDb(); dbFlash.textContent = "다시쓰기(reset): 모든 칸이 처음 값으로 돌아갔습니다."; }, 0); });
+    renderDb();
+  }
 })();
 
 /* ===== 화면 고르기 : 현재 버전 / A 매뉴얼형 / C 작업 화면형 ===== */
