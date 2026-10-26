@@ -2607,8 +2607,52 @@ try (Connection con = Util.getConnection()) {
 <pre class="hint">일정코드 5, 일정일자 20260501, 메모 '자격증 원서 접수', 회원코드 M0003 을 넣으면
 
 insert into tbl_schedule values(5, to_date('20260501', 'YYYYMMDD'), '자격증 원서 접수', 'M0003')</pre>`,
-        warn: "메모에 작은따옴표(')를 넣으면 SQL 문장이 중간에 끊겨 오류(ORA-00917 등)가 납니다. 값을 이어 붙이는 간단한 방식의 한계입니다. 시험 데이터에는 작은따옴표가 없어 이 방식으로 충분하고, 피하는 방법은 <b>부록 B-6</b>(PreparedStatement)에 있습니다.",
-        shots: [["35-action-jsp.png","action.jsp — 수업 당시 캡처 (INSERT를 executeQuery로 실행하고, 날짜를 글자 그대로 넣음)"]]
+        warn: "메모에 작은따옴표(')를 넣으면 SQL 문장이 중간에 끊겨 오류(ORA-00917 등)가 납니다. 값을 이어 붙이는 간단한 방식의 한계입니다. 시험 데이터에는 작은따옴표가 없어 이 방식으로 충분하고, 피하는 방법은 이 단계 맨 아래의 <b>PreparedStatement 버전</b>과 <b>부록 B-6</b>에 있습니다.",
+        shots: [["35-action-jsp.png","action.jsp — 수업 당시 캡처 (INSERT를 executeQuery로 실행하고, 날짜를 글자 그대로 넣음)"]],
+        extraAfter: `<div class="sub-h">같은 action.jsp를 PreparedStatement로 쓰면</div>
+<p style="font-size:14px;margin:0 0 6px">값을 SQL 문장에 이어 붙이지 않고, SQL에는 물음표(<span class="path">?</span>)로 자리만 만들어 둔 뒤 값을 따로 넣는 방식입니다. 메모에 작은따옴표가 들어가도 그대로 저장되고, 따옴표를 직접 붙이지 않아도 됩니다. 위 기준 코드와 저장 결과는 같으니 손에 익은 쪽을 쓰면 됩니다.</p>
+<pre class="hint">&lt;%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%&gt;
+&lt;%@ page import="java.sql.*"%&gt;
+&lt;%@ page import="DBPKG.Util"%&gt;
+&lt;%
+request.setCharacterEncoding("UTF-8");
+Connection conn = Util.getConnection();
+
+String pk_schedule = request.getParameter("pk_schedule");
+String do_date = request.getParameter("do_date");
+String do_memo = request.getParameter("do_memo");
+String fk_member = request.getParameter("fk_member");
+
+// 값 자리는 ?, 날짜 자리는 to_date(?, 'YYYYMMDD')
+String sql = "insert into tbl_schedule values(?, to_date(?, 'YYYYMMDD'), ?, ?)";
+PreparedStatement pstmt = conn.prepareStatement(sql);
+pstmt.setInt(1, Integer.parseInt(pk_schedule));   // 1번째 ? : 일정코드(숫자)
+pstmt.setString(2, do_date);                      // 2번째 ? : 일정일자 20260501
+pstmt.setString(3, do_memo);                      // 3번째 ? : 일정메모
+pstmt.setString(4, fk_member);                    // 4번째 ? : 회원코드
+pstmt.executeUpdate();                            // 괄호 안은 비운다
+
+pstmt.close();
+conn.close();
+%&gt;
+&lt;script&gt;
+    alert("일정등록이 정상적으로 되었습니다.");
+    window.location.href = "main.jsp";
+&lt;/script&gt;</pre>
+<div class="twrap"><table class="otbl"><tr><th></th><th>Statement (위 기준 코드)</th><th>PreparedStatement</th></tr>
+<tr><td>만들기</td><td class="m">conn.createStatement()</td><td class="m">conn.prepareStatement(sql)</td></tr>
+<tr><td>SQL 모양</td><td>값을 이어 붙인 완성 문장</td><td>값 자리에 ?</td></tr>
+<tr><td>값 넣기</td><td>숫자는 그대로, 글자는 '...'로 직접 감쌈</td><td class="m">setInt(번호, 값), setString(번호, 값)</td></tr>
+<tr><td>실행</td><td class="m">stmt.executeUpdate(sql)</td><td class="m">pstmt.executeUpdate()</td></tr>
+<tr><td>메모에 ' 가 있으면</td><td>SQL이 끊겨 오류</td><td>그대로 저장</td></tr>
+<tr><td>닫기</td><td class="m">stmt.close()</td><td class="m">pstmt.close()</td></tr></table></div>
+<ul style="font-size:14px;margin:4px 0 0;padding-left:20px;line-height:1.7">
+<li><b>날짜 자리는 <span class="path">to_date(?, 'YYYYMMDD')</span></b>로 씁니다. <span class="path">values(?, ?, ?, ?)</span>처럼 물음표만 두고 <span class="path">setString(2, "20260501")</span>을 하면, DB가 이 글자를 자기 기본 날짜 형식으로 읽으려다 날짜 오류(ORA-01861 등)가 날 수 있습니다.</li>
+<li>set 메서드의 첫 숫자는 몇 번째 <span class="path">?</span>인지를 뜻하고 1부터 셉니다. 일정코드는 숫자 열이라 <span class="path">setInt</span>, 나머지는 <span class="path">setString</span>입니다.</li>
+<li>실행은 <span class="path">executeUpdate()</span>처럼 괄호를 비웁니다. SQL은 prepareStatement에서 이미 넘겼고, PreparedStatement에 sql을 다시 넣어 실행하면 오류가 납니다.</li>
+<li>물음표는 작은따옴표로 감싸지 않습니다. <span class="path">'?'</span>로 쓰면 자리 표시가 아니라 물음표 글자가 됩니다.</li>
+</ul>`
       }
     ]
   },
@@ -3309,7 +3353,7 @@ conn.close();
           "<b>executeUpdate</b>: INSERT·UPDATE·DELETE에 씁니다. 돌려주는 값은 반영된 줄 수(여기서는 1)입니다. 조회(SELECT)는 executeQuery입니다.",
           "<b>오류가 나면</b>: 화면에 500 오류와 함께 ORA 번호가 나옵니다. ORA-02291은 없는 회원코드, ORA-00001은 이미 있는 일정코드, ORA-01861은 날짜가 숫자 8자리가 아닐 때입니다. 이 간단한 코드는 오류를 따로 안내하지 않으므로, 그 번호로 원인을 찾습니다.",
           "<b>수업 당시 캡처와 다른 점</b>: 캡처는 INSERT를 executeQuery로 실행했고, 일정코드(숫자)까지 따옴표로 감쌌고, 날짜를 글자 그대로 넣었고, 연결을 닫지 않았습니다. 이 네 곳만 고쳤습니다. Oracle JDBC에서 INSERT를 executeQuery로 실행해도 반드시 오류가 나지는 않지만, SQL 종류에 맞는 메서드를 쓰는 것이 기준입니다.",
-          "메모에 작은따옴표(')가 들어가면 SQL이 깨집니다. 피하는 방법(PreparedStatement)은 부록 B-6에 있습니다.",
+          "메모에 작은따옴표(')가 들어가면 SQL이 깨집니다. PreparedStatement로 바꾼 코드는 단계 18 맨 아래에, 원리는 부록 B-6에 있습니다.",
           "이 코드는 Tomcat·Oracle에서 직접 실행해 보지 않았습니다. [확인 필요] 처음 실행할 때 정상 등록 1건과 일정현황 5번째 줄을 확인하세요."
         ]
       }
