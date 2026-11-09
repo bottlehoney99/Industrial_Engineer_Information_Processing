@@ -4984,4 +4984,43 @@ conn.close();
 })();
 </script>
 
+<!-- NOCOPY:START 학생용 : 코드 복사 막기 -->
+<style>
+  :root { --nc-bg: #1b1f27; --nc-ink: #ffffff; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --nc-bg: #e7e9ee; --nc-ink: #12151b; } }
+  :root[data-theme="dark"] { --nc-bg: #e7e9ee; --nc-ink: #12151b; }
+  /* 코드 영역은 끌어 선택할 수 없게 */
+  pre, pre *, code, code *, .annot, .annot *, .vc-code, .vc-code *, .vc-plain, .vc-plain *, .vc-ann .ex, .fg-out, .fg-sent {
+    -webkit-user-select: none; user-select: none; -webkit-touch-callout: none;
+  }
+  /* 코드 복사 단추 숨기기 */
+  .pe-cp, .va-cp, .vc-etabs [data-cp] { display: none !important; }
+  .nc-toast { position: fixed; z-index: 1000; left: 50%; bottom: max(20px, env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); max-width: calc(100vw - 32px); background: var(--nc-bg); color: var(--nc-ink); font-size: 14px; line-height: 1.5; border-radius: 10px; padding: 10px 16px; box-shadow: 0 6px 24px rgba(0,0,0,.25); text-align: center; }
+  .nc-toast[hidden] { display: none; }
+  @media print { pre, code, .annot, .vc-code, .vc-plain { visibility: hidden; } }
+</style>
+<div class="nc-toast" id="ncToast" role="status" hidden>이 자료는 복사할 수 없습니다. 코드는 한 줄씩 직접 입력해 보세요.</div>
+<script>
+(function(){
+  "use strict";
+  var toast = document.getElementById("ncToast"), timer = null;
+  function show(){ toast.hidden = false; clearTimeout(timer); timer = setTimeout(function(){ toast.hidden = true; }, 2600); }
+  function inField(t){
+    if (t && t.nodeType === 3) t = t.parentNode;
+    return !!(t && t.closest && t.closest("input, textarea, select, [contenteditable=''], [contenteditable='true']"));
+  }
+  function block(ev){ if (inField(ev.target)) return; ev.preventDefault(); show(); }
+  document.addEventListener("copy", block, true);
+  document.addEventListener("cut", block, true);
+  document.addEventListener("dragstart", function(ev){ if (!inField(ev.target) && ev.target.nodeName !== "IMG") ev.preventDefault(); }, true);
+  document.addEventListener("contextmenu", function(ev){
+    var t = ev.target; if (t && t.nodeType === 3) t = t.parentNode;
+    if (t && t.closest && t.closest("pre, code, .annot, .vc-code, .vc-plain")) ev.preventDefault();
+  }, true);
+})();
+</script>
+<!-- NOCOPY:END -->
+
+</body></html>
+
 </body></html>
