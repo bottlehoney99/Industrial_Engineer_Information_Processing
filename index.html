@@ -992,7 +992,7 @@
 <line x1="286" y1="369" x2="308" y2="369" class="d-ln acc" marker-end="url(#ah1)"/>
 <line x1="590" y1="369" x2="612" y2="369" class="d-ln acc" marker-end="url(#ah1)"/>
 </svg>
-        <figcaption>앞 단계가 뒤 단계의 전제입니다. 환경이 안 맞으면 아무것도 실행되지 않고, 테이블이 없으면 화면이 비어 보입니다. ⑤·⑥은 이 자료에 별도 단계가 없어서 바로 아래에 정리했습니다.</figcaption>
+        
       </figure>
       <button type="button" class="golink" data-go="step-workspace">① 환경 구성 →</button>
       <button type="button" class="golink" data-go="step-dbsql">② DB 입력 →</button>
@@ -1159,7 +1159,7 @@
         <li><b>C 완료</b> (그림의 점선) — action.jsp가 안내창을 띄운 뒤 main.jsp로 되돌려 보냅니다.</li>
       </ol>
       <h2 class="ov-h" id="glossary">처음 보는 용어 풀이</h2>
-      <p class="ov-sub">자료 곳곳에 나오는 용어를 한 줄로 풀었습니다. 막히면 여기로 돌아와 확인하세요.</p>
+      <p class="ov-sub">자료 곳곳에 나오는 용어를 한 줄로 풀었습니다.</p>
       <dl class="gl-grid"><div><dt>Workspace</dt><dd>Eclipse가 프로젝트와 설정을 저장하는 작업 폴더 (이 실습: C:\sample)</dd></div><div><dt>JDK</dt><dd>Java 프로그램을 컴파일하고 실행하는 도구 모음</dd></div><div><dt>Eclipse (IDE)</dt><dd>코드 작성·실행·서버 관리를 한 화면에서 하는 개발 도구</dd></div><div><dt>Tomcat (WAS, 웹 애플리케이션 서버)</dt><dd>브라우저 요청을 받아 JSP를 실행하고, 결과 HTML을 돌려주는 웹 애플리케이션 서버</dd></div><div><dt>JSP</dt><dd>HTML 안에 Java 코드를 섞어 쓴 파일. 서버(Tomcat)에서 실행된다</dd></div><div><dt>스크립틀릿 &lt;% %&gt;</dt><dd>JSP 안에서 서버가 실행하는 Java 코드 영역</dd></div><div><dt>JDBC · 드라이버</dt><dd>JDBC는 Java가 DB와 대화하는 표준 방법, 드라이버(ojdbc8.jar)는 그 방법을 Oracle용으로 만든 파일</dd></div><div><dt>SQL</dt><dd>DB에 테이블을 만들고, 데이터를 넣고, 꺼내는 언어</dd></div><div><dt>테이블 · 컬럼 · 행</dt><dd>엑셀에 비유하면 시트 · 열 · 한 줄</dd></div><div><dt>PK (기본키)</dt><dd>행 하나를 구분하는 값. 중복·빈 값 불가 (예: 회원코드 M0001)</dd></div><div><dt>FK (외래키)</dt><dd>다른 테이블의 키(보통 PK)를 참조하는 컬럼. 값을 넣으면 참조하는 테이블에 실제로 있는 값이어야 한다. 외래키만으로 NULL이 막히지는 않으므로 필요하면 NOT NULL을 따로 선언한다 (예: 일정의 회원코드)</dd></div><div><dt>COMMIT</dt><dd>지금까지 바꾼 데이터를 확정해 저장하는 명령</dd></div><div><dt>iframe</dt><dd>페이지 안에 다른 페이지를 끼워 보여주는 창. 메뉴를 누르면 이 안의 내용만 바뀐다</dd></div><div><dt>WEB-INF/lib</dt><dd>웹 프로젝트가 실행될 때 쓸 jar 파일을 두는 폴더</dd></div><div><dt>Build Path</dt><dd>Eclipse가 Java 코드를 컴파일할 때 참고하는 라이브러리 목록</dd></div><div><dt>서블릿</dt><dd>요청을 처리하는 Java 클래스. JSP도 실행 전에 서블릿으로 바뀐다</dd></div><div><dt>트랜잭션</dt><dd>함께 성공하거나 함께 취소되어야 하는 작업 묶음</dd></div><div><dt>Auto Commit</dt><dd>SQL을 실행할 때마다 자동으로 COMMIT하는 설정</dd></div><div><dt>SID · Service Name</dt><dd>Oracle에서 접속할 대상을 가리키는 이름 두 종류. 11g XE는 SID가 xe. 21c XE는 서비스 XE(루트 컨테이너)와 XEPDB1(기본 PDB)이 따로 있다</dd></div><div><dt>시맨틱 태그</dt><dd>header·nav·section·footer처럼 영역의 의미를 나타내는 HTML 태그</dd></div><div><dt>PreparedStatement</dt><dd>값을 ? 자리에 따로 넣어 SQL을 실행하는 방식. 문자열을 직접 이어 붙이는 것보다 안전하다</dd></div><div><dt>SQL 인젝션</dt><dd>입력값에 SQL을 섞어 넣어 의도하지 않은 SQL이 실행되게 하는 공격</dd></div><div><dt>GET · POST</dt><dd>폼 전송 방식. GET은 값이 주소(URL)에 붙어 가고, POST는 요청 본문에 담겨 간다. method를 안 쓰면 GET</dd></div><div><dt>jar 파일</dt><dd>Java 부품(클래스)을 하나로 묶은 파일. ojdbc8.jar가 대표 예</dd></div><div><dt>localhost</dt><dd>지금 쓰고 있는 내 컴퓨터를 가리키는 주소</dd></div><div><dt>포트</dt><dd>한 컴퓨터 안에서 프로그램을 구분하는 번호. 이 실습은 Tomcat 8090, Oracle 1521</dd></div><div><dt>Context path</dt><dd>주소에서 프로젝트를 가리키는 부분. localhost:8090/<b>default</b>/index.jsp의 default</dd></div><div><dt>404</dt><dd>요청한 파일을 서버가 찾지 못했다는 오류 번호. 파일 이름·위치·주소 오타를 확인</dd></div><div><dt>Connection · Statement · ResultSet</dt><dd>차례로 DB와의 연결, SQL을 실어 보내는 도구, 조회 결과 표. 다 쓰면 close()로 닫는다</dd></div><div><dt>try-with-resources</dt><dd>try ( ) 괄호 안에서 연 자원을 블록이 끝날 때 자동으로 닫아 주는 Java 문법</dd></div><div><dt>readonly</dt><dd>입력칸을 읽기 전용으로 만드는 속성. 화면에서는 못 고치지만 값은 함께 전송된다</dd></div><div><dt>alert · focus</dt><dd>alert는 안내창을 띄우는 JavaScript 명령, focus는 커서를 특정 입력칸으로 옮기는 명령</dd></div><div><dt>기준 코드</dt><dd>이 자료가 권하는 따라 쓸 코드. 수업 당시 캡처와 다른 곳은 각 해설에 적어 두었다</dd></div></dl>
     </div>
 </div>
@@ -1964,11 +1964,20 @@ order by stu_no</pre>
     intro: `<div class="env-wrap">
 <h2 class="env-title">시작 전 준비: 설치할 프로그램 네 가지</h2>
 <p class="env-sub">단계 1은 아래 네 프로그램이 설치된 상태에서 시작합니다. 아직 설치하지 않았다면 위에서부터 차례로 설치하세요. 시험장 PC에 미리 설치되어 있는지는 [확인 필요]이니, 시험에서는 감독 안내를 따릅니다.</p>
-<div class="twrap"><table class="otbl"><thead><tr><th>순서</th><th>프로그램</th><th>하는 일</th><th>설치 후 확인</th></tr></thead><tbody>
-<tr><td>1</td><td><b>JDK 25</b><br><a href="https://www.oracle.com/java/technologies/downloads/" target="_blank" rel="noopener">Oracle Java 다운로드</a></td><td>Java 프로그램을 만들고 실행하는 기본 도구. 나머지 프로그램이 모두 이 위에서 돌아갑니다</td><td>명령 프롬프트에 <span class="path">java -version</span>을 입력해 25가 보이면 됩니다. 다운로드 페이지 맨 앞에 더 새 버전이 보이면 <b>JDK 25</b> 탭을 골라 받습니다</td></tr>
-<tr><td>2</td><td><b>Eclipse</b> IDE for Enterprise Java and Web Developers<br><a href="https://www.eclipse.org/downloads/packages/" target="_blank" rel="noopener">Eclipse 패키지</a></td><td>코드를 쓰고 서버를 실행하는 작업 프로그램</td><td>실행하면 Workspace를 묻는 창이 뜹니다 (단계 1)</td></tr>
-<tr><td>3</td><td><b>Apache Tomcat 11</b><br><a href="https://tomcat.apache.org/download-11.cgi" target="_blank" rel="noopener">Tomcat 11 다운로드</a></td><td>JSP 파일을 실행해 웹 화면으로 바꿔 주는 서버</td><td>zip 파일을 압축 해제한 폴더 위치를 기억해 둡니다 (단계 3에서 씀)</td></tr>
-<tr><td>4</td><td><b>Oracle Database XE</b><br><a href="https://www.oracle.com/database/technologies/xe-downloads.html" target="_blank" rel="noopener">Oracle XE 다운로드</a></td><td>데이터를 표 형태로 저장하는 데이터베이스</td><td>설치 중에 정한 비밀번호를 기억해 둡니다 (이 실습: 1234, 단계 5에서 씀). 수업과 같은 버전을 쓰세요</td></tr></tbody></table></div>
+<div class="twrap"><table class="otbl"><thead><tr><th>순서</th><th>프로그램</th><th>실기 버전</th><th>하는 일</th><th>설치 후 확인</th></tr></thead><tbody>
+<tr><td>1</td><td><b>JDK</b><br><a href="https://www.oracle.com/java/technologies/downloads/" target="_blank" rel="noopener">Oracle Java 다운로드</a></td><td><b>JDK 25</b></td><td>Java 프로그램을 만들고 실행하는 기본 도구. 나머지 프로그램이 모두 이 위에서 돌아갑니다</td><td>명령 프롬프트에 <span class="path">java -version</span>을 입력해 25가 보이면 됩니다. 다운로드 페이지 맨 앞에 더 새 버전이 보이면 <b>JDK 25</b> 탭을 골라 받습니다</td></tr>
+<tr><td>2</td><td><b>Eclipse</b> IDE for Enterprise Java and Web Developers<br><a href="https://www.eclipse.org/downloads/packages/" target="_blank" rel="noopener">Eclipse 패키지</a></td><td>정해진 버전 없음<br><small>JDK 25·Tomcat 11을 지원하는 판</small></td><td>코드를 쓰고 서버를 실행하는 작업 프로그램</td><td>실행하면 Workspace를 묻는 창이 뜹니다 (단계 1)</td></tr>
+<tr><td>3</td><td><b>Apache Tomcat</b><br><a href="https://tomcat.apache.org/download-11.cgi" target="_blank" rel="noopener">Tomcat 11 다운로드</a></td><td><b>Tomcat 11</b></td><td>JSP 파일을 실행해 웹 화면으로 바꿔 주는 서버</td><td>zip 파일을 압축 해제한 폴더 위치를 기억해 둡니다 (단계 3에서 씀)</td></tr>
+<tr><td>4</td><td><b>Oracle Database XE</b><br><a href="https://www.oracle.com/database/technologies/xe-downloads.html" target="_blank" rel="noopener">Oracle XE 다운로드</a></td><td><b>Oracle 21c</b> (XE)</td><td>데이터를 표 형태로 저장하는 데이터베이스</td><td>설치 중에 정한 비밀번호를 기억해 둡니다 (이 실습: 1234, 단계 5에서 씀)</td></tr>
+<tr><td>+</td><td><b>JDBC 드라이버</b><br><small>따로 설치하지 않음</small></td><td><b>ojdbc8.jar</b><br>Eclipse 템플릿 <b>Oracle Thin Driver 11</b></td><td>Java(JSP·Eclipse)가 Oracle에 접속할 때 쓰는 연결 부품</td><td>Oracle 21c 설치 폴더의 <span class="path">dbhomeXE\\jdbc\\lib</span>에 ojdbc8.jar가 있는지 봅니다 (단계 4)</td></tr></tbody></table></div>
+<h3 style="font-size:15px;margin:16px 0 6px">왜 이 버전을 쓰나요</h3>
+<ul style="font-size:13.5px;margin:0 0 10px;padding-left:20px;line-height:1.7">
+<li><b>JDK 25</b>는 장기지원(LTS) 버전이라 오래 같은 환경으로 수업할 수 있습니다. Tomcat 11이 요구하는 조건(Java 17 이상)도 만족합니다.</li>
+<li><b>Tomcat 11</b>은 지금 쓰이는 웹 표준(Servlet 6.1, JSP 4.0)을 지원하는 버전입니다. Java 17 이상에서 돌아가므로 JDK 25와 함께 쓸 수 있고, Eclipse 서버 목록에서도 <b>Tomcat v11.0 Server</b>로 바로 고를 수 있습니다.</li>
+<li><b>Oracle 21c XE</b>는 무료이고 실습 PC에 부담이 적습니다. 기본 서비스 이름이 XE, 포트가 1521이라 문제지의 접속 주소 <span class="path">@//localhost:1521/xe</span>를 그대로 쓸 수 있습니다.</li>
+<li><b>ojdbc8.jar</b>는 Oracle 21c를 설치하면 <span class="path">jdbc\\lib</span> 폴더에 함께 들어옵니다. 따로 받을 필요가 없고, 같은 21c 버전에서 나온 드라이버라 DB와 짝이 맞습니다.</li>
+<li><b>Oracle Thin Driver 11</b>은 Eclipse가 제공하는 Oracle 연결 템플릿 중 가장 높은 버전이라 이것을 고릅니다. 템플릿이 기본으로 잡는 ojdbc14.jar는 이 PC에 없는 옛 파일이어서, JAR List에서 지우고 ojdbc8.jar로 바꿔 넣습니다(단계 4). 이름의 11은 템플릿 버전일 뿐이라 21c DB에 접속하는 데 문제없습니다.</li>
+</ul>
 <p style="font-size:13.5px;margin:4px 0 0">설치 화면은 버전마다 달라 이 자료에 캡처가 없습니다. 각 사이트의 안내를 따르고, 막히면 수업 자료를 확인하세요.</p>
 </div>
 <details class="more"><summary>이 자료의 개발 환경 — 무엇을, 어떤 버전으로, 왜<span>처음이면 건너뛰어도 됩니다</span></summary>
